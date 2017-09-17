@@ -258,9 +258,9 @@ sch_RCRII_3_of_4 <- sch_RCRII_3_of_4[,-dim(sch_RCRII_3_of_4)[2]]
 saveRDS(sch_RCRII_3_of_4, "sch_RCRII_3_of_4_06302017.rds")
 dbWriteTable(dbc, "sch_RCRII_3_of_4_06302017", sch_RCRII_3_of_4)
 
-## Schedule RCQ_4_of_4
-sch_RCQ_4_of_4_names <- read_tsv("FFIEC\ CDR\ Call\ Schedule\ RCQ\ 06302017(4 of 4).txt", n_max = 1) %>% names()
-sch_RCQ_4_of_4 <- read_tsv("FFIEC\ CDR\ Call\ Schedule\ RCQ\ 06302017(4 of 4).txt", skip = 2, col_names = sch_RCRII_4_of_4_names)
+## Schedule RCRII_4_of_4
+sch_RCRII_4_of_4_names <- read_tsv("FFIEC\ CDR\ Call\ Schedule\ RCRII\ 06302017(4 of 4).txt", n_max = 1) %>% names()
+sch_RCRII_4_of_4 <- read_tsv("FFIEC\ CDR\ Call\ Schedule\ RCRII\ 06302017(4 of 4).txt", skip = 2, col_names = sch_RCRII_4_of_4_names)
 sch_RCRII_4_of_4 <- sch_RCRII_4_of_4[,-dim(sch_RCRII_4_of_4)[2]]
 saveRDS(sch_RCRII_4_of_4, "sch_RCRII_4_of_4_06302017.rds")
 dbWriteTable(dbc, "sch_RCRII_4_of_4_06302017", sch_RCRII_4_of_4)
