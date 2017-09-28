@@ -1,16 +1,17 @@
 ## function to query tier 1 and 2 capital ------
+library(xts)
 
 query_capital1 <- function(ID){
     ## this is tier 1 capital
 
-    reports <- c("sch_RCRI_06302017.rds", "sch_RCRI_03312017.rds")
+    reports <- c("sch_RCRI_12312015.rds", "sch_RCRI_03312016.rds", "sch_RCRI_06302016.rds", "sch_RCRI_09302016.rds", "sch_RCRI_12312016.rds", "sch_RCRI_03312017.rds", "sch_RCRI_06302017.rds")
     num <- length(reports)
 
     tier_1_capital <- 0
     rept_date <- as.Date(0)
     
     for (i in 1:num){
-    sch <- readRDS(reports[i])
+    sch <- readRDS(paste0("../data/", reports[i]))
     sch <- sch[sch$IDRSSD == ID, ]
     tier_1_capital[i] <- as.numeric(sch$RCFA8274)
     rept_date[i] <- as.Date(strsplit(strsplit(reports[i], "_")[[1]][3], "\\.")[[1]][1], "%m%d%Y")
