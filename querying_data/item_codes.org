@@ -1,0 +1,7 @@
+** Item:
+Tier 1 Capital: RCFA8274: Schedule RC-R Part I - Regulatory Capital Components and Ratios
+Tier 2 Capital: RCFAP866: Schedule RC-R Part I - Regulatory Capital Components and Ratios
+
+
+** Banks:
+Bank of America: 480228
