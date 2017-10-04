@@ -1,6 +1,6 @@
 library(data.table)
 
-quarter <- "03312012"
+quarter <- "03312013"
 
 read_and_set_key <- function(quarter){
 
@@ -21,13 +21,16 @@ read_and_set_key <- function(quarter){
 
     data.tables.env <- new.env()
     
-        for(i in 1:length(files)){
-            assign(renamed[[i]][1], as.data.table(readRDS(paste0(location, files[i]))), envir = data.tables.env)
+    for(i in 1:length(files)){
+        tryCatch({
+            assign(renamed[[i]][1], as.data.table(readRDS(paste0(location, files[i]))), envir = data.tables.env)}, error=function(e){cat("ERROR :",conditionMessage(e), "\n")})
         }
 
     ## drop RCON1773, RCON1754, and RCFD1773 from all tables -- shows up multiple times -----
     ## find another way eventually
     eapply(env = data.tables.env, function(x){x[,c("RCON1773", "RCON1754", "RCFD1773"):=NULL]})
+
+    eapply(env = data.tables.env, function(x){as.numeric(x$IDRSSD)})
     
     eapply(env = data.tables.env, function(x){ setkey(x, "IDRSSD") })
 
