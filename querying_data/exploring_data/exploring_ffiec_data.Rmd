@@ -1,0 +1,41 @@
+---
+title: "Exploring FFIEC Data"
+output:
+  html_document: default
+  html_notebook: default
+editor_options:
+  chunk_output_type: inline
+---
+
+This notebook is a first look at the ffiec data.
+
+### The Number of Banks
+
+Below we calculate the number of unique IDRSSD codes (bank identifiers) each quarter. This may not track the number of bank (as in the 2012 increase) if the FDIC changes the types of institutions they cover (and are included in these reports) over time.  That said, the data shows the correct downward trend. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
+library(quantmod)
+library(highcharter)
+
+reports <- c("03312001/bulk_POR_03312001.rds", "06302001/bulk_POR_06302001.rds", "09302001/bulk_POR_09302001.rds", "12312001/bulk_POR_12312001.rds", "03312002/bulk_POR_03312002.rds", "06302002/bulk_POR_06302002.rds", "09302002/bulk_POR_09302002.rds", "12312002/bulk_POR_12312002.rds", "03312003/bulk_POR_03312003.rds", "06302003/bulk_POR_06302003.rds", "09302003/bulk_POR_09302003.rds", "12312003/bulk_POR_12312003.rds", "03312004/bulk_POR_03312004.rds", "06302004/bulk_POR_06302004.rds", "09302004/bulk_POR_09302004.rds", "12312004/bulk_POR_12312004.rds", "03312005/bulk_POR_03312005.rds", "06302005/bulk_POR_06302005.rds", "09302005/bulk_POR_09302005.rds", "12312005/bulk_POR_12312005.rds", "03312006/bulk_POR_03312006.rds", "06302006/bulk_POR_06302006.rds", "09302006/bulk_POR_09302006.rds", "12312006/bulk_POR_12312006.rds", "03312007/bulk_POR_03312007.rds", "06302007/bulk_POR_06302007.rds", "09302007/bulk_POR_09302007.rds", "12312007/bulk_POR_12312007.rds", "03312008/bulk_POR_03312008.rds", "06302008/bulk_POR_06302008.rds", "09302008/bulk_POR_09302008.rds", "12312008/bulk_POR_12312008.rds", "03312009/bulk_POR_03312009.rds", "06302009/bulk_POR_06302009.rds", "09302009/bulk_POR_09302009.rds", "12312009/bulk_POR_12312009.rds", "03312010/bulk_POR_03312010.rds", "06302010/bulk_POR_06302010.rds", "09302010/bulk_POR_09302010.rds", "12312010/bulk_POR_12312010.rds", "03312011/bulk_POR_03312011.rds", "06302011/bulk_POR_06302011.rds", "09302011/bulk_POR_09302011.rds", "12312011/bulk_POR_12312011.rds", "03312012/bulk_POR_03312012.rds", "06302012/bulk_POR_06302012.rds", "09302012/bulk_POR_09302012.rds", "12312012/bulk_POR_12312012.rds", "03312013/bulk_POR_03312013.rds", "06302013/bulk_POR_06302013.rds", "09302013/bulk_POR_09302013.rds", "12312013/bulk_POR_12312013.rds", "03312014/bulk_POR_03312014.rds", "06302014/bulk_POR_06302014.rds", "09302014/bulk_POR_09302014.rds", "12312014/bulk_POR_12312014.rds", "03312015/bulk_POR_03312015.rds", "06302015/bulk_POR_06302015.rds", "09302015/bulk_POR_09302015.rds", "12312015/bulk_POR_12312015.rds", "03312016/bulk_POR_03312016.rds", "06302016/bulk_POR_06302016.rds", "09302016/bulk_POR_09302016.rds", "12312016/bulk_POR_12312016.rds", "03312017/bulk_POR_03312017.rds", "06302017/bulk_POR_06302017.rds")
+
+num <- length(reports)
+
+the_code <- 0
+rept_date <- as.Date(0)
+num_banks <- 0
+
+for (i in 1:num){
+    sch <- readRDS(paste0("../../data/", reports[i]))
+    num_banks[i] <- length(unique(sch$IDRSSD))
+    rept_date[i] <- as.Date(strsplit(strsplit(reports[i], "_")[[1]][3], "\\.")[[1]][1], "%m%d%Y")
+}
+
+result <- xts::as.xts(as.numeric(num_banks), order.by = rept_date)
+hchart(result)
+```
+
+
+### The Distribution of Bank Size
+
+Here we look at the pdf of bank size over each quarter.
