@@ -22,7 +22,8 @@ selectizeInput("quarter_bulk_por", "Choose a Quarter", choices = report.dates)
 )
 
 DT::renderDataTable({
-    bulk_por <- readRDS(paste0("../../data/", input$quarter_bulk_por, "/bulk_POR_", input$quarter_bulk_por, ".rds"))
+    githubURL <- paste0("https://github.com/Matt-Brigida/FFIEC_Call_Reports/blob/master/data/", input$quarter_bulk_por, "/bulk_POR_", input$quarter_bulk_por, ".rds?raw=true")
+    bulk_por <- readRDS(url(githubURL))
     datatable(bulk_por)
 })
 ```
@@ -32,7 +33,7 @@ DT::renderDataTable({
 
 Below we calculate the number of unique IDRSSD codes (bank identifiers) each quarter. This may not track the number of bank (as in the 2012 increase) if the FDIC changes the types of institutions they cover (and are included in these reports) over time.  That said, the data shows the correct downward trend. 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, error=FALSE, eval = FALSE}
 library(quantmod)
 library(highcharter)
 
@@ -46,7 +47,7 @@ rept_date <- as.Date(0, origin = "1970-01-01")
 num_banks <- 0
 
 for (i in 1:num){
-    sch <- readRDS(paste0("../../data/", reports[i]))
+    sch <- readRDS(url(paste0("https://github.com/Matt-Brigida/FFIEC_Call_Reports/blob/master/data/", reports[i], "$raw=true")))
     num_banks[i] <- length(unique(sch$IDRSSD))
     rept_date[i] <- as.Date(strsplit(strsplit(reports[i], "_")[[1]][3], "\\.")[[1]][1], "%m%d%Y")
 }
@@ -61,7 +62,7 @@ hchart(result1)
 
 Here we look at the pdf of bank size over each quarter.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, error=FALSE, eval = FALSE}
 ## RIAD3210 -- total equity capital on sch RIA
 renderHighchart({
     
