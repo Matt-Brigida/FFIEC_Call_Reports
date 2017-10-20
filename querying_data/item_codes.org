@@ -1,7 +1,156 @@
 ** Item:
+*** Schedule RI - Income Statement
+Net Interest Income | RIAD4074
+Provision for Loan Losses | RIAD4230
+Non Interest Income | RIAD4079
+Net Income | RIAD4340
+Number of Full Time Staff | RIAD4150
+*** Schedule RI-A - Changes of in Equity Capital
+Balance End of Previous Year | RIADB508
+Total Equity End of Period | RIAD3210
+*** Schedule RI-B, Part I - Charge-offs and Recoveries
+**** Charge Offs
+Loans secured by real estate (construction) | RIAD3582
+Loans secured by real estate (farm land) | RIAD3584
+Loans secured by real estate (family residences - open ended loans) | RIAD5411
+Loans secured by real estate (family residences - closed end, first lien) | RIADC234
+Loans secured by real estate (family residences - closed end, junior lien) | RIADC235
+Loans secured by real estate (multifamily) | RIAD3588
+Loans secured by real estate (non-farm non residential) | RIAD3590
+Loans to depository institutions | RIAD4481
+Commercial and industrial loans | RIAD4638
+Credit Cards | RIADb514
+Other individual loans | RIADb516
+Loans fo foreign gov't and official institutions | RIAD4643
+All other loans | RIAD4644
+Lease Financing Receivables | RIAD4266
+Total | RIAD4635
+**** Recoveries
+Loans secured by real estate (construction) | RIAD3583
+Loans secured by real estate (farm land) | RIAD3585
+Loans secured by real estate (family residences - open ended loans)RIAD5412RIAD5412
+Loans secured by real estate (family residences - closed end, first lien)RIADc217RIADc217
+Loans secured by real estate (family residences - closed end, junior lien)RIADc218RIADc218
+Loans secured by real estate (multifamily)RIAD3589RIAD3589
+Loans secured by real estate (non-farm non residential)RIAD3591RIAD3591
+Loans to depository institutionsRIAD4482RIAD4482
+Commercial and industrial loansRIAD4608RIAD4608
+Credit CardsRIADb515RIADb515
+Other individual loansRIADb517RIADb517
+Loans fo foreign gov't and official institutionsRIAD4627RIAD4627
+All other loansRIAD4628RIAD4628
+Lease Financing ReceivablesRIAD4267RIAD4267
+Total | RIAD4605
+*** Schedule RI-B, Part II - Changes in Allowance for Loan and Lease Losses
+Beginning Balance | RIADB522
+RecoveriesRIAD4605RIAD4605
+Charge-offsRIADC079RIADC079
+Write-downs arising from transfers of loans to a held-for-sale accountRIAD5523RIAD5523
+ProvisionsRIAD4230RIAD4230
+Ending BalanceRIAD3123RIAD3123
+Schedule RC - Balance Sheet
+Assets 
+Cash 
+Noninterest-bearing balancesRCON0081RCON0081
+Interest-bearing balancesRCON0071RCON0071
+Securities
+Held-to-maturityRCON1754RCON1754
+Available-sor-saleRCON1773RCON1773
+Loans and Leases
+Held-for saleRCON5369RCON5369
+Net of unearned incomeRCONB528RCONB528
+Allowance for loan and lease lossesRCON3123RCON3123
+Net loans and leasesRCONB529RCONB529
+Total AssetsRCON2170RCON2170
+Liabilities 
+Deposits
+Non-interest bearingRCON6631RCON6631
+Interest-bearing balancesRCON6636RCON6636
+Other borrowed moneyRCON3190RCON3190
+Subordinated notes and debenturesRCON3200RCON3200
+Other liabilitiesRCON2930RCON2930
+Total Liabilities RCON2948RCON2948
+Minority InterestRCON3000RCON3000
+Equity
+Preferred StockRCON3838RCON3838
+Common StockRCON3230RCON3230
+Retained EarningsRCON3632RCON3632
+Accumulated other comprehensive incomeeRCONB530RCONB530
+Other equityRCONA130RCONA130
+Total Equity CapitalRCON3300RCON3300
+Schedule RC-C, Part I - Loans and Leases
+Loans secured by real estate (construction)RCON1415RCON1415
+Loans secured by real estate (farm land)RCON1420RCON1420
+Loans secured by real estate (family residences - open ended loans)RCON1797RCON1797
+Loans secured by real estate (family residences - closed end, first lien)RCON5367RCON5367
+Loans secured by real estate (family residences - closed end, junior lien)RCON5368RCON5368
+Loans secured by real estate (multifamily)RCON1460RCON1460
+Loans secured by real estate (non-farm non residential)RCON1480RCON1480
+Loans to depository institutionsRCON1288RCON1288
+Commercial and industrial loansRCON1766RCON1766
+Credit CardsRCONb538RCONb538
+Other individual loansRCONb539RCONb539
+Loans fo foreign gov't and official institutionsRCON2081RCON2081
+All other loansRCON1563RCON1563
+Lease Financing ReceivablesRCON2165RCON2165
+TotalRCON2122RCON2122
+Schedule RC-C, Part II - Loans to Small Business and Small Farms
+Loans secured by real estate (farm land)RCON5576RCON5576
+Loans secured by real estate (non-farm non residential)RCON5562RCON5562
+Commercial and industrial loansRCON5563RCON5563
+With Original Amounts of $100k or less (amount)RCON5579RCON5579
+With Original Amounts between $100k and $250k (amount)RCON5581RCON5581
+With Original Amounts between $250k and $500k (amount)RCON5583RCON5583
+With Original Amounts of $100k or less (number)RCON5579RCON5579
+With Original Amounts between $100k and $250k (number)RCON5580RCON5580
+With Original Amounts between $250k and $500k (number)RCON5582RCON5582
+Schedule RC-N-Past Due and Nonaccrual Loans
+Column B - Past Due 90 days or more
+Loans secured by real estate (construction)RCON2769RCON2769
+Loans secured by real estate (farm land)RCON3494RCON3494
+Loans secured by real estate (family residences - open ended loans)RCON5399RCON5399
+Loans secured by real estate (family residences - closed end, first lien)RCONC237RCONC237
+Loans secured by real estate (family residences - closed end, junior lien)RCONC239RCONC239
+Loans secured by real estate (multifamily)RCON3500RCON3500
+Loans secured by real estate (non-farm non residential)RCON3503RCON3503
+Loans to depository institutionsRCONB835RCONB835
+Commercial and industrial loansRCON1607RCON1607
+Credit CardsRCONB576RCONB576
+Other individual loansRCONB579RCONB579
+Loans fo foreign gov't and official institutionsRCON5390RCON5390
+All other loansRCON5460RCON5460
+Lease Financing ReceivablesRCON1227RCON1227
+Guaranteed Portion of US Gov't Guaranteed LoansRCON5616RCON5616
+Column C - Nonaccrual
+Loans secured by real estate (construction)RCON3492RCON3492
+Loans secured by real estate (farm land)RCON3495RCON3495
+Loans secured by real estate (family residences - open ended loans)RCON5400RCON5400
+Loans secured by real estate (family residences - closed end, first lien)RCONc299RCONc299
+Loans secured by real estate (family residences - closed end, junior lien)RCONc230RCONc230
+Loans secured by real estate (multifamily)RCON3501RCON3501
+Loans secured by real estate (non-farm non residential)RCON3504RCON3504
+Loans to depository institutionsRCONb836RCONb836
+Commercial and industrial loansRCON1608RCON1608
+Credit CardsRCONb577RCONb577
+Other individual loansRCONb580RCONb580
+Loans fo foreign gov't and official institutionsRCON5391RCON5391
+All other loansRCON5461RCON5461
+Lease Financing ReceivablesRCON1228RCON1228
+Guaranteed Portion of US Gov't Guaranteed LoansRCON5617RCON5617
+Schedule RC-R-Regulatory Capital
+Tier 1 CapitalRCON8274RCON8274
+Tier 2 CapitalRCON5311RCON5311
+Total Risk Based CapitalRCON3792RCON3792
+Avg. Total Assets for Leverage Capital PurposesRCONa224RCONa224
+Tier 1 Leverage RatioRCON7204RCON7204
+Tier 1 Risk-based Capital RatioRCON7206RCON7206
+Total Risk-based Capital RatioRCON7205RCON7205
+Total Risk-weighted assetsRCONa223RCONa223
+
+*** Only available on later call reports
 Tier 1 Capital: RCFA8274: Schedule RC-R Part I - Regulatory Capital Components and Ratios
 Tier 2 Capital: RCFAP866: Schedule RC-R Part I - Regulatory Capital Components and Ratios
 
-
 ** Banks:
-Bank of America: 480228
+Alamerica Bank:  2877484
+Commonwealth National Bank: 578237

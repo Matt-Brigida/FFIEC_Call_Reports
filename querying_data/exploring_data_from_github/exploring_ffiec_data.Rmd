@@ -6,7 +6,9 @@ editor_options:
   chunk_output_type: inline
 ---
 
-This notebook is a first look at the ffiec data.
+This is a first look at the ffiec data.  In the app below you can get an idea for the data set.  Choose a quarter in the drop-down-box and identifying information on each bank in the sample *present in that quarter* is shown.  Below the table shows you the total number of entries in the table---that is the total number of banks in the data set that quarter. 
+
+The search box will search over data present in all columns.  
 
 ### The Banks
 
@@ -24,7 +26,7 @@ selectizeInput("quarter_bulk_por", "Choose a Quarter", choices = report.dates)
 DT::renderDataTable({
     githubURL <- paste0("https://github.com/Matt-Brigida/FFIEC_Call_Reports/blob/master/data/", input$quarter_bulk_por, "/bulk_POR_", input$quarter_bulk_por, ".rds?raw=true")
     bulk_por <- readRDS(url(githubURL))
-    datatable(bulk_por)
+    datatable(bulk_por, filter = 'top')
 })
 ```
 

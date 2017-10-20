@@ -1,6 +1,6 @@
 library(xts)
 
-general_query <- function(ID, code){
+RI_query <- function(ID, code){
 
   ## this function can query any variable on the schedule RI -----
   ## arguments to the function are ID (the firm's IDRSSD) and the variable code (starting wtih RD...)
@@ -13,7 +13,7 @@ general_query <- function(ID, code){
     rept_date <- as.Date(0)
     
     for (i in 1:num){
-    sch <- readRDS(paste0("../data/", reports[i]))
+    sch <- readRDS(paste0("../../data/", reports[i]))
     sch <- sch[sch$IDRSSD == ID, ]
     the_code[i] <- as.numeric(eval(parse(text = paste0("sch$", code))))
     rept_date[i] <- as.Date(strsplit(strsplit(reports[i], "_")[[1]][3], "\\.")[[1]][1], "%m%d%Y")
