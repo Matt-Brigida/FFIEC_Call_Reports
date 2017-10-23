@@ -43,8 +43,8 @@ Lease Financing ReceivablesRIAD4267RIAD4267
 Total | RIAD4605
 *** Schedule RI-B, Part II - Changes in Allowance for Loan and Lease Losses
 Beginning Balance | RIADB522
-RecoveriesRIAD4605RIAD4605
-Charge-offsRIADC079RIADC079
+Recoveries | RIAD4605
+Charge-offs | RIADC079
 Write-downs arising from transfers of loans to a held-for-sale accountRIAD5523RIAD5523
 ProvisionsRIAD4230RIAD4230
 Ending BalanceRIAD3123RIAD3123
