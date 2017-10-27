@@ -16,7 +16,11 @@ RCR_2_of_2_query <- function(ID, code){ ## Schedule only exists through 2013 ---
     for (i in 1:num){
     sch <- readRDS(paste0("../../data/", reports[i]))
     sch <- sch[sch$IDRSSD == ID, ]
-    the_code[i] <- as.numeric(eval(parse(text = paste0("sch$", code))))
+    the_code[i] <- if( length(as.numeric(eval(parse(text = paste0("sch$", code))))) == 0){
+                       NA
+                   } else {
+                       as.numeric(eval(parse(text = paste0("sch$", code))))
+                   }
     rept_date[i] <- as.Date(strsplit(strsplit(reports[i], "_")[[1]][6], "\\.")[[1]][1], "%m%d%Y")
     }
     
