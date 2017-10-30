@@ -54,3 +54,30 @@ all_tier_1 <- do.call(merge, as.list(tier_1))
 
 write.csv(all_tier_1, "mdi_tier_1_cap.csv")
 saveRDS(all_tier_1, "mdi_tier_1_cap.rds")
+
+
+### Total Loans (domestic offices): RCON2122
+
+source("../individual_schedule_queries/schedule_RCCI_query.R")
+
+loans<- new.env()
+
+## firm type 1
+for (i in idrssds){
+    
+    assign("tmpb1", RCCI_query(i, code = "RCON2122"))
+
+    names(tmpb1) <- paste0("ID_", i)
+
+    assign(paste0("ID_", i),
+           tmpb1, envir = loans)
+
+    }
+
+all_loans <- do.call(merge, as.list(loans))
+
+write.csv(all_loans, "mdi_loans_cap.csv")
+saveRDS(all_loans, "mdi_loans_cap.rds")
+
+
+### Expgenous RHS variables ------
