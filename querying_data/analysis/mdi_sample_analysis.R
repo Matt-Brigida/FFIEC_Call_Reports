@@ -6,7 +6,8 @@ idrssds <- mdi_firms$IDRSSD
 
 ## pull tier_1_capital for all firms ----
 
-source("../item_queries/tier_1_capital.R")
+## source("../item_queries/tier_1_capital.R")
+source("../item_queries/tier_1_capital_attempt_2.R")
 
 tier_1 <- new.env()
 
@@ -38,9 +39,9 @@ for (i in idrssds){
 
     tmp3 <- rbind(tmp1, tmp2)
     
-    names(tmp3) <- paste0("ID_", i, "_tier_1_capital")
+    names(tmp3) <- paste0("ID_", i)
     
-    assign(paste0("ID_", i, "_tier_1_capital"),
+    assign(paste0("ID_", i),
            tmp3, envir = tier_1)
 
     rm(tmp1)
@@ -95,7 +96,9 @@ ten_two <- getSymbols('T10Y2YM', src = "FRED", auto.assign = FALSE)
 ten_two <- to.quarterly(ten_two)
 ten_two <- (ten_two$ten_two.High + ten_two$ten_two.Low) / 2
 adf.test(ten_two) ## => stationary
-ten_two_unexp <- ar(ten_two)$resid
+ten_two_unexp <- xts(ar(ten_two)$resid, order.by = index(ten_two))
+names(ten_two) <- "ten_two"
+names(ten_two_unexp) <- "ten_two_unexp"
 
 ten <- getSymbols('GS10', src = "FRED", auto.assign = FALSE)
 ten <- to.quarterly(ten)
@@ -104,6 +107,9 @@ adf.test(ten) ## => nonstationary
 ten <- Delt(ten, type = 'log')[-1]
 adf.test(ten) ## => stationary
 ten_unexp <- ar(ten)$resid
+ten_unexp <- xts(ar(ten)$resid, order.by = index(ten))
+names(ten) <- "ten"
+names(ten_unexp) <- "ten_unexp"
 
 cpi <- getSymbols('CPIAUCSL', src = "FRED", auto.assign = FALSE)
 cpi <- to.quarterly(cpi)
@@ -112,7 +118,9 @@ adf.test(cpi)                           # => nonstationary
 cpi <- Delt(cpi, type = 'log')[-1]
 adf.test(cpi)                           # => stationary
 cpi_unexp <- ar(cpi)$resid
-
+cpi_unexp <- xts(ar(cpi)$resid, order.by = index(cpi))
+names(cpi) <- "cpi"
+names(cpi_unexp) <- "cpi_unexp"
 
 jobs <- getSymbols('PAYEMS', src = "FRED", auto.assign = FALSE)
 jobs <- to.quarterly(jobs)
@@ -121,18 +129,11 @@ adf.test(jobs)                           # => nonstationary
 jobs <- Delt(jobs, type = 'log')[-1]
 adf.test(jobs)                           # => stationary
 jobs_unexp <- ar(jobs)$resid
+jobs_unexp <- xts(ar(jobs)$resid, order.by = index(jobs))
+names(jobs) <- "jobs"
+names(jobs_unexp) <- "jobs_unexp"
 
-exog <- merge.xts(ten_two, ten_two_unexp, ten, ten_unexp, cpi, cpi_unexp, jobs, jobs_unexp)
-
-
-
-
-
-
-
-
-
-
+exog <- merge.xts(ten_two, ten_two_unexp, ten, ten_unexp, cpi, cpi_unexp, jobs, jobs_unexp, join = "inner")
 
 ### Variables for analysis
 # Independent Variables
