@@ -135,6 +135,9 @@ names(jobs_unexp) <- "jobs_unexp"
 
 exog <- merge.xts(ten_two, ten_two_unexp, ten, ten_unexp, cpi, cpi_unexp, jobs, jobs_unexp, join = "inner")
 
+saveRDS(exog, "exog.rds")
+write.csv(exog, "Exog_vars.csv")
+
 ### Variables for analysis
 # Independent Variables
 # Exogenous
