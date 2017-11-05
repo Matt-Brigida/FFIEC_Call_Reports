@@ -6,7 +6,7 @@ output: html_notebook
 ### Load data.
 
 ```{r}
-library(xts)
+library(quantmod)
 
 ### laod data files ----
 
@@ -15,6 +15,10 @@ cap <- readRDS("mdi_tier_1_cap.rds")
 
 ## domestic loan balance
 loans <- readRDS("mdi_loans_cap.rds")
+
+## commercial and industrial loans
+Cloans <- readRDS("mdi_Cloans_cap.rds")
+Cloans[Cloans == 0] <- NA
 
 ## exogenous variables
 exogs <- readRDS("exog.rds")
@@ -27,13 +31,17 @@ exogs <- exogs[-dim(exogs)[1], ]
 loans_r <- apply(loans, 2, Delt)
 loans_r <- as.xts(loans_r, order.by = index(exogs["2001/"]))
 
+Cloans_r <- apply(Cloans, 2, Delt)
+Cloans_r <- as.xts(Cloans_r, order.by = index(exogs["2001/"]))
+
 cap_r <- apply(cap, 2, Delt)
 cap_r <- as.xts(cap_r, order.by = index(exogs["2001/"]))
 
 
 ```
 
-### One regresion per firm
+### One regresion per firm: Total (Domestic) Loans
+
 
 ```{r}
 
@@ -60,6 +68,42 @@ summary(capital_coef)
 t.test(capital_coef)
 
 plot(density(capital_coef))
+
+```
+
+
+### One regresion per firm: Commercial and Industrial Loans
+
+
+```{r}
+
+capital_coef2 <- 0
+
+for (i in gsub("ID_", "", names(cap))){
+
+    tmp <- merge.xts(Cloans_r[,(gsub("ID_", "", names(Cloans_r)) == i)], cap_r[,(gsub("ID_", "", names(cap_r)) == i)], exogs)
+    tmp <- tmp[!rowSums(!is.finite(tmp)), ]
+if(dim(tmp)[1] > 2){
+    tmp <- tmp[complete.cases(tmp), ]
+    names(tmp)[1] <- "Cloans"
+    names(tmp)[2] <- "capital"
+
+    capital_coef2 <- append(capital_coef2, summary(lm(tmp$Cloans ~ tmp$capital + tmp$ten_two + tmp$ten_two_unexp + tmp$ten + tmp$ten_unexp + tmp$cpi + tmp$cpi_unexp + tmp$jobs + tmp$jobs_unexp))$coef[2])
+
+    print(summary(lm(tmp$Cloans ~ tmp$capital + tmp$ten_two + tmp$ten_two_unexp + tmp$ten + tmp$ten_unexp + tmp$cpi + tmp$cpi_unexp + tmp$jobs + tmp$jobs_unexp)))
+    } else{
+          
+      }
+
+}
+
+capital_coef2 <- capital_coef2[-1]
+
+summary(capital_coef2)
+
+t.test(capital_coef2)
+
+plot(density(capital_coef2))
 
 ```
 
