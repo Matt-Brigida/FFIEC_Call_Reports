@@ -72,6 +72,38 @@ plot(density(capital_coef))
 ```
 
 
+### One regresion per firm: Total (Domestic) Loans --- lagged Tier 1 capital
+
+
+```{r}
+
+capital_coef <- 0
+
+for (i in gsub("ID_", "", names(cap))){
+
+    tmp <- merge.xts(loans_r[,(gsub("ID_", "", names(loans_r)) == i)], cap_r[,(gsub("ID_", "", names(cap_r)) == i)], exogs)
+    tmp <- tmp[!rowSums(!is.finite(tmp)), ]
+    tmp <- tmp[complete.cases(tmp), ]
+    names(tmp)[1] <- "loans"
+    names(tmp)[2] <- "capital"
+    
+    capital_coef <- append(capital_coef, summary(lm(tmp$loans ~ lag(tmp$capital) + tmp$ten_two + tmp$ten_two_unexp + tmp$ten + tmp$ten_unexp + tmp$cpi + tmp$cpi_unexp + tmp$jobs + tmp$jobs_unexp))$coef[2]
+)
+
+    print(summary(lm(tmp$loans ~ lag(tmp$capital) + tmp$ten_two + tmp$ten_two_unexp + tmp$ten + tmp$ten_unexp + tmp$cpi + tmp$cpi_unexp + tmp$jobs + tmp$jobs_unexp)))
+}
+
+capital_coef <- capital_coef[-1]
+
+summary(capital_coef)
+
+t.test(capital_coef)
+
+plot(density(capital_coef))
+
+```
+
+
 ### One regresion per firm: Commercial and Industrial Loans
 
 
@@ -91,6 +123,41 @@ if(dim(tmp)[1] > 2){
     capital_coef2 <- append(capital_coef2, summary(lm(tmp$Cloans ~ tmp$capital + tmp$ten_two + tmp$ten_two_unexp + tmp$ten + tmp$ten_unexp + tmp$cpi + tmp$cpi_unexp + tmp$jobs + tmp$jobs_unexp))$coef[2])
 
     print(summary(lm(tmp$Cloans ~ tmp$capital + tmp$ten_two + tmp$ten_two_unexp + tmp$ten + tmp$ten_unexp + tmp$cpi + tmp$cpi_unexp + tmp$jobs + tmp$jobs_unexp)))
+    } else{
+          
+      }
+
+}
+
+capital_coef2 <- capital_coef2[-1]
+
+summary(capital_coef2)
+
+t.test(capital_coef2)
+
+plot(density(capital_coef2))
+
+```
+
+### One regresion per firm: Commercial and Industrial Loans --- lagged tier 1 capital
+
+
+```{r}
+
+capital_coef2 <- 0
+
+for (i in gsub("ID_", "", names(cap))){
+
+    tmp <- merge.xts(Cloans_r[,(gsub("ID_", "", names(Cloans_r)) == i)], cap_r[,(gsub("ID_", "", names(cap_r)) == i)], exogs)
+    tmp <- tmp[!rowSums(!is.finite(tmp)), ]
+if(dim(tmp)[1] > 4){
+    tmp <- tmp[complete.cases(tmp), ]
+    names(tmp)[1] <- "Cloans"
+    names(tmp)[2] <- "capital"
+
+    capital_coef2 <- append(capital_coef2, summary(lm(tmp$Cloans ~ lag(tmp$capital) + tmp$ten_two + tmp$ten_two_unexp + tmp$ten + tmp$ten_unexp + tmp$cpi + tmp$cpi_unexp + tmp$jobs + tmp$jobs_unexp))$coef[2])
+
+    print(summary(lm(tmp$Cloans ~ lag(tmp$capital) + tmp$ten_two + tmp$ten_two_unexp + tmp$ten + tmp$ten_unexp + tmp$cpi + tmp$cpi_unexp + tmp$jobs + tmp$jobs_unexp)))
     } else{
           
       }
