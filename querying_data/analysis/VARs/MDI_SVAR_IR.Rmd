@@ -1,0 +1,128 @@
+---
+title: "MDI Analysis"
+output: html_notebook
+---
+
+### Load data.
+
+```{r}
+library(quantmod)
+
+### laod data files ----
+
+## tier 1 capital
+cap <- readRDS("../mdi_tier_1_cap.rds")
+
+## domestic loan balance
+loans <- readRDS("../mdi_loans_cap.rds")
+
+## commercial and industrial loans
+Cloans <- readRDS("../mdi_Cloans_cap.rds")
+Cloans[Cloans == 0] <- NA
+
+## exogenous variables
+exogs <- readRDS("../exog.rds")
+## remove Q3 2017 because not yet in FDIC data
+exogs <- exogs[-dim(exogs)[1], ]
+
+### convert tier 1 capital and loans from levels into changes -----
+## this data set (laons, cap) starts in Q1 2001
+
+loans_r <- apply(loans, 2, Delt)
+loans_r <- as.xts(loans_r, order.by = index(exogs["2001/"]))
+
+Cloans_r <- apply(Cloans, 2, Delt)
+Cloans_r <- as.xts(Cloans_r, order.by = index(exogs["2001/"]))
+
+cap_r <- apply(cap, 2, Delt)
+cap_r <- as.xts(cap_r, order.by = index(exogs["2001/"]))
+```
+
+### One SVAR per firm: Total (Domestic) Loans
+
+
+```{r}
+
+library(vars)
+
+for (i in gsub("ID_", "", names(cap))){
+
+    tmp <- merge.xts(loans_r[,(gsub("ID_", "", names(loans_r)) == i)], cap_r[,(gsub("ID_", "", names(cap_r)) == i)], exogs)
+    tmp <- tmp[!rowSums(!is.finite(tmp)), ]
+    tmp <- tmp[complete.cases(tmp), ]
+    names(tmp)[1] <- "loans"
+    names(tmp)[2] <- "capital"
+
+    tmp_endo <- tmp[, c(1,2)]
+    tmp_exog <- tmp[, c(-1,-2)]
+    
+    var_capital_loans <- tryCatch(VAR(tmp_endo, p = 6, ic = "AIC", exogen = tmp_exog), error = function(e){print("cant var")})
+
+    tryCatch(summary(var_capital_loans), error = function(e){print("cant summary var")})
+
+    ## create matrix to run structural VAR analysis
+    amat.capital.loans <- diag(2)
+    colnames(amat.capital.loans) <-c(names(tmp_endo))
+    rownames(amat.capital.loans) <-c(names(tmp_endo))
+    amat.capital.loans[2, 1] <- NA
+
+    ## estimate structural VAR
+    svar.capital.loans <- tryCatch(SVAR(var_capital_loans, estmethod = "direct", 
+                              Amat = amat.capital.loans, Bmat = NULL,
+                              hessian = TRUE, method="BFGS"), error = function(e){print("cant svar")})
+
+    tryCatch(summary(svar.capital.loans), error = function(e){print("cant summary svar")})
+
+    irf_capital_loans <- tryCatch(irf(svar.capital.loans, impulse = "capital", 
+                                      response = "loans", boot =TRUE, n.ahead=11,cumulative=TRUE,ci=0.6827), error = function(e){print("cant plot irf")})
+    
+    tryCatch(plot(irf_capital_loans), error = function(e){print("cant var")})
+}
+
+```
+
+### One SVAR per firm: Total (Domestic) Loans
+
+#### Pre-2008 Analysis
+
+
+```{r}
+
+library(vars)
+
+for (i in gsub("ID_", "", names(cap))){
+
+    tmp <- merge.xts(loans_r[,(gsub("ID_", "", names(loans_r)) == i)], cap_r[,(gsub("ID_", "", names(cap_r)) == i)], exogs)
+    tmp <- tmp[!rowSums(!is.finite(tmp)), ]
+    tmp <- tmp[complete.cases(tmp), ]
+    tmp <- tmp['/2007']
+    names(tmp)[1] <- "loans"
+    names(tmp)[2] <- "capital"
+
+    tmp_endo <- tmp[, c(1,2)]
+    tmp_exog <- tmp[, c(-1,-2)]
+    
+    var_capital_loans <- tryCatch(VAR(tmp_endo, p = 6, ic = "AIC", exogen = tmp_exog), error = function(e){print("cant var")})
+
+    tryCatch(summary(var_capital_loans), error = function(e){print("cant summary var")})
+
+    ## create matrix to run structural VAR analysis
+    amat.capital.loans <- diag(2)
+    colnames(amat.capital.loans) <- tryCatch(c(names(tmp_endo)), error = function(e){print("cant 
+    rownames(amat.capital.loans) <- tryCatch(c(names(tmp_endo)), error = function(e){print("cant 
+    amat.capital.loans[2, 1] <- NA
+
+    ## estimate structural VAR
+    svar.capital.loans <- tryCatch(SVAR(var_capital_loans, estmethod = "direct", 
+                              Amat = amat.capital.loans, Bmat = NULL,
+                              hessian = TRUE, method="BFGS"), error = function(e){print("cant svar")})
+
+    tryCatch(summary(svar.capital.loans), error = function(e){print("cant summary svar")})
+
+    irf_capital_loans <- tryCatch(irf(svar.capital.loans, impulse = "capital", 
+                                      response = "loans", boot =TRUE, n.ahead=11,cumulative=TRUE,ci=0.6827), error = function(e){print("cant plot irf")})
+    
+    tryCatch(plot(irf_capital_loans), error = function(e){print("cant var")})
+}
+
+```
