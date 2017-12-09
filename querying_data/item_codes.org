@@ -61,7 +61,7 @@ Held-for saleRCON5369RCON5369
 Net of unearned incomeRCONB528RCONB528
 Allowance for loan and lease lossesRCON3123RCON3123
 Net loans and leasesRCONB529RCONB529
-Total AssetsRCON2170RCON2170
+Total Assets | RCON2170
 Liabilities 
 Deposits
 Non-interest bearingRCON6631RCON6631
