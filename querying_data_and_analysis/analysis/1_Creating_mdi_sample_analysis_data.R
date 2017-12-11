@@ -104,6 +104,28 @@ all_Cloans <- do.call(merge, as.list(Cloans))
 write.csv(all_Cloans, "mdi_Cloans_cap.csv")
 saveRDS(all_Cloans, "mdi_Cloans_cap.rds")
 
+### Total Assets -------
+
+source("../individual_schedule_queries/schedule_RC_query.R")
+
+total_assets <- new.env()
+
+for (i in idrssds){
+    
+    assign("tmpta", RC_query(i, code = "RCON2170"))
+
+    names(tmpta) <- paste0("ID_", i)
+
+    assign(paste0("ID_", i),
+           tmpta, envir = total_assets)
+
+    }
+
+all_total_assets <- do.call(merge, as.list(total_assets))
+
+write.csv(all_total_assets, "mdi_total_assets.csv")
+saveRDS(all_total_assets, "mdi_total_assets.rds")
+
 
 ### Exogenous RHS variables ------
 ## pull data from FRED
