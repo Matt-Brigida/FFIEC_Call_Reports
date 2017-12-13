@@ -1,15 +1,13 @@
-### pull capital and loans ------
+library(here)
 
-quarter <- "03312017"
+## sample of firms
 
-bulk_por <- readRDS(paste0("../../../../data/", quarter, "/bulk_POR_", quarter, ".rds"))
-
-idrssds <- bulk_por$IDRSSD
+idrssds <- readRDS("idrssds_alive_06302017.rds")
 
 ## pull tier_1_capital for all firms ----
 
 ## source("../item_queries/tier_1_capital.R")
-source("../item_queries/tier_1_capital_attempt_2.R")
+source(paste0(here(), "/querying_data_and_analysis/item_queries/tier_1_capital_attempt_2.R"))
 
 tier_1 <- new.env()
 

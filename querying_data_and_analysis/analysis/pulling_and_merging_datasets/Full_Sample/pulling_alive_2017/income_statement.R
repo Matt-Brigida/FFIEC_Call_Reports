@@ -4,9 +4,9 @@
 ### presently it is only the MDIs
 ### change to all firms if needed
 
-mdi_firms <- read.csv("../../bank_codes/full_sample.csv")
+firms <- read.csv("../../bank_codes/full_sample.csv")
 
-idrssds <- mdi_firms$IDRSSD
+idrssds <- firms$IDRSSD
 
 ### Pulling Data for Sample --------
 
@@ -31,8 +31,8 @@ for (i in idrssds){
 
 all_total_interest_income <- do.call(merge, as.list(total_interest_income))
 
-write.csv(all_total_interest_income, "mdi_total_interest_income.csv")
-saveRDS(all_total_interest_income, "mdi_total_interest_income.rds")
+write.csv(all_total_interest_income, "total_interest_income.csv")
+saveRDS(all_total_interest_income, "total_interest_income.rds")
 
 ### Interest Expense (to get net interest income) ------
 
@@ -51,8 +51,8 @@ for (i in idrssds){
 
 all_total_interest_expense <- do.call(merge, as.list(total_interest_expense))
 
-write.csv(all_total_interest_expense, "mdi_total_interest_expense.csv")
-saveRDS(all_total_interest_expense, "mdi_total_interest_expense.rds")
+write.csv(all_total_interest_expense, "total_interest_expense.csv")
+saveRDS(all_total_interest_expense, "total_interest_expense.rds")
 
 ### Total Noninterest Income ------
 
@@ -71,8 +71,8 @@ for (i in idrssds){
 
 all_total_noninterest_income <- do.call(merge, as.list(total_noninterest_income))
 
-write.csv(all_total_noninterest_income, "mdi_total_noninterest_income.csv")
-saveRDS(all_total_noninterest_income, "mdi_total_noninterest_income.rds")
+write.csv(all_total_noninterest_income, "total_noninterest_income.csv")
+saveRDS(all_total_noninterest_income, "total_noninterest_income.rds")
 
 
 
@@ -93,8 +93,8 @@ for (i in idrssds){
 
 all_total_noninterest_expense <- do.call(merge, as.list(total_noninterest_expense))
 
-write.csv(all_total_noninterest_expense, "mdi_total_noninterest_expense.csv")
-saveRDS(all_total_noninterest_expense, "mdi_total_noninterest_expense.rds")
+write.csv(all_total_noninterest_expense, "total_noninterest_expense.csv")
+saveRDS(all_total_noninterest_expense, "total_noninterest_expense.rds")
 
 
 ## Net Income -------
@@ -114,5 +114,5 @@ for (i in idrssds){
 
 all_net_income <- do.call(merge, as.list(net_income))
 
-write.csv(all_net_income, "mdi_net_income.csv")
-saveRDS(all_net_income, "mdi_net_income.rds")
+write.csv(all_net_income, "net_income.csv")
+saveRDS(all_net_income, "net_income.rds")

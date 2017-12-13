@@ -2,6 +2,8 @@
 ### Create a quarter by quarter list of new and dead IDRSSDs ###
 ################################################################
 
+library(here)
+
 ## This is nice but doesn't give me quarters in order
 ## quarters <- list.dirs("../../../../data/", full.names = FALSE)[-1]
 
@@ -11,9 +13,47 @@ idrssds <- list()
 
 for (q in quarters){
     
-tmp_bulk_por <- readRDS(paste0("../../../../data/", q, "/bulk_POR_", q, ".rds"))
+tmp_bulk_por <- readRDS(paste0(here(), "/data/", q, "/bulk_POR_", q, ".rds"))
 
-### TODO this V doesn't work
-idrssds <- list(idrssds, list(tmp_bulk_por$IDRSSD))
+idrssds[[q]] <- tmp_bulk_por$IDRSSD
 
     }
+
+### ^ works
+
+### firms in quarter 3 that are not in quarter 2
+idrssds[[3]][!(idrssds[[3]] %in% idrssds[[2]])]
+
+## births -----
+births <- list()
+
+for (i in 2:length(quarters)){
+    births[[quarters[i]]] <- idrssds[[i]][!(idrssds[[i]] %in% idrssds[[i - 1]])]
+}
+
+### firms in quarter 3 that are not in quarter 4
+idrssds[[3]][!(idrssds[[3]] %in% idrssds[[4]])]
+
+## deaths -----
+deaths <- list()
+
+for (i in 1:(length(quarters) - 1)){
+    deaths[[quarters[i + 1]]] <- idrssds[[i]][!(idrssds[[i]] %in% idrssds[[i + 1]])]
+}
+
+
+
+### vizualizations
+
+### plot deaths
+
+plot(unlist(lapply(deaths, length)), type = "b", xaxt = "n", xlab = "", main = "Deaths", ylab = "Number of Deaths")
+axis(1, at = 1:length(names(deaths)), labels = names(deaths), las = 2)
+
+### plot births
+
+plot(unlist(lapply(births, length)), type = "b")
+
+### birth - death
+
+plot(unlist(lapply(births, length)) - unlist(lapply(deaths, length)), type = "b")

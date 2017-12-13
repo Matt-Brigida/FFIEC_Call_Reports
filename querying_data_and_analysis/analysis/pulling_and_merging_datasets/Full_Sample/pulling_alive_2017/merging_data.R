@@ -6,14 +6,14 @@ library(xts)
 ## whats there 
 system("ls *.rds")
 
-loans <- readRDS("mdi_loans_cap.rds")
-t1 <- readRDS("mdi_tier_1_cap.rds")
-ni <- readRDS("mdi_net_income.rds")
-ta <- readRDS("mdi_total_assets.rds")
-ie <- readRDS("mdi_total_interest_expense.rds")
-nonie <- readRDS("mdi_total_noninterest_expense.rds")
-ii <- readRDS("mdi_total_interest_income.rds")
-nonii <- readRDS("mdi_total_noninterest_income.rds")
+loans <- readRDS("loans_cap.rds")
+t1 <- readRDS("tier_1_cap.rds")
+ni <- readRDS("net_income.rds")
+ta <- readRDS("total_assets.rds")
+ie <- readRDS("total_interest_expense.rds")
+nonie <- readRDS("total_noninterest_expense.rds")
+ii <- readRDS("total_interest_income.rds")
+nonii <- readRDS("total_noninterest_income.rds")
 
 ### loans as percent of assets ----
 

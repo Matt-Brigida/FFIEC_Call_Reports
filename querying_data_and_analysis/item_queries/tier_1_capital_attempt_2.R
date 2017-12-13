@@ -4,16 +4,17 @@
 query_tier_1_capital <- function(ID, firm_type = 1){
 
     library(xts)
+    library(here)
 
     ## read in RCR_1_of_2_query -- contains tier 1 capital through 2013 -----
 
     if(firm_type == 1){
         
-        source("../individual_schedule_queries/schedule_RCR1_query.R") ## code is RCON8274--maybe RCFD8274 for some firms -- yep
+        source(paste0(here(), "/querying_data_and_analysis/individual_schedule_queries/schedule_RCR1_query.R")) ## code is RCON8274--maybe RCFD8274 for some firms -- yep
 
-        source("../individual_schedule_queries/schedule_RCRIB_query.R") ## only for 2014, code is RCFA8274
+        source(paste0(here(), "/querying_data_and_analysis/individual_schedule_queries/schedule_RCRIB_query.R")) ## only for 2014, code is RCFA8274
 
-        source("../individual_schedule_queries/schedule_RCRI_query.R") ## 2015 onward, code is RCFA8274
+        source(paste0(here(), "/querying_data_and_analysis/individual_schedule_queries/schedule_RCRI_query.R")) ## 2015 onward, code is RCFA8274
 
         code1 <- "RCFD8274"
 
@@ -57,11 +58,11 @@ query_tier_1_capital <- function(ID, firm_type = 1){
 
     } else {
 
-        source("../individual_schedule_queries/schedule_RCR1_query.R") ## code is RCON8274--maybe RCFD8274 for some firms -- yep
+        source(paste0(here(), "/querying_data_and_analysis/individual_schedule_queries/schedule_RCR1_query.R")) ## code is RCON8274--maybe RCFD8274 for some firms -- yep
 
-        source("../individual_schedule_queries/schedule_RCRIA_query.R") ## only for 2014, code is 
+        source(paste0(here(), "/querying_data_and_analysis/individual_schedule_queries/schedule_RCRIA_query.R")) ## only for 2014, code is 
 
-        source("../individual_schedule_queries/schedule_RCRI_query.R") ## 2015 onward, code is RCFA8274
+        source(paste0(here(), "/querying_data_and_analysis/individual_schedule_queries/schedule_RCRI_query.R")) ## 2015 onward, code is RCFA8274
 
         code1 <- "RCON8274"
         
