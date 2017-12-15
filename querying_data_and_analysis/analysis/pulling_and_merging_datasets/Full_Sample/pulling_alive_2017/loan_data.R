@@ -1,7 +1,12 @@
+library(here)
+
+## sample of firms
+
+idrssds <- readRDS("idrssds_alive_06302017.rds")
 
 ### Total Loans (domestic offices): RCON2122
 
-source("../individual_schedule_queries/schedule_RCCI_query.R")
+source(paste0(here(), "/querying_data_and_analysis/individual_schedule_queries/schedule_RCCI_query.R"))
 
 loans<- new.env()
 
@@ -25,7 +30,7 @@ saveRDS(all_loans, "loans_cap.rds")
 
 ### Commercial and Indistrial Loans: RCON1766
 
-source("../individual_schedule_queries/schedule_RCCI_query.R")
+## source("../individual_schedule_queries/schedule_RCCI_query.R")
 
 Cloans <- new.env()
 

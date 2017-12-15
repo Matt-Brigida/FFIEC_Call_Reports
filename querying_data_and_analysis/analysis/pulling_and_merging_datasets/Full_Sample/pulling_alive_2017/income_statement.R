@@ -1,12 +1,8 @@
-### Sample of Firms -----
+library(here)
 
-### this is the set of firms for which we'll pull data.
-### presently it is only the MDIs
-### change to all firms if needed
+## sample of firms
 
-firms <- read.csv("../../bank_codes/full_sample.csv")
-
-idrssds <- firms$IDRSSD
+idrssds <- readRDS("idrssds_alive_06302017.rds")
 
 ### Pulling Data for Sample --------
 
@@ -14,7 +10,7 @@ idrssds <- firms$IDRSSD
 
 ### Interest Income -------
 
-source("../individual_schedule_queries/schedule_RI_query.R")
+source(paste0(here(), "/querying_data_and_analysis/individual_schedule_queries/schedule_RI_query.R"))
 
 total_interest_income <- new.env()
 

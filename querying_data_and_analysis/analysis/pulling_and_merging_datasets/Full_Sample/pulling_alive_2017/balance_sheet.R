@@ -1,7 +1,12 @@
+library(here)
+
+## sample of firms
+
+idrssds <- readRDS("idrssds_alive_06302017.rds")
 
 ### Total Assets -------
 
-source("../individual_schedule_queries/schedule_RC_query.R")
+source(paste0(here(), "/querying_data_and_analysis/individual_schedule_queries/schedule_RC_query.R"))
 
 total_assets <- new.env()
 
