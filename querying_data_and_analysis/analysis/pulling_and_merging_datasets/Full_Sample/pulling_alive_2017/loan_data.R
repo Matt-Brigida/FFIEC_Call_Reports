@@ -4,7 +4,7 @@ library(here)
 
 idrssds <- readRDS("idrssds_alive_06302017.rds")
 
-### Total Loans (domestic offices): RCON2122
+### Total Loans and Leases: RCON2122
 
 source(paste0(here(), "/querying_data_and_analysis/individual_schedule_queries/schedule_RCCI_query.R"))
 
