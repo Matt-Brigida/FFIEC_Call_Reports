@@ -148,8 +148,6 @@ summary(lm(df7$net_nonii_per_assets ~ df7$tier_1_per_assets + log(df7$rwa) + df7
 ## Multiple R-squared:  0.2735,	Adjusted R-squared:  0.2732 
 ## F-statistic: 722.7 on 3 and 5758 DF,  p-value: < 2.2e-16
 
-
-
 summary(lm(df7$ii_per_assets ~ df7$tier_1_per_assets + log(df7$rwa) + df7$risk))
 ## median(df7$rwa, na.rm=T) * 1000 * 0.000052 * median(df7$tier_1_per_assets, na.rm=T)
 ## [1] 1081.185
@@ -183,4 +181,60 @@ summary(lm(df7$nonii_per_assets ~ df7$tier_1_per_assets + log(df7$rwa) + df7$ris
 ##   (77 observations deleted due to missingness)
 ## Multiple R-squared:  0.2629,	Adjusted R-squared:  0.2625 
 ## F-statistic: 684.4 on 3 and 5758 DF,  p-value: < 2.2e-16
+
+### Subset smaller banks ----
+
+df7_small <- subset(df7, rwa < 1000000)
+
+summary(lm(df7_small$loans_per_assets ~ df7_small$tier_1_per_assets + log(df7_small$rwa) + df7_small$risk))
+## Coefficients:
+##                               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                  0.6629712  0.0328774  20.165  < 2e-16 ***
+## df7_small$tier_1_per_assets -0.0041443  0.0006775  -6.117 1.02e-09 ***
+## log(df7_small$rwa)           0.0260047  0.0028067   9.265  < 2e-16 ***
+## df7_small$risk              -0.5096679  0.0779138  -6.541 6.67e-11 ***
+## ---
+## Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+## Residual standard error: 0.2294 on 5241 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.03319,	Adjusted R-squared:  0.03263 
+## F-statistic: 59.97 on 3 and 5241 DF,  p-value: < 2.2e-16
+
+summary(lm(df7_small$ii_per_assets ~ df7_small$tier_1_per_assets + log(df7_small$rwa) + df7_small$risk))
+## Coefficients:
+##                               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                  4.120e-02  1.107e-03  37.235  < 2e-16 ***
+## df7_small$tier_1_per_assets  5.165e-03  2.280e-05 226.514  < 2e-16 ***
+## log(df7_small$rwa)          -1.170e-03  9.447e-05 -12.381  < 2e-16 ***
+## df7_small$risk               7.669e-03  2.622e-03   2.924  0.00347 ** 
+## ---
+## Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+## Residual standard error: 0.007721 on 5241 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.9099,	Adjusted R-squared:  0.9098 
+## F-statistic: 1.764e+04 on 3 and 5241 DF,  p-value: < 2.2e-16
+
+summary(lm(df7_small$nonii_per_assets ~ df7_small$tier_1_per_assets + log(df7_small$rwa) + df7_small$risk))
+## Coefficients:
+##                               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                  0.3949956  0.0261966   15.08   <2e-16 ***
+## df7_small$tier_1_per_assets  0.0179646  0.0005398   33.28   <2e-16 ***
+## log(df7_small$rwa)          -0.0356799  0.0022363  -15.96   <2e-16 ***
+## df7_small$risk               1.3929630  0.0620816   22.44   <2e-16 ***
+## ---
+## Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+## Residual standard error: 0.1828 on 5241 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.2756,	Adjusted R-squared:  0.2752 
+## F-statistic: 664.6 on 3 and 5241 DF,  p-value: < 2.2e-16
+
+df7_large <- subset(df7, rwa > 50000000)
+
+summary(lm(df7_large$loans_per_assets ~ df7_large$tier_1_per_assets + log(df7_large$rwa) + df7_large$risk))
+## median(df7_large$rwa, na.rm=T) * 1000 * 0.0898 * median(df7_large$tier_1_per_assets, na.rm=T)
+
+df7_largeish <- subset(df7, rwa > 10000000)
 
