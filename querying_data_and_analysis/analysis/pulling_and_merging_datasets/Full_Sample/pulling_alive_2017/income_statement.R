@@ -112,3 +112,4 @@ all_net_income <- do.call(merge, as.list(net_income))
 
 write.csv(all_net_income, "net_income.csv")
 saveRDS(all_net_income, "net_income.rds")
+
