@@ -4,7 +4,7 @@
 por <- readRDS("../../../data/06302017/bulk_POR_06302017.rds")
 
 namesID <- data.frame(cbind(por$IDRSSD, por$'Financial Institution Name'), stringsAsFactors = FALSE)
-names(nameID) <- c("IDRSSD", "Name")
+names(namesID) <- c("IDRSSD", "Name")
 
 ## Listed Banks
 
@@ -12,12 +12,13 @@ listed <- read.csv("./public_bank_names.txt")
 listed <- data.frame(listed[,1], stringsAsFactors = FALSE)
 listed_cleaned <- data.frame(gsub(pattern = " INC.", replacement = "", listed[,1]), stringsAsFactors = FALSE)
 listed_cleaned <- data.frame(gsub(pattern = " CORP.", replacement = "", listed_cleaned[,1]), stringsAsFactors = FALSE)
+listed_cleaned <- data.frame(gsub(pattern = " CORPORATION", replacement = "", listed_cleaned[,1]), stringsAsFactors = FALSE)
 listed_cleaned <- data.frame(gsub(pattern = " S.A.", replacement = "", listed_cleaned[,1]), stringsAsFactors = FALSE)
 listed_cleaned <- data.frame(gsub(pattern = " PLC.", replacement = "", listed_cleaned[,1]), stringsAsFactors = FALSE)
 listed_cleaned <- data.frame(gsub(pattern = " LTD.", replacement = "", listed_cleaned[,1]), stringsAsFactors = FALSE)
 
 ## remove anything after the ,
-split <- strsplit(nameID[, 2], ",")
+split <- strsplit(namesID[, 2], ",")
 namesID_cleaned <- unlist(lapply(split, `[[`, 1))
 namesID_cleaned <- data.frame(cbind(namesID[,1], namesID_cleaned), stringsAsFactors = FALSE)
 names(namesID_cleaned) <- c("IDRSSD", "Name")
