@@ -62,4 +62,4 @@ names(plot_data) <- c("Births", "Deaths", "Net_Gain")
 dygraph(plot_data)
 ```
 
-<img src="./plot.html"></img>
+<img src="./dygraph_banks.png"></img>
