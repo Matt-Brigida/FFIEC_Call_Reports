@@ -60,5 +60,4 @@ names(plot_data) <- c("Births", "Deaths", "Net_Gain")
 dygraph(plot_data)
 ```
 
-![Alt text](./plot.html)
 <iframe src="./plot.html"></iframe>
