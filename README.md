@@ -15,9 +15,11 @@ quarters <- c("03312001", "06302001", "09302001", "12312001", "03312002", "06302
 idrssds <- list()
 
 for (q in quarters){
-tmp_bulk_por <- readRDS(url(paste0("https://github.com/Matt-Brigida/FFIEC_Call_Reports/blob/master/data/", q, "/bulk_POR_", q, ".rds?raw=true")))
+	tmp_bulk_por <- readRDS(url(paste0("https://github.com/Matt-Brigida/FFIEC_Call_Reports/blob/master/data/", q, "/bulk_POR_", q, ".rds?raw=true")))
 
-idrssds[[q]] <- tmp_bulk_por$IDRSSD
+	idrssds[[q]] <- tmp_bulk_por$IDRSSD
+
+	Sys.sleep(5)
     }
 
 ### births
@@ -60,4 +62,4 @@ names(plot_data) <- c("Births", "Deaths", "Net_Gain")
 dygraph(plot_data)
 ```
 
-<iframe src="./plot.html"></iframe>
+<img src="./plot.html"></img>
