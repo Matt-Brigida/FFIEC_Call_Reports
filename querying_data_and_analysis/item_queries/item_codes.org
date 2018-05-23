@@ -74,7 +74,7 @@ Minority InterestRCON3000RCON3000
 Equity
 Preferred StockRCON3838RCON3838
 Common StockRCON3230RCON3230
-Retained EarningsRCON3632RCON3632
+Retained Earnings | RCON3632
 Accumulated other comprehensive incomeeRCONB530RCONB530
 Other equityRCONA130RCONA130
 Total Equity CapitalRCON3300RCON3300
