@@ -12,7 +12,7 @@ panelify <- function(x, value_name){
 }
 
 
-
+library(xts)
 
 ## change for whatever data we are reshaping ------
 
@@ -315,3 +315,16 @@ panelify(data, "noninterest_income_trading_revenue")
 panelified <- do.call(rbind, as.list(panelify_env))
 
 saveRDS(panelified, "panel_noninterest_income_trading_revenue.rds")
+
+
+### Reshaping data: x is the output from query (xts with IDRSSD in column name) ----
+
+data <- readRDS("./retained_earnings.rds")
+
+panelify_env <- new.env()
+
+panelify(data, "retained_earnings")
+
+panelified <- do.call(rbind, as.list(panelify_env))
+
+saveRDS(panelified, "panel_retained_earnings.rds")

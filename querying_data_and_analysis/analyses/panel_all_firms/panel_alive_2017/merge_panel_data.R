@@ -79,6 +79,11 @@ panel <- subset(panel, select=-interest_income_1_4_residential_prop)
 panel <- merge(panel, panel_interest_income_1_4_residential_prop, by = c("quarter", "IDRSSD"), all = FALSE)
 
 
+##  retained earnings -----
+
+panel_retained_earnings <- readRDS("panel_retained_earnings.rds")
+
+panel <- merge(panel, panel_retained_earnings, by = c("quarter", "IDRSSD"), all = FALSE)
 
 
 
