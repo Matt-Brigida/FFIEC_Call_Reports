@@ -12,7 +12,7 @@ query_current_liabilities <- function(ID){
     rept_date <- as.Date(0)
     
     for (i in 1:num){
-    sch <- readRDS(paste0("../../data/", reports[i]))
+    sch <- readRDS(paste0(here(), "/data/", reports[i]))
     sch <- sch[sch$IDRSSD == ID, ]
 
     ## deposits in schedule RC is RCON2200
@@ -28,7 +28,7 @@ query_current_liabilities <- function(ID){
     rept_date <- as.Date(0)
     
     for (i in 1:num){
-    sch <- readRDS(paste0("../../data/", reports[i]))
+    sch <- readRDS(paste0(here(), "/data/", reports[i]))
     sch <- sch[sch$IDRSSD == ID, ]
 
     ## ffp in schedule RC is RCONB993
@@ -44,7 +44,7 @@ query_current_liabilities <- function(ID){
     rept_date <- as.Date(0)
     
     for (i in 1:num){
-    sch <- readRDS(paste0("../../data/", reports[i]))
+    sch <- readRDS(paste0(here(), "/data/", reports[i]))
     sch <- sch[sch$IDRSSD == ID, ]
 
     ## repo in schedule RC is RCONB995

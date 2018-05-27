@@ -1,5 +1,6 @@
 ## function to query retained earnings from the *balance sheet* ------
 library(xts)
+library(here)
 
 query_retained_earnings <- function(ID){
 
@@ -10,7 +11,7 @@ query_retained_earnings <- function(ID){
     rept_date <- as.Date(0)
     
     for (i in 1:num){
-    sch <- readRDS(paste0("../../data/", reports[i]))
+    sch <- readRDS(paste0(here(), "/data/", reports[i]))
     sch <- sch[sch$IDRSSD == ID, ]
 
     ## retained earnings in schedule RC is RCON3632

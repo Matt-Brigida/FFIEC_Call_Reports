@@ -1,6 +1,7 @@
 ## function to query current assets from the balance sheet.
 ## there is no entry for all current assets, so we'll have to pull a few entries and sum them.
 library(xts)
+library(here)
 
 query_current_assets <- function(ID){
 
@@ -12,7 +13,7 @@ query_current_assets <- function(ID){
     rept_date <- as.Date(0)
     
     for (i in 1:num){
-    sch <- readRDS(paste0("../../data/", reports[i]))
+    sch <- readRDS(paste0(here(), "/data/", reports[i]))
     sch <- sch[sch$IDRSSD == ID, ]
 
     ## currency in schedule RC is RCON0081
@@ -23,12 +24,13 @@ query_current_assets <- function(ID){
     currency <- xts::as.xts(as.numeric(currency), order.by = rept_date)
     names(currency) <- "currency"
 
+
     ##ibBal: RCON0071--------------------
     ibBal <- 0
     rept_date <- as.Date(0)
     
     for (i in 1:num){
-    sch <- readRDS(paste0("../../data/", reports[i]))
+    sch <- readRDS(paste0(here(), "/data/", reports[i]))
     sch <- sch[sch$IDRSSD == ID, ]
 
     ## ibBal in schedule RC is RCON0071
@@ -44,7 +46,7 @@ query_current_assets <- function(ID){
     rept_date <- as.Date(0)
     
     for (i in 1:num){
-    sch <- readRDS(paste0("../../data/", reports[i]))
+    sch <- readRDS(paste0(here(), "/data/", reports[i]))
     sch <- sch[sch$IDRSSD == ID, ]
 
     ## ffs in schedule RC is RCONB987
@@ -60,7 +62,7 @@ query_current_assets <- function(ID){
     rept_date <- as.Date(0)
     
     for (i in 1:num){
-    sch <- readRDS(paste0("../../data/", reports[i]))
+    sch <- readRDS(paste0(here(), "/data/", reports[i]))
     sch <- sch[sch$IDRSSD == ID, ]
 
     ## rrepo in schedule RC is RCONB989
