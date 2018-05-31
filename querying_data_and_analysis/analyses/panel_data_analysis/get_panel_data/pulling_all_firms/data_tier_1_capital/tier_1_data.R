@@ -59,3 +59,10 @@ all_tier_1 <- do.call(merge, as.list(tier_1))
 
 write.csv(all_tier_1, "tier_1_cap.csv")
 saveRDS(all_tier_1, "tier_1_cap.rds")
+
+### lagged 1 year
+
+all_tier_1_lagged_1_year <- lag(all_tier_1, k = 4)
+
+write.csv(all_tier_1_lagged_1_year, "tier_1_cap_lagged_1_year.csv")
+saveRDS(all_tier_1_lagged_1_year, "tier_1_cap_lagged_1_year.rds")
