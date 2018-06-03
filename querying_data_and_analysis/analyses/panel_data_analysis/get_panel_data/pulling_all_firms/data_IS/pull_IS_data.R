@@ -3,8 +3,8 @@ library(xts)
 
 ## sample of firms
 
-idrssds_dead <- readRDS("./idrssd_deaths_through_12312017.rds")
-idrssds_alive <- readRDS("./idrssds_alive_12312017.rds")
+idrssds_dead <- readRDS("../idrssds_deaths_through_12312017.rds")
+idrssds_alive <- readRDS("../idrssds_alive_12312017.rds")
 
 idrssds <- c(idrssds_alive, idrssds_dead)
 
