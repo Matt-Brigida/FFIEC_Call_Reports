@@ -39,4 +39,6 @@ all_risk_weighted_assets <- do.call(merge, as.list(risk_weighted_assets))
 write.csv(all_risk_weighted_assets, "risk_weighted_assets.csv")
 saveRDS(all_risk_weighted_assets, "risk_weighted_assets.rds")
 
-
+## see how many IDs have any data
+sum(1*(apply(all_risk_weighted_assets, 2, function(x){sum(x, na.rm=TRUE)}) > 0))
+## 6414
