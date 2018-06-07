@@ -5,12 +5,15 @@
 
 ## in 2017 RWA is now RCONG641
 ## in sch_RCRII_2_of_4_03312017.rds
-
+library(xts)
 library(here)
 
 ## sample of firms
 
-idrssds <- readRDS("./idrssds_alive_06302017.rds")
+idrssds_dead <- readRDS("../idrssds_deaths_through_12312017.rds")
+idrssds_alive <- readRDS("../idrssds_alive_12312017.rds")
+
+idrssds <- c(idrssds_alive, idrssds_dead)
 
 ### Pulling Noninterest Revenues by Source from Income Statement --------
 
