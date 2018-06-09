@@ -32,3 +32,7 @@ saveRDS(all_t1_leverage_ratio_alternate, "t1_leverage_ratio_alternate.rds")
 
 # Check how many bank we have data for
 sum(1*(apply(all_t1_leverage_ratio_alternate, 2, function(x){sum(x, na.rm=TRUE)}) > 0))
+## 10635
+
+sum(1*(apply(all_t1_leverage_ratio_alternate['2015/'], 2, function(x){sum(x, na.rm=TRUE)}) > 0))
+## 0

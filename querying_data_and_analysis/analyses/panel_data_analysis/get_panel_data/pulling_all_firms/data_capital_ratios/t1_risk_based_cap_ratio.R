@@ -32,4 +32,6 @@ saveRDS(all_t1_risk_based_capital_ratio, "t1_risk_based_capital_ratio.rds")
 
 # Check how many bank we have data for
 sum(1*(apply(all_t1_risk_based_capital_ratio, 2, function(x){sum(x, na.rm=TRUE)}) > 0))
+## 10635
 
+sum(1*(apply(all_t1_risk_based_capital_ratio['2015/'], 2, function(x){sum(x, na.rm=TRUE)}) > 0))
