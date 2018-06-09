@@ -1,0 +1,42 @@
+## function to query retained earnings from the *balance sheet* ------
+library(xts)
+library(here)
+
+query_t1_risk_based_capital_ratio <- function(ID){
+
+    reports <- c("03312001/sch_RCR_1_of_2_03312001.rds", "06302001/sch_RCR_1_of_2_06302001.rds", "09302001/sch_RCR_1_of_2_09302001.rds", "12312001/sch_RCR_1_of_2_12312001.rds", "03312002/sch_RCR_1_of_2_03312002.rds", "06302002/sch_RCR_1_of_2_06302002.rds", "09302002/sch_RCR_1_of_2_09302002.rds", "12312002/sch_RCR_1_of_2_12312002.rds", "03312003/sch_RCR_1_of_2_03312003.rds", "06302003/sch_RCR_1_of_2_06302003.rds", "09302003/sch_RCR_1_of_2_09302003.rds", "12312003/sch_RCR_1_of_2_12312003.rds", "03312004/sch_RCR_1_of_2_03312004.rds", "06302004/sch_RCR_1_of_2_06302004.rds", "09302004/sch_RCR_1_of_2_09302004.rds", "12312004/sch_RCR_1_of_2_12312004.rds", "03312005/sch_RCR_1_of_2_03312005.rds", "06302005/sch_RCR_1_of_2_06302005.rds", "09302005/sch_RCR_1_of_2_09302005.rds", "12312005/sch_RCR_1_of_2_12312005.rds", "03312006/sch_RCR_1_of_2_03312006.rds", "06302006/sch_RCR_1_of_2_06302006.rds", "09302006/sch_RCR_1_of_2_09302006.rds", "12312006/sch_RCR_1_of_2_12312006.rds", "03312007/sch_RCR_1_of_2_03312007.rds", "06302007/sch_RCR_1_of_2_06302007.rds", "09302007/sch_RCR_1_of_2_09302007.rds", "12312007/sch_RCR_1_of_2_12312007.rds", "03312008/sch_RCR_1_of_2_03312008.rds", "06302008/sch_RCR_1_of_2_06302008.rds", "09302008/sch_RCR_1_of_2_09302008.rds", "12312008/sch_RCR_1_of_2_12312008.rds", "03312009/sch_RCR_1_of_2_03312009.rds", "06302009/sch_RCR_1_of_2_06302009.rds", "09302009/sch_RCR_1_of_2_09302009.rds", "12312009/sch_RCR_1_of_2_12312009.rds", "03312010/sch_RCR_1_of_2_03312010.rds", "06302010/sch_RCR_1_of_2_06302010.rds", "09302010/sch_RCR_1_of_2_09302010.rds", "12312010/sch_RCR_1_of_2_12312010.rds", "03312011/sch_RCR_1_of_2_03312011.rds", "06302011/sch_RCR_1_of_2_06302011.rds", "09302011/sch_RCR_1_of_2_09302011.rds", "12312011/sch_RCR_1_of_2_12312011.rds", "03312012/sch_RCR_1_of_2_03312012.rds", "06302012/sch_RCR_1_of_2_06302012.rds", "09302012/sch_RCR_1_of_2_09302012.rds", "12312012/sch_RCR_1_of_2_12312012.rds", "03312013/sch_RCR_1_of_2_03312013.rds", "06302013/sch_RCR_1_of_2_06302013.rds", "09302013/sch_RCR_1_of_2_09302013.rds", "12312013/sch_RCR_1_of_2_12312013.rds", "03312014/sch_RCRIA_03312014.rds", "06302014/sch_RCRIA_06302014.rds", "09302014/sch_RCRIA_09302014.rds", "12312014/sch_RCRIA_12312014.rds", "03312015/sch_RCRI_03312015.rds", "06302015/sch_RCRI_06302015.rds", "09302015/sch_RCRI_09302015.rds", "12312015/sch_RCRI_12312015.rds", "03312016/sch_RCRI_03312016.rds", "06302016/sch_RCRI_06302016.rds", "09302016/sch_RCRI_09302016.rds", "12312016/sch_RCRI_12312016.rds", "03312017/sch_RCRI_03312017.rds", "06302017/sch_RCRI_06302017.rds",  "09302017/sch_RCRI_09302017.rds", "12312017/sch_RCRI_12312017.rds")
+
+    rept_date <- c("03312001", "06302001", "09302001", "12312001","03312002", "06302002", "09302002", "12312002","03312003", "06302003", "09302003", "12312003","03312004", "06302004", "09302004", "12312004","03312005", "06302005", "09302005", "12312005","03312006", "06302006", "09302006", "12312006","03312007", "06302007", "09302007", "12312007","03312008", "06302008", "09302008", "12312008","03312009", "06302009", "09302009", "12312009","03312010", "06302010", "09302010", "12312010","03312011", "06302011", "09302011", "12312011","03312012", "06302012", "09302012", "12312012","03312013", "06302013", "09302013", "12312013","03312014", "06302014", "09302014", "12312014","03312015", "06302015", "09302015", "12312015","03312016", "06302016", "09302016", "12312016","03312017", "06302017", "09302017", "12312017")
+
+    rept_date <- as.Date(rept_date, "%m%d%Y")
+
+
+    num <- length(reports)
+
+    t1_risk_based_capital_ratio <- 0
+    ## rept_date <- as.Date(0)
+    
+    for (i in 1:num){
+    sch <- readRDS(paste0(here(), "/data/", reports[i]))
+    sch <- sch[sch$IDRSSD == ID, ]
+
+    ## t1 leverage ratio in schedule RCR is RCON7204
+    ## 3/31/2015 code changes to RCOA7204
+    code <- ""
+    code[i] <- ifelse(i < 57, "RCON7206", "RCOA7206")
+
+    t1_risk_based_capital_ratio[i] <- if( length(as.numeric(eval(parse(text = paste0("sch$", code[i]))))) == 0){
+                       NA
+                   } else {
+                       as.numeric(eval(parse(text = paste0("sch$", code[i]))))
+                   }
+
+    ## rept_date[i] <- as.Date(strsplit(strsplit(reports[i], "_")[[1]][3], "\\.")[[1]][1], "%m%d%Y")
+    }
+
+    result <- xts::as.xts(as.numeric(t1_risk_based_capital_ratio), order.by = rept_date)
+    names(result) <- "t1_risk_based_capital_ratio"
+    return(result)
+}
+
+
