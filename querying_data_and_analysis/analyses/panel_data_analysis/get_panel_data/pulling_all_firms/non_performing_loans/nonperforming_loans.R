@@ -49,4 +49,62 @@ all_npa_30_89 <- do.call(merge, as.list(npa_30_89))
 write.csv(all_npa_30_89, "npa_30_89.csv")
 saveRDS(all_npa_30_89, "npa_30_89.rds")
 
+## check number of firm that we have some data for
+sum(1*(apply(all_npa_30_89, 2, function(x){sum(x, na.rm=TRUE)}) > 0))
+## [1] 9811
 
+###  --------
+
+source(paste0(here(), "/querying_data_and_analysis/item_queries/npa_90_plus.R"))
+
+###  Comm and in loans, 30 to 89 -------
+
+npa_90_plus <- new.env()
+
+for (i in idrssds){
+
+    ## change query and code as needed
+    assign("tmp", query_npa_90_plus(i))
+
+    names(tmp) <- paste0("ID_", i)
+
+    assign(paste0("ID_", i),
+           tmp, envir = npa_90_plus)
+
+    }
+
+all_npa_90_plus <- do.call(merge, as.list(npa_90_plus))
+
+write.csv(all_npa_90_plus, "npa_90_plus.csv")
+saveRDS(all_npa_90_plus, "npa_90_plus.rds")
+
+sum(1*(apply(all_npa_90_plus, 2, function(x){sum(x, na.rm=TRUE)}) > 0))
+## [1] 8074
+
+###  --------
+
+source(paste0(here(), "/querying_data_and_analysis/item_queries/npa_nonacc.R"))
+
+###  Comm and in loans, 30 to 89 -------
+
+npa_nonacc <- new.env()
+
+for (i in idrssds){
+
+    ## change query and code as needed
+    assign("tmp", query_npa_nonacc(i))
+
+    names(tmp) <- paste0("ID_", i)
+
+    assign(paste0("ID_", i),
+           tmp, envir = npa_nonacc)
+
+    }
+
+all_npa_nonacc <- do.call(merge, as.list(npa_nonacc))
+
+write.csv(all_npa_nonacc, "npa_nonacc.csv")
+saveRDS(all_npa_nonacc, "npa_nonacc.rds")
+
+sum(1*(apply(all_npa_nonacc, 2, function(x){sum(x, na.rm=TRUE)}) > 0))
+## [1] 9255
