@@ -1725,36 +1725,38 @@ panel$amt_CI_250_1000_SB_loans_Delt[is.nan(panel$amt_CI_250_1000_SB_loans_Delt)]
 <h2>&lt; 100</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwxIDwtIHBsbShhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdCB+ICB0MV9MUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICsgbGVzc18xMDBfbGFnZ2VkX1NCX2xvYW5zX1RBLCBkYXRhID0gcGFuZWwsIG1vZGVsID0gXCJ3aXRoaW5cIiwgZWZmZWN0ID0gXCJ0d293YXlzXCIpIiwic3VtbWFyeShGRW1vZGVsMSkiXX0= -->
-<pre class="r"><code>FEmodel1 &lt;- plm(amt_CI_less_100_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + less_100_lagged_SB_loans_TA, data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
+<!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwxIDwtIHBsbShhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdCB+ICB0MV9MUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICsgbGVzc18xMDBfbGFnZ2VkX1NCX2xvYW5zX1RBICsgUk9BICsgTlBBX1RBLCBkYXRhID0gcGFuZWwsIG1vZGVsID0gXCJ3aXRoaW5cIiwgZWZmZWN0ID0gXCJ0d293YXlzXCIpIiwic3VtbWFyeShGRW1vZGVsMSkiXX0= -->
+<pre class="r"><code>FEmodel1 &lt;- plm(amt_CI_less_100_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + less_100_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
 summary(FEmodel1)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdCB+IHQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBcbiAgICBsZXNzXzEwMF9sYWdnZWRfU0JfbG9hbnNfVEEsIGRhdGEgPSBwYW5lbCwgZWZmZWN0ID0gXCJ0d293YXlzXCIsIFxuICAgIG1vZGVsID0gXCJ3aXRoaW5cIilcblxuVW5iYWxhbmNlZCBQYW5lbDogbiA9IDkwNzMsIFQgPSAxLTI5LCBOID0gMTY0MDMwXG5cblJlc2lkdWFsczpcbiAgICAgICBNaW4uICAgICAxc3QgUXUuICAgICAgTWVkaWFuICAgICAzcmQgUXUuICAgICAgICBNYXguIFxuLTE1NjIuNjM0MTEgICAgLTAuMjU0NzMgICAgIDAuMDU0MjAgICAgIDAuMzQ2OTYgMTQzMzEuOTUwNDggXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB0LXZhbHVlICBQcig+fHR8KSAgICBcbnQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgICA5LjE2MjEgICAgIDIuMjYwMyAgNC4wNTM1IDUuMDQ5ZS0wNSAqKipcbmxlc3NfMTAwX2xhZ2dlZF9TQl9sb2Fuc19UQSAgLTQwLjE2MjQgICAgMTAuMDYyNiAtMy45OTEyIDYuNTc2ZS0wNSAqKipcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAgJyoqKicgMC4wMDEgJyoqJyAwLjAxICcqJyAwLjA1ICcuJyAwLjEgJyAnIDFcblxuVG90YWwgU3VtIG9mIFNxdWFyZXM6ICAgIDI1NzA0MDAwMFxuUmVzaWR1YWwgU3VtIG9mIFNxdWFyZXM6IDI1Njk5MDAwMFxuUi1TcXVhcmVkOiAgICAgIDAuMDAwMjE1MzdcbkFkai4gUi1TcXVhcmVkOiAtMC4wNTg1MjJcbkYtc3RhdGlzdGljOiAxNi42ODY2IG9uIDIgYW5kIDE1NDkyNyBERiwgcC12YWx1ZTogNS42NzRlLTA4XG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdCB+IHQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBcbiAgICBsZXNzXzEwMF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgXG4gICAgZWZmZWN0ID0gXCJ0d293YXlzXCIsIG1vZGVsID0gXCJ3aXRoaW5cIilcblxuVW5iYWxhbmNlZCBQYW5lbDogbiA9IDkwNzMsIFQgPSAxLTI5LCBOID0gMTY0MDMwXG5cblJlc2lkdWFsczpcbiAgICAgICBNaW4uICAgICAxc3QgUXUuICAgICAgTWVkaWFuICAgICAzcmQgUXUuICAgICAgICBNYXguIFxuLTEuNTYyNWUrMDMgLTIuNzY1M2UtMDEgIDcuMjEzNGUtMDIgIDMuNjg4NWUtMDEgIDEuNDMzMmUrMDQgXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB0LXZhbHVlICBQcig+fHR8KSAgICBcbnQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgICA4LjE5MTAgICAgIDIuMjg4NCAgMy41NzkzIDAuMDAwMzQ0NiAqKipcbmxlc3NfMTAwX2xhZ2dlZF9TQl9sb2Fuc19UQSAgLTM5LjQyNTcgICAgMTAuMTM1NyAtMy44ODk4IDAuMDAwMTAwNCAqKipcblJPQSAgICAgICAgICAgICAgICAgICAgICAgICAgLTUxLjQ2NzMgICAgMTcuNzE5MyAtMi45MDQ2IDAuMDAzNjc4MCAqKiBcbk5QQV9UQSAgICAgICAgICAgICAgICAgICAgICAgICAxLjgxOTcgICAgMjcuMTc1NSAgMC4wNjcwIDAuOTQ2NjEyMCAgICBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAgJyoqKicgMC4wMDEgJyoqJyAwLjAxICcqJyAwLjA1ICcuJyAwLjEgJyAnIDFcblxuVG90YWwgU3VtIG9mIFNxdWFyZXM6ICAgIDI1NzA0MDAwMFxuUmVzaWR1YWwgU3VtIG9mIFNxdWFyZXM6IDI1Njk3MDAwMFxuUi1TcXVhcmVkOiAgICAgIDAuMDAwMjcwNzJcbkFkai4gUi1TcXVhcmVkOiAtMC4wNTg0NzdcbkYtc3RhdGlzdGljOiAxMC40ODgyIG9uIDQgYW5kIDE1NDkyNSBERiwgcC12YWx1ZTogMS43MTA3ZS0wOFxuIn0= -->
 <pre><code>Twoways effects Within Model
 
 Call:
 plm(formula = amt_CI_less_100_SB_loans_Delt ~ t1_LR_pre_2014_lagged_1_year + 
-    less_100_lagged_SB_loans_TA, data = panel, effect = &quot;twoways&quot;, 
-    model = &quot;within&quot;)
+    less_100_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, 
+    effect = &quot;twoways&quot;, model = &quot;within&quot;)
 
 Unbalanced Panel: n = 9073, T = 1-29, N = 164030
 
 Residuals:
        Min.     1st Qu.      Median     3rd Qu.        Max. 
--1562.63411    -0.25473     0.05420     0.34696 14331.95048 
+-1.5625e+03 -2.7653e-01  7.2134e-02  3.6885e-01  1.4332e+04 
 
 Coefficients:
                              Estimate Std. Error t-value  Pr(&gt;|t|)    
-t1_LR_pre_2014_lagged_1_year   9.1621     2.2603  4.0535 5.049e-05 ***
-less_100_lagged_SB_loans_TA  -40.1624    10.0626 -3.9912 6.576e-05 ***
+t1_LR_pre_2014_lagged_1_year   8.1910     2.2884  3.5793 0.0003446 ***
+less_100_lagged_SB_loans_TA  -39.4257    10.1357 -3.8898 0.0001004 ***
+ROA                          -51.4673    17.7193 -2.9046 0.0036780 ** 
+NPA_TA                         1.8197    27.1755  0.0670 0.9466120    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Total Sum of Squares:    257040000
-Residual Sum of Squares: 256990000
-R-Squared:      0.00021537
-Adj. R-Squared: -0.058522
-F-statistic: 16.6866 on 2 and 154927 DF, p-value: 5.674e-08</code></pre>
+Residual Sum of Squares: 256970000
+R-Squared:      0.00027072
+Adj. R-Squared: -0.058477
+F-statistic: 10.4882 on 4 and 154925 DF, p-value: 1.7107e-08</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1763,36 +1765,38 @@ F-statistic: 16.6866 on 2 and 154927 DF, p-value: 5.674e-08</code></pre>
 <h2>100 to 250</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwyIDwtIHBsbShhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0IH4gIHQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBYMTAwXzI1MF9sYWdnZWRfU0JfbG9hbnNfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSBcIndpdGhpblwiLCBlZmZlY3QgPSBcInR3b3dheXNcIikiLCJzdW1tYXJ5KEZFbW9kZWwyKSJdfQ== -->
-<pre class="r"><code>FEmodel2 &lt;- plm(amt_CI_100_250_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + X100_250_lagged_SB_loans_TA, data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
+<!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwyIDwtIHBsbShhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0IH4gIHQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBYMTAwXzI1MF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSBcIndpdGhpblwiLCBlZmZlY3QgPSBcInR3b3dheXNcIikiLCJzdW1tYXJ5KEZFbW9kZWwyKSJdfQ== -->
+<pre class="r"><code>FEmodel2 &lt;- plm(amt_CI_100_250_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + X100_250_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
 summary(FEmodel2)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0IH4gdDFfTFJfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciArIFxuICAgIFgxMDBfMjUwX2xhZ2dlZF9TQl9sb2Fuc19UQSwgZGF0YSA9IHBhbmVsLCBlZmZlY3QgPSBcInR3b3dheXNcIiwgXG4gICAgbW9kZWwgPSBcIndpdGhpblwiKVxuXG5VbmJhbGFuY2VkIFBhbmVsOiBuID0gODk3MCwgVCA9IDEtMjksIE4gPSAxNjExODNcblxuUmVzaWR1YWxzOlxuICAgICAgIE1pbi4gICAgIDFzdCBRdS4gICAgICBNZWRpYW4gICAgIDNyZCBRdS4gICAgICAgIE1heC4gXG4tNS43MDQ4ZSswMiAtMi4xNjE4ZS0wMSAgNC4wNDc1ZS0wMiAgMi43MzA3ZS0wMSAgMS40ODA4ZSswNCBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQtdmFsdWUgIFByKD58dHwpICAgIFxudDFfTFJfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciAgMTAuNDYxNyAgICAgMi40NzcyICA0LjIyMzEgMi40MTFlLTA1ICoqKlxuWDEwMF8yNTBfbGFnZ2VkX1NCX2xvYW5zX1RBICAtMzYuOTcwOCAgICAxMi40MDM0IC0yLjk4MDcgIDAuMDAyODc2ICoqIFxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCAnKioqJyAwLjAwMSAnKionIDAuMDEgJyonIDAuMDUgJy4nIDAuMSAnICcgMVxuXG5Ub3RhbCBTdW0gb2YgU3F1YXJlczogICAgMjMxNjQwMDAwXG5SZXNpZHVhbCBTdW0gb2YgU3F1YXJlczogMjMxNjAwMDAwXG5SLVNxdWFyZWQ6ICAgICAgMC4wMDAxNzkwM1xuQWRqLiBSLVNxdWFyZWQ6IC0wLjA1ODk0M1xuRi1zdGF0aXN0aWM6IDEzLjYyNDkgb24gMiBhbmQgMTUyMTgzIERGLCBwLXZhbHVlOiAxLjIxMTRlLTA2XG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0IH4gdDFfTFJfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciArIFxuICAgIFgxMDBfMjUwX2xhZ2dlZF9TQl9sb2Fuc19UQSArIFJPQSArIE5QQV9UQSwgZGF0YSA9IHBhbmVsLCBcbiAgICBlZmZlY3QgPSBcInR3b3dheXNcIiwgbW9kZWwgPSBcIndpdGhpblwiKVxuXG5VbmJhbGFuY2VkIFBhbmVsOiBuID0gODk3MCwgVCA9IDEtMjksIE4gPSAxNjExODNcblxuUmVzaWR1YWxzOlxuICAgICAgIE1pbi4gICAgIDFzdCBRdS4gICAgICBNZWRpYW4gICAgIDNyZCBRdS4gICAgICAgIE1heC4gXG4tNS43MDQ5ZSswMiAtMi4xNzU5ZS0wMSAgNC4wMjA2ZS0wMiAgMi43MzkzZS0wMSAgMS40ODA4ZSswNCBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQtdmFsdWUgIFByKD58dHwpICAgIFxudDFfTFJfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciAgMTAuNDYwOSAgICAgMi41MDY0ICA0LjE3MzcgMi45OTllLTA1ICoqKlxuWDEwMF8yNTBfbGFnZ2VkX1NCX2xvYW5zX1RBICAtMzYuNTM1MyAgICAxMi40OTAxIC0yLjkyNTEgIDAuMDAzNDQ0ICoqIFxuUk9BICAgICAgICAgICAgICAgICAgICAgICAgICAgIDEuNzM4NSAgICAxNy4xMjAyICAwLjEwMTUgIDAuOTE5MTE1ICAgIFxuTlBBX1RBICAgICAgICAgICAgICAgICAgICAgICAgLTguMTU5MCAgICAyNi4wODQxIC0wLjMxMjggIDAuNzU0NDM3ICAgIFxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCAnKioqJyAwLjAwMSAnKionIDAuMDEgJyonIDAuMDUgJy4nIDAuMSAnICcgMVxuXG5Ub3RhbCBTdW0gb2YgU3F1YXJlczogICAgMjMxNjQwMDAwXG5SZXNpZHVhbCBTdW0gb2YgU3F1YXJlczogMjMxNjAwMDAwXG5SLVNxdWFyZWQ6ICAgICAgMC4wMDAxNzk3OVxuQWRqLiBSLVNxdWFyZWQ6IC0wLjA1ODk1NlxuRi1zdGF0aXN0aWM6IDYuODQxNDQgb24gNCBhbmQgMTUyMTgxIERGLCBwLXZhbHVlOiAxLjY3ODNlLTA1XG4ifQ== -->
 <pre><code>Twoways effects Within Model
 
 Call:
 plm(formula = amt_CI_100_250_SB_loans_Delt ~ t1_LR_pre_2014_lagged_1_year + 
-    X100_250_lagged_SB_loans_TA, data = panel, effect = &quot;twoways&quot;, 
-    model = &quot;within&quot;)
+    X100_250_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, 
+    effect = &quot;twoways&quot;, model = &quot;within&quot;)
 
 Unbalanced Panel: n = 8970, T = 1-29, N = 161183
 
 Residuals:
        Min.     1st Qu.      Median     3rd Qu.        Max. 
--5.7048e+02 -2.1618e-01  4.0475e-02  2.7307e-01  1.4808e+04 
+-5.7049e+02 -2.1759e-01  4.0206e-02  2.7393e-01  1.4808e+04 
 
 Coefficients:
                              Estimate Std. Error t-value  Pr(&gt;|t|)    
-t1_LR_pre_2014_lagged_1_year  10.4617     2.4772  4.2231 2.411e-05 ***
-X100_250_lagged_SB_loans_TA  -36.9708    12.4034 -2.9807  0.002876 ** 
+t1_LR_pre_2014_lagged_1_year  10.4609     2.5064  4.1737 2.999e-05 ***
+X100_250_lagged_SB_loans_TA  -36.5353    12.4901 -2.9251  0.003444 ** 
+ROA                            1.7385    17.1202  0.1015  0.919115    
+NPA_TA                        -8.1590    26.0841 -0.3128  0.754437    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Total Sum of Squares:    231640000
 Residual Sum of Squares: 231600000
-R-Squared:      0.00017903
-Adj. R-Squared: -0.058943
-F-statistic: 13.6249 on 2 and 152183 DF, p-value: 1.2114e-06</code></pre>
+R-Squared:      0.00017979
+Adj. R-Squared: -0.058956
+F-statistic: 6.84144 on 4 and 152181 DF, p-value: 1.6783e-05</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1801,77 +1805,81 @@ F-statistic: 13.6249 on 2 and 152183 DF, p-value: 1.2114e-06</code></pre>
 <h2>250 to 1000</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwzIDwtIHBsbShhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdCB+ICB0MV9MUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICsgWDI1MF8xMDAwX2xhZ2dlZF9TQl9sb2Fuc19UQSwgZGF0YSA9IHBhbmVsLCBtb2RlbCA9IFwid2l0aGluXCIsIGVmZmVjdCA9IFwidHdvd2F5c1wiKSIsInN1bW1hcnkoRkVtb2RlbDMpIl19 -->
-<pre class="r"><code>FEmodel3 &lt;- plm(amt_CI_250_1000_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + X250_1000_lagged_SB_loans_TA, data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
+<!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwzIDwtIHBsbShhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdCB+ICB0MV9MUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICsgWDI1MF8xMDAwX2xhZ2dlZF9TQl9sb2Fuc19UQSArIFJPQSArIE5QQV9UQSwgZGF0YSA9IHBhbmVsLCBtb2RlbCA9IFwid2l0aGluXCIsIGVmZmVjdCA9IFwidHdvd2F5c1wiKSIsInN1bW1hcnkoRkVtb2RlbDMpIl19 -->
+<pre class="r"><code>FEmodel3 &lt;- plm(amt_CI_250_1000_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + X250_1000_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
 summary(FEmodel3)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdCB+IHQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBcbiAgICBYMjUwXzEwMDBfbGFnZ2VkX1NCX2xvYW5zX1RBLCBkYXRhID0gcGFuZWwsIGVmZmVjdCA9IFwidHdvd2F5c1wiLCBcbiAgICBtb2RlbCA9IFwid2l0aGluXCIpXG5cblVuYmFsYW5jZWQgUGFuZWw6IG4gPSA4ODA2LCBUID0gMS0yOSwgTiA9IDE1NjE3M1xuXG5SZXNpZHVhbHM6XG4gICAgICAgTWluLiAgICAgMXN0IFF1LiAgICAgIE1lZGlhbiAgICAgM3JkIFF1LiAgICAgICAgTWF4LiBcbi0xNDIuMTA5NjQxICAgLTAuMzg0MzQ0ICAgLTAuMDM1NTYzICAgIDAuMjU0Njg5IDMwMjguMjA0Nzg3IFxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yICB0LXZhbHVlICBQcig+fHR8KSAgICBcbnQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgICA3LjQ1ODQzICAgIDAuODE1NzEgICA5LjE0MzUgPCAyLjJlLTE2ICoqKlxuWDI1MF8xMDAwX2xhZ2dlZF9TQl9sb2Fuc19UQSAtMjguNzkzNTAgICAgMS45NDY5NyAtMTQuNzg4OSA8IDIuMmUtMTYgKioqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwICcqKionIDAuMDAxICcqKicgMC4wMSAnKicgMC4wNSAnLicgMC4xICcgJyAxXG5cblRvdGFsIFN1bSBvZiBTcXVhcmVzOiAgICAyNTg2ODAwMFxuUmVzaWR1YWwgU3VtIG9mIFNxdWFyZXM6IDI1ODE1MDAwXG5SLVNxdWFyZWQ6ICAgICAgMC4wMDIwMzI0XG5BZGouIFItU3F1YXJlZDogLTAuMDU3ODFcbkYtc3RhdGlzdGljOiAxNTAuMDI2IG9uIDIgYW5kIDE0NzMzNyBERiwgcC12YWx1ZTogPCAyLjIyZS0xNlxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdCB+IHQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBcbiAgICBYMjUwXzEwMDBfbGFnZ2VkX1NCX2xvYW5zX1RBICsgUk9BICsgTlBBX1RBLCBkYXRhID0gcGFuZWwsIFxuICAgIGVmZmVjdCA9IFwidHdvd2F5c1wiLCBtb2RlbCA9IFwid2l0aGluXCIpXG5cblVuYmFsYW5jZWQgUGFuZWw6IG4gPSA4ODA2LCBUID0gMS0yOSwgTiA9IDE1NjE3M1xuXG5SZXNpZHVhbHM6XG4gICAgICAgTWluLiAgICAgMXN0IFF1LiAgICAgIE1lZGlhbiAgICAgM3JkIFF1LiAgICAgICAgTWF4LiBcbi0xNDIuMTAzNTc1ICAgLTAuMzg3NTA1ICAgLTAuMDM1ODE3ICAgIDAuMjU5NjkyIDMwMjguMjAwMTc0IFxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yICB0LXZhbHVlICBQcig+fHR8KSAgICBcbnQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgICA3LjExNzI3ICAgIDAuODI1NjUgICA4LjYyMDIgPCAyLjJlLTE2ICoqKlxuWDI1MF8xMDAwX2xhZ2dlZF9TQl9sb2Fuc19UQSAtMjguMTY5NDYgICAgMS45NjAzMSAtMTQuMzY5OSA8IDIuMmUtMTYgKioqXG5ST0EgICAgICAgICAgICAgICAgICAgICAgICAgIC0xMS45OTQ4NiAgICA1LjkwNjE3ICAtMi4wMzA5ICAwLjA0MjI2NyAqICBcbk5QQV9UQSAgICAgICAgICAgICAgICAgICAgICAgLTIzLjA4ODYxICAgIDguOTA2NjcgIC0yLjU5MjMgIDAuMDA5NTM1ICoqIFxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCAnKioqJyAwLjAwMSAnKionIDAuMDEgJyonIDAuMDUgJy4nIDAuMSAnICcgMVxuXG5Ub3RhbCBTdW0gb2YgU3F1YXJlczogICAgMjU4NjgwMDBcblJlc2lkdWFsIFN1bSBvZiBTcXVhcmVzOiAyNTgxNDAwMFxuUi1TcXVhcmVkOiAgICAgIDAuMDAyMDk5XG5BZGouIFItU3F1YXJlZDogLTAuMDU3NzU0XG5GLXN0YXRpc3RpYzogNzcuNDc1OCBvbiA0IGFuZCAxNDczMzUgREYsIHAtdmFsdWU6IDwgMi4yMmUtMTZcbiJ9 -->
 <pre><code>Twoways effects Within Model
 
 Call:
 plm(formula = amt_CI_250_1000_SB_loans_Delt ~ t1_LR_pre_2014_lagged_1_year + 
-    X250_1000_lagged_SB_loans_TA, data = panel, effect = &quot;twoways&quot;, 
-    model = &quot;within&quot;)
+    X250_1000_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, 
+    effect = &quot;twoways&quot;, model = &quot;within&quot;)
 
 Unbalanced Panel: n = 8806, T = 1-29, N = 156173
 
 Residuals:
        Min.     1st Qu.      Median     3rd Qu.        Max. 
--142.109641   -0.384344   -0.035563    0.254689 3028.204787 
+-142.103575   -0.387505   -0.035817    0.259692 3028.200174 
 
 Coefficients:
                               Estimate Std. Error  t-value  Pr(&gt;|t|)    
-t1_LR_pre_2014_lagged_1_year   7.45843    0.81571   9.1435 &lt; 2.2e-16 ***
-X250_1000_lagged_SB_loans_TA -28.79350    1.94697 -14.7889 &lt; 2.2e-16 ***
+t1_LR_pre_2014_lagged_1_year   7.11727    0.82565   8.6202 &lt; 2.2e-16 ***
+X250_1000_lagged_SB_loans_TA -28.16946    1.96031 -14.3699 &lt; 2.2e-16 ***
+ROA                          -11.99486    5.90617  -2.0309  0.042267 *  
+NPA_TA                       -23.08861    8.90667  -2.5923  0.009535 ** 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Total Sum of Squares:    25868000
-Residual Sum of Squares: 25815000
-R-Squared:      0.0020324
-Adj. R-Squared: -0.05781
-F-statistic: 150.026 on 2 and 147337 DF, p-value: &lt; 2.22e-16</code></pre>
+Residual Sum of Squares: 25814000
+R-Squared:      0.002099
+Adj. R-Squared: -0.057754
+F-statistic: 77.4758 on 4 and 147335 DF, p-value: &lt; 2.22e-16</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<div id="fe-models-t1-leverage-ratio-1" class="section level3">
-<h3>FE models: T1 Leverage Ratio</h3>
+<div id="fe-models-t1-risk-based-capital-ratio" class="section level3">
+<h3>FE models: T1 Risk-Based Capital Ratio</h3>
 </div>
 </div>
 <div id="section-1" class="section level2">
 <h2>&lt; 100</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWw0IDwtIHBsbShhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdCB+ICB0MV9SQkNSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBsZXNzXzEwMF9sYWdnZWRfU0JfbG9hbnNfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSBcIndpdGhpblwiLCBlZmZlY3QgPSBcInR3b3dheXNcIikiLCJzdW1tYXJ5KEZFbW9kZWw0KSJdfQ== -->
-<pre class="r"><code>FEmodel4 &lt;- plm(amt_CI_less_100_SB_loans_Delt ~  t1_RBCR_pre_2014_lagged_1_year + less_100_lagged_SB_loans_TA, data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
+<!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWw0IDwtIHBsbShhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdCB+ICB0MV9SQkNSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBsZXNzXzEwMF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSBcIndpdGhpblwiLCBlZmZlY3QgPSBcInR3b3dheXNcIikiLCJzdW1tYXJ5KEZFbW9kZWw0KSJdfQ== -->
+<pre class="r"><code>FEmodel4 &lt;- plm(amt_CI_less_100_SB_loans_Delt ~  t1_RBCR_pre_2014_lagged_1_year + less_100_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
 summary(FEmodel4)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdCB+IHQxX1JCQ1JfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciArIFxuICAgIGxlc3NfMTAwX2xhZ2dlZF9TQl9sb2Fuc19UQSwgZGF0YSA9IHBhbmVsLCBlZmZlY3QgPSBcInR3b3dheXNcIiwgXG4gICAgbW9kZWwgPSBcIndpdGhpblwiKVxuXG5VbmJhbGFuY2VkIFBhbmVsOiBuID0gOTA3MywgVCA9IDEtMjksIE4gPSAxNjQwMzBcblxuUmVzaWR1YWxzOlxuICAgICAgIE1pbi4gICAgIDFzdCBRdS4gICAgICBNZWRpYW4gICAgIDNyZCBRdS4gICAgICAgIE1heC4gXG4tMS41NjI4ZSswMyAtMi42NDIzZS0wMSAgNC4zODQyZS0wMiAgMy40NTM0ZS0wMSAgMS40MzMyZSswNCBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQtdmFsdWUgIFByKD58dHwpICAgIFxudDFfUkJDUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICAgMS43MjE1OSAgICAwLjk2NTU1ICAxLjc4MzAgICAwLjA3NDU5IC4gIFxubGVzc18xMDBfbGFnZ2VkX1NCX2xvYW5zX1RBICAgIC00MC42NTM4OSAgIDEwLjA2NzExIC00LjAzODMgNS4zODdlLTA1ICoqKlxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCAnKioqJyAwLjAwMSAnKionIDAuMDEgJyonIDAuMDUgJy4nIDAuMSAnICcgMVxuXG5Ub3RhbCBTdW0gb2YgU3F1YXJlczogICAgMjU3MDQwMDAwXG5SZXNpZHVhbCBTdW0gb2YgU3F1YXJlczogMjU3MDEwMDAwXG5SLVNxdWFyZWQ6ICAgICAgMC4wMDAxMjk4NVxuQWRqLiBSLVNxdWFyZWQ6IC0wLjA1ODYxM1xuRi1zdGF0aXN0aWM6IDEwLjA2MDEgb24gMiBhbmQgMTU0OTI3IERGLCBwLXZhbHVlOiA0LjI3OGUtMDVcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdCB+IHQxX1JCQ1JfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciArIFxuICAgIGxlc3NfMTAwX2xhZ2dlZF9TQl9sb2Fuc19UQSArIFJPQSArIE5QQV9UQSwgZGF0YSA9IHBhbmVsLCBcbiAgICBlZmZlY3QgPSBcInR3b3dheXNcIiwgbW9kZWwgPSBcIndpdGhpblwiKVxuXG5VbmJhbGFuY2VkIFBhbmVsOiBuID0gOTA3MywgVCA9IDEtMjksIE4gPSAxNjQwMzBcblxuUmVzaWR1YWxzOlxuICAgICAgIE1pbi4gICAgIDFzdCBRdS4gICAgICBNZWRpYW4gICAgIDNyZCBRdS4gICAgICAgIE1heC4gXG4tMS41NjI2ZSswMyAtMi45NDk4ZS0wMSAgNi43MTg5ZS0wMiAgMy43NjYxZS0wMSAgMS40MzMyZSswNCBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQtdmFsdWUgIFByKD58dHwpICAgIFxudDFfUkJDUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICAgMS40MDcxMCAgICAwLjk3MDc5ICAxLjQ0OTQgIDAuMTQ3MjE2ICAgIFxubGVzc18xMDBfbGFnZ2VkX1NCX2xvYW5zX1RBICAgIC0zOS42MjcxNiAgIDEwLjEzOTk0IC0zLjkwODAgOS4zMDllLTA1ICoqKlxuUk9BICAgICAgICAgICAgICAgICAgICAgICAgICAgIC01OC41MTMxOSAgIDE3LjYwMzk5IC0zLjMyMzkgIDAuMDAwODg4ICoqKlxuTlBBX1RBICAgICAgICAgICAgICAgICAgICAgICAgICAtMi4wMzY2MSAgIDI3LjE1NTM4IC0wLjA3NTAgIDAuOTQwMjE2ICAgIFxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCAnKioqJyAwLjAwMSAnKionIDAuMDEgJyonIDAuMDUgJy4nIDAuMSAnICcgMVxuXG5Ub3RhbCBTdW0gb2YgU3F1YXJlczogICAgMjU3MDQwMDAwXG5SZXNpZHVhbCBTdW0gb2YgU3F1YXJlczogMjU2OTkwMDAwXG5SLVNxdWFyZWQ6ICAgICAgMC4wMDAyMDE2XG5BZGouIFItU3F1YXJlZDogLTAuMDU4NTVcbkYtc3RhdGlzdGljOiA3LjgwOTk2IG9uIDQgYW5kIDE1NDkyNSBERiwgcC12YWx1ZTogMi43MzllLTA2XG4ifQ== -->
 <pre><code>Twoways effects Within Model
 
 Call:
 plm(formula = amt_CI_less_100_SB_loans_Delt ~ t1_RBCR_pre_2014_lagged_1_year + 
-    less_100_lagged_SB_loans_TA, data = panel, effect = &quot;twoways&quot;, 
-    model = &quot;within&quot;)
+    less_100_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, 
+    effect = &quot;twoways&quot;, model = &quot;within&quot;)
 
 Unbalanced Panel: n = 9073, T = 1-29, N = 164030
 
 Residuals:
        Min.     1st Qu.      Median     3rd Qu.        Max. 
--1.5628e+03 -2.6423e-01  4.3842e-02  3.4534e-01  1.4332e+04 
+-1.5626e+03 -2.9498e-01  6.7189e-02  3.7661e-01  1.4332e+04 
 
 Coefficients:
                                 Estimate Std. Error t-value  Pr(&gt;|t|)    
-t1_RBCR_pre_2014_lagged_1_year   1.72159    0.96555  1.7830   0.07459 .  
-less_100_lagged_SB_loans_TA    -40.65389   10.06711 -4.0383 5.387e-05 ***
+t1_RBCR_pre_2014_lagged_1_year   1.40710    0.97079  1.4494  0.147216    
+less_100_lagged_SB_loans_TA    -39.62716   10.13994 -3.9080 9.309e-05 ***
+ROA                            -58.51319   17.60399 -3.3239  0.000888 ***
+NPA_TA                          -2.03661   27.15538 -0.0750  0.940216    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Total Sum of Squares:    257040000
-Residual Sum of Squares: 257010000
-R-Squared:      0.00012985
-Adj. R-Squared: -0.058613
-F-statistic: 10.0601 on 2 and 154927 DF, p-value: 4.278e-05</code></pre>
+Residual Sum of Squares: 256990000
+R-Squared:      0.0002016
+Adj. R-Squared: -0.05855
+F-statistic: 7.80996 on 4 and 154925 DF, p-value: 2.739e-06</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1880,36 +1888,38 @@ F-statistic: 10.0601 on 2 and 154927 DF, p-value: 4.278e-05</code></pre>
 <h2>100 to 250</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwyIDwtIHBsbShhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0IH4gIHQxX1JCQ1JfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciArIFgxMDBfMjUwX2xhZ2dlZF9TQl9sb2Fuc19UQSwgZGF0YSA9IHBhbmVsLCBtb2RlbCA9IFwid2l0aGluXCIsIGVmZmVjdCA9IFwidHdvd2F5c1wiKSIsInN1bW1hcnkoRkVtb2RlbDIpIl19 -->
-<pre class="r"><code>FEmodel2 &lt;- plm(amt_CI_100_250_SB_loans_Delt ~  t1_RBCR_pre_2014_lagged_1_year + X100_250_lagged_SB_loans_TA, data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
+<!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwyIDwtIHBsbShhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0IH4gIHQxX1JCQ1JfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciArIFgxMDBfMjUwX2xhZ2dlZF9TQl9sb2Fuc19UQSArIFJPQSArIE5QQV9UQSwgZGF0YSA9IHBhbmVsLCBtb2RlbCA9IFwid2l0aGluXCIsIGVmZmVjdCA9IFwidHdvd2F5c1wiKSIsInN1bW1hcnkoRkVtb2RlbDIpIl19 -->
+<pre class="r"><code>FEmodel2 &lt;- plm(amt_CI_100_250_SB_loans_Delt ~  t1_RBCR_pre_2014_lagged_1_year + X100_250_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
 summary(FEmodel2)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0IH4gdDFfUkJDUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICsgXG4gICAgWDEwMF8yNTBfbGFnZ2VkX1NCX2xvYW5zX1RBLCBkYXRhID0gcGFuZWwsIGVmZmVjdCA9IFwidHdvd2F5c1wiLCBcbiAgICBtb2RlbCA9IFwid2l0aGluXCIpXG5cblVuYmFsYW5jZWQgUGFuZWw6IG4gPSA4OTcwLCBUID0gMS0yOSwgTiA9IDE2MTE4M1xuXG5SZXNpZHVhbHM6XG4gICAgICAgTWluLiAgICAgMXN0IFF1LiAgICAgIE1lZGlhbiAgICAgM3JkIFF1LiAgICAgICAgTWF4LiBcbi01LjcwNDdlKzAyIC0yLjIwMDFlLTAxICAzLjU5MjJlLTAyICAyLjU3OTRlLTAxICAxLjQ4MDhlKzA0IFxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgdC12YWx1ZSBQcig+fHR8KSAgIFxudDFfUkJDUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICAgMi4xMzAxOSAgICAwLjk0NTE1ICAyLjI1MzggMC4wMjQyMDkgKiBcblgxMDBfMjUwX2xhZ2dlZF9TQl9sb2Fuc19UQSAgICAtMzYuOTY5OTUgICAxMi40MTA1OCAtMi45Nzg5IDAuMDAyODkzICoqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwICcqKionIDAuMDAxICcqKicgMC4wMSAnKicgMC4wNSAnLicgMC4xICcgJyAxXG5cblRvdGFsIFN1bSBvZiBTcXVhcmVzOiAgICAyMzE2NDAwMDBcblJlc2lkdWFsIFN1bSBvZiBTcXVhcmVzOiAyMzE2MjAwMDBcblItU3F1YXJlZDogICAgICA5LjUyMzFlLTA1XG5BZGouIFItU3F1YXJlZDogLTAuMDU5MDMyXG5GLXN0YXRpc3RpYzogNy4yNDY5OCBvbiAyIGFuZCAxNTIxODMgREYsIHAtdmFsdWU6IDAuMDAwNzEyNTdcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0IH4gdDFfUkJDUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICsgXG4gICAgWDEwMF8yNTBfbGFnZ2VkX1NCX2xvYW5zX1RBICsgUk9BICsgTlBBX1RBLCBkYXRhID0gcGFuZWwsIFxuICAgIGVmZmVjdCA9IFwidHdvd2F5c1wiLCBtb2RlbCA9IFwid2l0aGluXCIpXG5cblVuYmFsYW5jZWQgUGFuZWw6IG4gPSA4OTcwLCBUID0gMS0yOSwgTiA9IDE2MTE4M1xuXG5SZXNpZHVhbHM6XG4gICAgICAgTWluLiAgICAgMXN0IFF1LiAgICAgIE1lZGlhbiAgICAgM3JkIFF1LiAgICAgICAgTWF4LiBcbi01LjcwNDhlKzAyIC0yLjIxMjRlLTAxICAzLjU4ODFlLTAyICAyLjYwNTdlLTAxICAxLjQ4MDhlKzA0IFxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgdC12YWx1ZSBQcig+fHR8KSAgIFxudDFfUkJDUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICAgMi4wOTEzMSAgICAwLjk0OTQ5ICAyLjIwMjYgMC4wMjc2MjcgKiBcblgxMDBfMjUwX2xhZ2dlZF9TQl9sb2Fuc19UQSAgICAtMzYuMjI0MTkgICAxMi40OTY1NyAtMi44OTg3IDAuMDAzNzQ3ICoqXG5ST0EgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC01LjIwMDg1ICAgMTcuMDEwOTkgLTAuMzA1NyAwLjc1OTgwNyAgIFxuTlBBX1RBICAgICAgICAgICAgICAgICAgICAgICAgIC0xMi42NjUzNCAgIDI2LjA1NDcyIC0wLjQ4NjEgMC42MjY4OTMgICBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAgJyoqKicgMC4wMDEgJyoqJyAwLjAxICcqJyAwLjA1ICcuJyAwLjEgJyAnIDFcblxuVG90YWwgU3VtIG9mIFNxdWFyZXM6ICAgIDIzMTY0MDAwMFxuUmVzaWR1YWwgU3VtIG9mIFNxdWFyZXM6IDIzMTYyMDAwMFxuUi1TcXVhcmVkOiAgICAgIDkuNzIxOWUtMDVcbkFkai4gUi1TcXVhcmVkOiAtMC4wNTkwNDRcbkYtc3RhdGlzdGljOiAzLjY5OTEgb24gNCBhbmQgMTUyMTgxIERGLCBwLXZhbHVlOiAwLjAwNTE0NDFcbiJ9 -->
 <pre><code>Twoways effects Within Model
 
 Call:
 plm(formula = amt_CI_100_250_SB_loans_Delt ~ t1_RBCR_pre_2014_lagged_1_year + 
-    X100_250_lagged_SB_loans_TA, data = panel, effect = &quot;twoways&quot;, 
-    model = &quot;within&quot;)
+    X100_250_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, 
+    effect = &quot;twoways&quot;, model = &quot;within&quot;)
 
 Unbalanced Panel: n = 8970, T = 1-29, N = 161183
 
 Residuals:
        Min.     1st Qu.      Median     3rd Qu.        Max. 
--5.7047e+02 -2.2001e-01  3.5922e-02  2.5794e-01  1.4808e+04 
+-5.7048e+02 -2.2124e-01  3.5881e-02  2.6057e-01  1.4808e+04 
 
 Coefficients:
                                 Estimate Std. Error t-value Pr(&gt;|t|)   
-t1_RBCR_pre_2014_lagged_1_year   2.13019    0.94515  2.2538 0.024209 * 
-X100_250_lagged_SB_loans_TA    -36.96995   12.41058 -2.9789 0.002893 **
+t1_RBCR_pre_2014_lagged_1_year   2.09131    0.94949  2.2026 0.027627 * 
+X100_250_lagged_SB_loans_TA    -36.22419   12.49657 -2.8987 0.003747 **
+ROA                             -5.20085   17.01099 -0.3057 0.759807   
+NPA_TA                         -12.66534   26.05472 -0.4861 0.626893   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Total Sum of Squares:    231640000
 Residual Sum of Squares: 231620000
-R-Squared:      9.5231e-05
-Adj. R-Squared: -0.059032
-F-statistic: 7.24698 on 2 and 152183 DF, p-value: 0.00071257</code></pre>
+R-Squared:      9.7219e-05
+Adj. R-Squared: -0.059044
+F-statistic: 3.6991 on 4 and 152181 DF, p-value: 0.0051441</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1918,41 +1928,43 @@ F-statistic: 7.24698 on 2 and 152183 DF, p-value: 0.00071257</code></pre>
 <h2>250 to 1000</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwzIDwtIHBsbShhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdCB+ICB0MV9SQkNSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBYMjUwXzEwMDBfbGFnZ2VkX1NCX2xvYW5zX1RBLCBkYXRhID0gcGFuZWwsIG1vZGVsID0gXCJ3aXRoaW5cIiwgZWZmZWN0ID0gXCJ0d293YXlzXCIpIiwic3VtbWFyeShGRW1vZGVsMykiXX0= -->
-<pre class="r"><code>FEmodel3 &lt;- plm(amt_CI_250_1000_SB_loans_Delt ~  t1_RBCR_pre_2014_lagged_1_year + X250_1000_lagged_SB_loans_TA, data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
+<!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwzIDwtIHBsbShhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdCB+ICB0MV9SQkNSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBYMjUwXzEwMDBfbGFnZ2VkX1NCX2xvYW5zX1RBICsgUk9BICsgTlBBX1RBLCBkYXRhID0gcGFuZWwsIG1vZGVsID0gXCJ3aXRoaW5cIiwgZWZmZWN0ID0gXCJ0d293YXlzXCIpIiwic3VtbWFyeShGRW1vZGVsMykiXX0= -->
+<pre class="r"><code>FEmodel3 &lt;- plm(amt_CI_250_1000_SB_loans_Delt ~  t1_RBCR_pre_2014_lagged_1_year + X250_1000_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
 summary(FEmodel3)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdCB+IHQxX1JCQ1JfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciArIFxuICAgIFgyNTBfMTAwMF9sYWdnZWRfU0JfbG9hbnNfVEEsIGRhdGEgPSBwYW5lbCwgZWZmZWN0ID0gXCJ0d293YXlzXCIsIFxuICAgIG1vZGVsID0gXCJ3aXRoaW5cIilcblxuVW5iYWxhbmNlZCBQYW5lbDogbiA9IDg4MDYsIFQgPSAxLTI5LCBOID0gMTU2MTczXG5cblJlc2lkdWFsczpcbiAgICAgIE1pbi4gICAgMXN0IFF1LiAgICAgTWVkaWFuICAgIDNyZCBRdS4gICAgICAgTWF4LiBcbi0xNDIuMTI0MTggICAtMC4zODgyNSAgIC0wLjAzNTE3ICAgIDAuMjYwNDQgMzAyOC4yNDA2MSBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQtdmFsdWUgIFByKD58dHwpICAgIFxudDFfUkJDUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICAgNS4yNzA0NyAgICAwLjUxNjMxICAxMC4yMDggPCAyLjJlLTE2ICoqKlxuWDI1MF8xMDAwX2xhZ2dlZF9TQl9sb2Fuc19UQSAgIC0yNy42OTg2OSAgICAxLjk0ODk2IC0xNC4yMTIgPCAyLjJlLTE2ICoqKlxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCAnKioqJyAwLjAwMSAnKionIDAuMDEgJyonIDAuMDUgJy4nIDAuMSAnICcgMVxuXG5Ub3RhbCBTdW0gb2YgU3F1YXJlczogICAgMjU4NjgwMDBcblJlc2lkdWFsIFN1bSBvZiBTcXVhcmVzOiAyNTgxMjAwMFxuUi1TcXVhcmVkOiAgICAgIDAuMDAyMTcxOFxuQWRqLiBSLVNxdWFyZWQ6IC0wLjA1NzY2M1xuRi1zdGF0aXN0aWM6IDE2MC4zNCBvbiAyIGFuZCAxNDczMzcgREYsIHAtdmFsdWU6IDwgMi4yMmUtMTZcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdCB+IHQxX1JCQ1JfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciArIFxuICAgIFgyNTBfMTAwMF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgXG4gICAgZWZmZWN0ID0gXCJ0d293YXlzXCIsIG1vZGVsID0gXCJ3aXRoaW5cIilcblxuVW5iYWxhbmNlZCBQYW5lbDogbiA9IDg4MDYsIFQgPSAxLTI5LCBOID0gMTU2MTczXG5cblJlc2lkdWFsczpcbiAgICAgICBNaW4uICAgICAxc3QgUXUuICAgICAgTWVkaWFuICAgICAzcmQgUXUuICAgICAgICBNYXguIFxuLTE0Mi4xMTk1NzggICAtMC4zOTIyMjEgICAtMC4wMzU0NzggICAgMC4yNjQxNTYgMzAyOC4yMzc5NzUgXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciAgdC12YWx1ZSBQcig+fHR8KSAgICBcbnQxX1JCQ1JfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciAgIDUuMDY4MDMgICAgMC41MjMxMiAgIDkuNjg4MiAgPCAyZS0xNiAqKipcblgyNTBfMTAwMF9sYWdnZWRfU0JfbG9hbnNfVEEgICAtMjcuMTM1MjMgICAgMS45NjE0MiAtMTMuODM0NSAgPCAyZS0xNiAqKipcblJPQSAgICAgICAgICAgICAgICAgICAgICAgICAgICAtMTAuNjc0NTkgICAgNS45MTE4NyAgLTEuODA1NiAgMC4wNzA5OCAuICBcbk5QQV9UQSAgICAgICAgICAgICAgICAgICAgICAgICAtMjIuNTQ0NDEgICAgOC45MDU3MiAgLTIuNTMxNSAgMC4wMTEzNiAqICBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAgJyoqKicgMC4wMDEgJyoqJyAwLjAxICcqJyAwLjA1ICcuJyAwLjEgJyAnIDFcblxuVG90YWwgU3VtIG9mIFNxdWFyZXM6ICAgIDI1ODY4MDAwXG5SZXNpZHVhbCBTdW0gb2YgU3F1YXJlczogMjU4MTAwMDBcblItU3F1YXJlZDogICAgICAwLjAwMjIzMTNcbkFkai4gUi1TcXVhcmVkOiAtMC4wNTc2MTRcbkYtc3RhdGlzdGljOiA4Mi4zNzE4IG9uIDQgYW5kIDE0NzMzNSBERiwgcC12YWx1ZTogPCAyLjIyZS0xNlxuIn0= -->
 <pre><code>Twoways effects Within Model
 
 Call:
 plm(formula = amt_CI_250_1000_SB_loans_Delt ~ t1_RBCR_pre_2014_lagged_1_year + 
-    X250_1000_lagged_SB_loans_TA, data = panel, effect = &quot;twoways&quot;, 
-    model = &quot;within&quot;)
+    X250_1000_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, 
+    effect = &quot;twoways&quot;, model = &quot;within&quot;)
 
 Unbalanced Panel: n = 8806, T = 1-29, N = 156173
 
 Residuals:
-      Min.    1st Qu.     Median    3rd Qu.       Max. 
--142.12418   -0.38825   -0.03517    0.26044 3028.24061 
+       Min.     1st Qu.      Median     3rd Qu.        Max. 
+-142.119578   -0.392221   -0.035478    0.264156 3028.237975 
 
 Coefficients:
-                                Estimate Std. Error t-value  Pr(&gt;|t|)    
-t1_RBCR_pre_2014_lagged_1_year   5.27047    0.51631  10.208 &lt; 2.2e-16 ***
-X250_1000_lagged_SB_loans_TA   -27.69869    1.94896 -14.212 &lt; 2.2e-16 ***
+                                Estimate Std. Error  t-value Pr(&gt;|t|)    
+t1_RBCR_pre_2014_lagged_1_year   5.06803    0.52312   9.6882  &lt; 2e-16 ***
+X250_1000_lagged_SB_loans_TA   -27.13523    1.96142 -13.8345  &lt; 2e-16 ***
+ROA                            -10.67459    5.91187  -1.8056  0.07098 .  
+NPA_TA                         -22.54441    8.90572  -2.5315  0.01136 *  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Total Sum of Squares:    25868000
-Residual Sum of Squares: 25812000
-R-Squared:      0.0021718
-Adj. R-Squared: -0.057663
-F-statistic: 160.34 on 2 and 147337 DF, p-value: &lt; 2.22e-16</code></pre>
+Residual Sum of Squares: 25810000
+R-Squared:      0.0022313
+Adj. R-Squared: -0.057614
+F-statistic: 82.3718 on 4 and 147335 DF, p-value: &lt; 2.22e-16</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiVGVzdCBGRSBNb2RlbHMiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCmBgYHtyfQpsaWJyYXJ5KHh0cykKbGlicmFyeShwbG0pCgpkYXRhIDwtIHJlYWRSRFMoIi4vcGFuZWwucmRzIikKCnBhbmVsIDwtIHBkYXRhLmZyYW1lKGRhdGEsIGluZGV4ID0gYygiSURSU1NEIiwgInF1YXJ0ZXIiKSwgZHJvcC5pbmRleD1UUlVFLCByb3cubmFtZXM9VFJVRSkKCiMjIHJlbW92ZSBhbnkgSW5mIG9yIE5hTnMgaW4gdGhlIGNoYW5nZSBkYXRhCnBhbmVsJGFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0W2lzLmluZmluaXRlKHBhbmVsJGFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0KV0gPC0gTkEKcGFuZWwkYW10X0NJX2xlc3NfMTAwX1NCX2xvYW5zX0RlbHRbaXMubmFuKHBhbmVsJGFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0KV0gPC0gTkEKCnBhbmVsJGFtdF9DSV8xMDBfMjUwX1NCX2xvYW5zX0RlbHRbaXMuaW5maW5pdGUocGFuZWwkYW10X0NJXzEwMF8yNTBfU0JfbG9hbnNfRGVsdCldIDwtIE5BCnBhbmVsJGFtdF9DSV8xMDBfMjUwX1NCX2xvYW5zX0RlbHRbaXMubmFuKHBhbmVsJGFtdF9DSV8xMDBfMjUwX1NCX2xvYW5zX0RlbHQpXSA8LSBOQQoKcGFuZWwkYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHRbaXMuaW5maW5pdGUocGFuZWwkYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHQpXSA8LSBOQQpwYW5lbCRhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdFtpcy5uYW4ocGFuZWwkYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHQpXSA8LSBOQQpgYGAKCiMjIyBGRSBtb2RlbHM6ICBUMSBMZXZlcmFnZSBSYXRpbwojIyA8IDEwMApgYGB7cn0KRkVtb2RlbDEgPC0gcGxtKGFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0IH4gIHQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBsZXNzXzEwMF9sYWdnZWRfU0JfbG9hbnNfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSAid2l0aGluIiwgZWZmZWN0ID0gInR3b3dheXMiKQpzdW1tYXJ5KEZFbW9kZWwxKQpgYGAKCiMjIDEwMCB0byAyNTAKYGBge3J9CkZFbW9kZWwyIDwtIHBsbShhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0IH4gIHQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBYMTAwXzI1MF9sYWdnZWRfU0JfbG9hbnNfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSAid2l0aGluIiwgZWZmZWN0ID0gInR3b3dheXMiKQpzdW1tYXJ5KEZFbW9kZWwyKQpgYGAKCiMjIDI1MCB0byAxMDAwCmBgYHtyfQpGRW1vZGVsMyA8LSBwbG0oYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHQgfiAgdDFfTFJfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciArIFgyNTBfMTAwMF9sYWdnZWRfU0JfbG9hbnNfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSAid2l0aGluIiwgZWZmZWN0ID0gInR3b3dheXMiKQpzdW1tYXJ5KEZFbW9kZWwzKQpgYGAKCiMjIyBGRSBtb2RlbHM6ICBUMSBMZXZlcmFnZSBSYXRpbwoKIyMgPCAxMDAKYGBge3J9CkZFbW9kZWw0IDwtIHBsbShhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdCB+ICB0MV9SQkNSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBsZXNzXzEwMF9sYWdnZWRfU0JfbG9hbnNfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSAid2l0aGluIiwgZWZmZWN0ID0gInR3b3dheXMiKQpzdW1tYXJ5KEZFbW9kZWw0KQpgYGAKCiMjIDEwMCB0byAyNTAKYGBge3J9CkZFbW9kZWwyIDwtIHBsbShhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0IH4gIHQxX1JCQ1JfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciArIFgxMDBfMjUwX2xhZ2dlZF9TQl9sb2Fuc19UQSwgZGF0YSA9IHBhbmVsLCBtb2RlbCA9ICJ3aXRoaW4iLCBlZmZlY3QgPSAidHdvd2F5cyIpCnN1bW1hcnkoRkVtb2RlbDIpCmBgYAoKIyMgMjUwIHRvIDEwMDAKYGBge3J9CkZFbW9kZWwzIDwtIHBsbShhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdCB+ICB0MV9SQkNSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBYMjUwXzEwMDBfbGFnZ2VkX1NCX2xvYW5zX1RBLCBkYXRhID0gcGFuZWwsIG1vZGVsID0gIndpdGhpbiIsIGVmZmVjdCA9ICJ0d293YXlzIikKc3VtbWFyeShGRW1vZGVsMykKYGBgCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiVGVzdCBGRSBNb2RlbHMiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCmBgYHtyfQpsaWJyYXJ5KHh0cykKbGlicmFyeShwbG0pCgpkYXRhIDwtIHJlYWRSRFMoIi4vcGFuZWwucmRzIikKCnBhbmVsIDwtIHBkYXRhLmZyYW1lKGRhdGEsIGluZGV4ID0gYygiSURSU1NEIiwgInF1YXJ0ZXIiKSwgZHJvcC5pbmRleD1UUlVFLCByb3cubmFtZXM9VFJVRSkKCiMjIHJlbW92ZSBhbnkgSW5mIG9yIE5hTnMgaW4gdGhlIGNoYW5nZSBkYXRhCnBhbmVsJGFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0W2lzLmluZmluaXRlKHBhbmVsJGFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0KV0gPC0gTkEKcGFuZWwkYW10X0NJX2xlc3NfMTAwX1NCX2xvYW5zX0RlbHRbaXMubmFuKHBhbmVsJGFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0KV0gPC0gTkEKCnBhbmVsJGFtdF9DSV8xMDBfMjUwX1NCX2xvYW5zX0RlbHRbaXMuaW5maW5pdGUocGFuZWwkYW10X0NJXzEwMF8yNTBfU0JfbG9hbnNfRGVsdCldIDwtIE5BCnBhbmVsJGFtdF9DSV8xMDBfMjUwX1NCX2xvYW5zX0RlbHRbaXMubmFuKHBhbmVsJGFtdF9DSV8xMDBfMjUwX1NCX2xvYW5zX0RlbHQpXSA8LSBOQQoKcGFuZWwkYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHRbaXMuaW5maW5pdGUocGFuZWwkYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHQpXSA8LSBOQQpwYW5lbCRhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdFtpcy5uYW4ocGFuZWwkYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHQpXSA8LSBOQQpgYGAKCiMjIyBGRSBtb2RlbHM6ICBUMSBMZXZlcmFnZSBSYXRpbwojIyA8IDEwMApgYGB7cn0KRkVtb2RlbDEgPC0gcGxtKGFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0IH4gIHQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBsZXNzXzEwMF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSAid2l0aGluIiwgZWZmZWN0ID0gInR3b3dheXMiKQpzdW1tYXJ5KEZFbW9kZWwxKQpgYGAKCiMjIDEwMCB0byAyNTAKYGBge3J9CkZFbW9kZWwyIDwtIHBsbShhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0IH4gIHQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBYMTAwXzI1MF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSAid2l0aGluIiwgZWZmZWN0ID0gInR3b3dheXMiKQpzdW1tYXJ5KEZFbW9kZWwyKQpgYGAKCiMjIDI1MCB0byAxMDAwCmBgYHtyfQpGRW1vZGVsMyA8LSBwbG0oYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHQgfiAgdDFfTFJfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciArIFgyNTBfMTAwMF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSAid2l0aGluIiwgZWZmZWN0ID0gInR3b3dheXMiKQpzdW1tYXJ5KEZFbW9kZWwzKQpgYGAKCiMjIyBGRSBtb2RlbHM6ICBUMSBSaXNrLUJhc2VkIENhcGl0YWwgUmF0aW8KCiMjIDwgMTAwCmBgYHtyfQpGRW1vZGVsNCA8LSBwbG0oYW10X0NJX2xlc3NfMTAwX1NCX2xvYW5zX0RlbHQgfiAgdDFfUkJDUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICsgbGVzc18xMDBfbGFnZ2VkX1NCX2xvYW5zX1RBICsgUk9BICsgTlBBX1RBLCBkYXRhID0gcGFuZWwsIG1vZGVsID0gIndpdGhpbiIsIGVmZmVjdCA9ICJ0d293YXlzIikKc3VtbWFyeShGRW1vZGVsNCkKYGBgCgojIyAxMDAgdG8gMjUwCmBgYHtyfQpGRW1vZGVsMiA8LSBwbG0oYW10X0NJXzEwMF8yNTBfU0JfbG9hbnNfRGVsdCB+ICB0MV9SQkNSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBYMTAwXzI1MF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSAid2l0aGluIiwgZWZmZWN0ID0gInR3b3dheXMiKQpzdW1tYXJ5KEZFbW9kZWwyKQpgYGAKCiMjIDI1MCB0byAxMDAwCmBgYHtyfQpGRW1vZGVsMyA8LSBwbG0oYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHQgfiAgdDFfUkJDUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICsgWDI1MF8xMDAwX2xhZ2dlZF9TQl9sb2Fuc19UQSArIFJPQSArIE5QQV9UQSwgZGF0YSA9IHBhbmVsLCBtb2RlbCA9ICJ3aXRoaW4iLCBlZmZlY3QgPSAidHdvd2F5cyIpCnN1bW1hcnkoRkVtb2RlbDMpCmBgYAo=</div>
 
 
 

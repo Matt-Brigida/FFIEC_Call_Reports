@@ -1,5 +1,5 @@
 ## read in panel when not yet loaded
-## panel <- readRDS('panel.rds')
+panel <- readRDS('panel.rds')
 
 ## read in data and merge-----
 
@@ -59,6 +59,32 @@ panel_amt_CI_250_1000_SB_loans_Delt <- readRDS("./panel_amt_CI_250_1000_SB_loans
 
 panel <- merge(panel, panel_amt_CI_250_1000_SB_loans_Delt, by = c("quarter", "IDRSSD"), all = FALSE)
 
+##
+
+panel_npa_30_89_lagged_1_year <- readRDS("./panel_npa_30_89_lagged_1_year.rds")
+
+panel <- merge(panel, panel_npa_30_89_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
+
+
+##
+
+panel_npa_90_plus_lagged_1_year <- readRDS("./panel_npa_90_plus_lagged_1_year.rds")
+
+panel <- merge(panel, panel_npa_90_plus_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
+
+
+##
+
+panel_npa_nonacc_lagged_1_year <- readRDS("./panel_npa_nonacc_lagged_1_year.rds")
+
+panel <- merge(panel, panel_npa_nonacc_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
+
+##
+
+panel_net_income_lagged_1_year <- readRDS("./panel_net_income_lagged_1_year.rds")
+
+panel <- merge(panel, panel_net_income_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
+
 
 ### turn all columns to numeric from factor 
 panel[] <- lapply(panel, function(x) as.numeric(as.character(x)))
@@ -71,7 +97,8 @@ panel$tot_lagged_SB_loans_TA <- panel$tot_SB_loans_lagged_1_year / panel$total_a
 panel$less_100_lagged_SB_loans_TA <- panel$amt_CI_less_100_SB_loans_lagged_1_year / panel$total_assets_lagged_1_year
 panel$X100_250_lagged_SB_loans_TA <- panel$amt_CI_100_250_SB_loans_lagged_1_year / panel$total_assets_lagged_1_year
 panel$X250_1000_lagged_SB_loans_TA <- panel$amt_CI_250_1000_SB_loans_lagged_1_year / panel$total_assets_lagged_1_year
-
-
+panel$ROA <- panel$net_income_lagged_1_year / panel$total_assets_lagged_1_year
+panel$tot_NPA <- panel$npa_30_89_lagged_1_year + panel$npa_90_plus_lagged_1_year + panel$npa_nonacc_lagged_1_year
+panel$NPA_TA <- panel$tot_NPA / panel$total_assets_lagged_1_year
 
 saveRDS(panel, "panel.rds")

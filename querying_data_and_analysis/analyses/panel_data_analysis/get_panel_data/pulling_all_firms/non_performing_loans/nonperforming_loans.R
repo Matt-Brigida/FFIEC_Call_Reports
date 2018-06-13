@@ -1,9 +1,9 @@
-  ## /* NONPERFORMING ASSETS                     */
+## /* NONPERFORMING ASSETS                     */
 
-  ## RCFD1403 /* NONACCRUAL LOANS                */
-  ## RCFD1406 /* LOANS PD 30-89 DAYS             */
-  ## RCFD1407 /* LOANS PD 90+   DAYS             */
-  ## RCFD2150 /* OREO                            */
+## RCFD1403 /* NONACCRUAL LOANS                */
+## RCFD1406 /* LOANS PD 30-89 DAYS             */
+## RCFD1407 /* LOANS PD 90+   DAYS             */
+## RCFD2150 /* OREO                            */
 ## RCFD3123 /* ALLL                            */
 ## ^^^ I don't see the above codes in the example call report'
 

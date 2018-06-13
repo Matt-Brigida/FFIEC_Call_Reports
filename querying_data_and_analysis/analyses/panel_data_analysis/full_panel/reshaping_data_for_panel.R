@@ -149,5 +149,51 @@ panelified <- do.call(rbind, as.list(panelify_env))
 
 saveRDS(panelified, "panel_amt_CI_250_1000_SB_loans_lagged_1_year.rds")
 
-## T1 risk based capital ratio----
 
+## NPA 30 to 89 --------
+
+data <- readRDS("../get_panel_data/pulling_all_firms/non_performing_loans/npa_30_89_lagged_1_year.rds")
+
+panelify_env <- new.env()
+
+panelify(data, "npa_30_89_lagged_1_year")
+
+panelified <- do.call(rbind, as.list(panelify_env))
+
+saveRDS(panelified, "panel_npa_30_89_lagged_1_year.rds")
+
+## NPA 90 plus --------
+
+data <- readRDS("../get_panel_data/pulling_all_firms/non_performing_loans/npa_90_plus_lagged_1_year.rds")
+
+panelify_env <- new.env()
+
+panelify(data, "npa_90_plus_lagged_1_year")
+
+panelified <- do.call(rbind, as.list(panelify_env))
+
+saveRDS(panelified, "panel_npa_90_plus_lagged_1_year.rds")
+
+## NPA nonacc --------
+
+data <- readRDS("../get_panel_data/pulling_all_firms/non_performing_loans/npa_nonacc_lagged_1_year.rds")
+
+panelify_env <- new.env()
+
+panelify(data, "npa_nonacc_lagged_1_year")
+
+panelified <- do.call(rbind, as.list(panelify_env))
+
+saveRDS(panelified, "panel_npa_nonacc_lagged_1_year.rds")
+
+## Net income --------
+
+data <- readRDS("../get_panel_data/pulling_all_firms/data_IS/net_income_lagged_1_year.rds")
+
+panelify_env <- new.env()
+
+panelify(data, "net_income_lagged_1_year")
+
+panelified <- do.call(rbind, as.list(panelify_env))
+
+saveRDS(panelified, "panel_net_income_lagged_1_year.rds")

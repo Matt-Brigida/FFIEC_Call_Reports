@@ -25,38 +25,38 @@ panel$amt_CI_250_1000_SB_loans_Delt[is.nan(panel$amt_CI_250_1000_SB_loans_Delt)]
 ### FE models:  T1 Leverage Ratio
 ## < 100
 ```{r}
-FEmodel1 <- plm(amt_CI_less_100_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + less_100_lagged_SB_loans_TA, data = panel, model = "within", effect = "twoways")
+FEmodel1 <- plm(amt_CI_less_100_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + less_100_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = "within", effect = "twoways")
 summary(FEmodel1)
 ```
 
 ## 100 to 250
 ```{r}
-FEmodel2 <- plm(amt_CI_100_250_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + X100_250_lagged_SB_loans_TA, data = panel, model = "within", effect = "twoways")
+FEmodel2 <- plm(amt_CI_100_250_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + X100_250_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = "within", effect = "twoways")
 summary(FEmodel2)
 ```
 
 ## 250 to 1000
 ```{r}
-FEmodel3 <- plm(amt_CI_250_1000_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + X250_1000_lagged_SB_loans_TA, data = panel, model = "within", effect = "twoways")
+FEmodel3 <- plm(amt_CI_250_1000_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + X250_1000_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = "within", effect = "twoways")
 summary(FEmodel3)
 ```
 
-### FE models:  T1 Leverage Ratio
+### FE models:  T1 Risk-Based Capital Ratio
 
 ## < 100
 ```{r}
-FEmodel4 <- plm(amt_CI_less_100_SB_loans_Delt ~  t1_RBCR_pre_2014_lagged_1_year + less_100_lagged_SB_loans_TA, data = panel, model = "within", effect = "twoways")
+FEmodel4 <- plm(amt_CI_less_100_SB_loans_Delt ~  t1_RBCR_pre_2014_lagged_1_year + less_100_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = "within", effect = "twoways")
 summary(FEmodel4)
 ```
 
 ## 100 to 250
 ```{r}
-FEmodel2 <- plm(amt_CI_100_250_SB_loans_Delt ~  t1_RBCR_pre_2014_lagged_1_year + X100_250_lagged_SB_loans_TA, data = panel, model = "within", effect = "twoways")
+FEmodel2 <- plm(amt_CI_100_250_SB_loans_Delt ~  t1_RBCR_pre_2014_lagged_1_year + X100_250_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = "within", effect = "twoways")
 summary(FEmodel2)
 ```
 
 ## 250 to 1000
 ```{r}
-FEmodel3 <- plm(amt_CI_250_1000_SB_loans_Delt ~  t1_RBCR_pre_2014_lagged_1_year + X250_1000_lagged_SB_loans_TA, data = panel, model = "within", effect = "twoways")
+FEmodel3 <- plm(amt_CI_250_1000_SB_loans_Delt ~  t1_RBCR_pre_2014_lagged_1_year + X250_1000_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = "within", effect = "twoways")
 summary(FEmodel3)
 ```
