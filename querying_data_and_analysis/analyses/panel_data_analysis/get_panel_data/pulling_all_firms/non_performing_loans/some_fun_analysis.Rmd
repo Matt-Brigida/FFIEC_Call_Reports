@@ -3,15 +3,52 @@ title: "Interesting Look at the Data"
 output: html_notebook
 ---
 
-	```{r}
- library(xts)
+```{r}
+
+library(xts)
+library(dygraphs)
+ 
 quarters <- c("03312001", "06302001", "09302001", "12312001","03312002", "06302002", "09302002", "12312002","03312003", "06302003", "09302003", "12312003","03312004", "06302004", "09302004", "12312004","03312005", "06302005", "09302005", "12312005","03312006", "06302006", "09302006", "12312006","03312007", "06302007", "09302007", "12312007","03312008", "06302008", "09302008", "12312008","03312009", "06302009", "09302009", "12312009","03312010", "06302010", "09302010", "12312010","03312011", "06302011", "09302011", "12312011","03312012", "06302012", "09302012", "12312012","03312013", "06302013", "09302013", "12312013","03312014", "06302014", "09302014", "12312014","03312015", "06302015", "09302015", "12312015","03312016", "06302016", "09302016", "12312016","03312017", "06302017", "09302017", "12312017")
 
-rept_date <- as.Date(rept_date, "%m%d%Y")
-    
+quarters <- as.Date(quarters, "%m%d%Y")
+
+### get data----
+all_npa_90_plus <- readRDS("npa_90_plus.rds")
+SB_CI_less_100_loans <- readRDS("../data_small_business_loans/amt_CI_less_100_SB_loans.rds")
+SB_CI_100_250_loans <- readRDS("../data_small_business_loans/amt_CI_100_250_SB_loans.rds")
+SB_CI_250_1000_loans <- readRDS("../data_small_business_loans/amt_CI_250_1000_SB_loans.rds")
+
+## NPA
 mean_NPA_90_plus <- apply(all_npa_90_plus, 1, function(x){mean(x, na.rm=TRUE)})
 mean_NPA_90_plus <- as.xts(mean_NPA_90_plus, order.by = quarters)
 		 
 median_NPA_90_plus <- apply(all_npa_90_plus, 1, function(x){median(x, na.rm=TRUE)})
- ## dont forget to scale by total assets
+median_NPA_90_plus <- as.xts(median_NPA_90_plus, order.by = quarters)
+
+## < 100 SB loans
+mean_SB_CI_less_100_loans <- apply(SB_CI_less_100_loans, 1, function(x){mean(x, na.rm=TRUE)})
+mean_SB_CI_less_100_loans <- as.xts(mean_SB_CI_less_100_loans, order.by = quarters)
+		 
+median_SB_CI_less_100_loans <- apply(SB_CI_less_100_loans, 1, function(x){median(x, na.rm=TRUE)})
+median_SB_CI_less_100_loans <- as.xts(median_SB_CI_less_100_loans, order.by = quarters)
+
+## 100 to 250 SB loans
+mean_SB_CI_100_250_loans <- apply(SB_CI_100_250_loans, 1, function(x){mean(x, na.rm=TRUE)})
+mean_SB_CI_100_250_loans <- as.xts(mean_SB_CI_100_250_loans, order.by = quarters)
+		 
+median_SB_CI_100_250_loans <- apply(SB_CI_100_250_loans, 1, function(x){median(x, na.rm=TRUE)})
+median_SB_CI_100_250_loans <- as.xts(median_SB_CI_100_250_loans, order.by = quarters)
+
+## 100 to 250 SB loans
+mean_SB_CI_250_1000_loans <- apply(SB_CI_250_1000_loans, 1, function(x){mean(x, na.rm=TRUE)})
+mean_SB_CI_250_1000_loans <- as.xts(mean_SB_CI_250_1000_loans, order.by = quarters)
+		 
+median_SB_CI_250_1000_loans <- apply(SB_CI_250_1000_loans, 1, function(x){median(x, na.rm=TRUE)})
+median_SB_CI_250_1000_loans <- as.xts(median_SB_CI_250_1000_loans, order.by = quarters)
+
+all_SB_CI_loans <- mean_SB_CI_less_100_loans + mean_SB_CI_100_250_loans + mean_SB_CI_250_1000_loans
+
+npa_to_loans <- mean_NPA_90_plus / all_SB_CI_loans
+
+dygraph(npa_to_loans['2006-06-30/'])
 ```
