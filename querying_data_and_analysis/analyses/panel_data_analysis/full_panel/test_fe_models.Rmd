@@ -3,6 +3,8 @@ title: "Test FE Models"
 output: html_notebook
 ---
 
+### Read in Panel Data and Clean
+
 ```{r}
 library(xts)
 library(plm)
@@ -22,40 +24,43 @@ panel$amt_CI_250_1000_SB_loans_Delt[is.infinite(panel$amt_CI_250_1000_SB_loans_D
 panel$amt_CI_250_1000_SB_loans_Delt[is.nan(panel$amt_CI_250_1000_SB_loans_Delt)] <- NA
 ```
 
-### FE models:  T1 Leverage Ratio
-## < 100
+## FE models:  T1 Leverage Ratio
+### Change in $ Amount of Small Business Loans less than $100,000
 ```{r}
 FEmodel1 <- plm(amt_CI_less_100_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + less_100_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = "within", effect = "twoways")
 summary(FEmodel1)
 ```
 
-## 100 to 250
+### Change in $ Amount of Small Business Loans from $100,000 to $250,000
+
 ```{r}
 FEmodel2 <- plm(amt_CI_100_250_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + X100_250_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = "within", effect = "twoways")
 summary(FEmodel2)
 ```
+### Change in $ Amount of Small Business Loans from $250,000 to $1,000,000
 
-## 250 to 1000
 ```{r}
 FEmodel3 <- plm(amt_CI_250_1000_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + X250_1000_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = "within", effect = "twoways")
 summary(FEmodel3)
 ```
 
-### FE models:  T1 Risk-Based Capital Ratio
+## FE models:  T1 Risk-Based Capital Ratio
+### Change in $ Amount of Small Business Loans less than $100,000
 
-## < 100
 ```{r}
 FEmodel4 <- plm(amt_CI_less_100_SB_loans_Delt ~  t1_RBCR_pre_2014_lagged_1_year + less_100_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = "within", effect = "twoways")
 summary(FEmodel4)
 ```
 
-## 100 to 250
+### Change in $ Amount of Small Business Loans from $100,000 to $250,000
+
 ```{r}
 FEmodel2 <- plm(amt_CI_100_250_SB_loans_Delt ~  t1_RBCR_pre_2014_lagged_1_year + X100_250_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = "within", effect = "twoways")
 summary(FEmodel2)
 ```
 
-## 250 to 1000
+### Change in $ Amount of Small Business Loans from $250,000 to $1,000,000
+
 ```{r}
 FEmodel3 <- plm(amt_CI_250_1000_SB_loans_Delt ~  t1_RBCR_pre_2014_lagged_1_year + X250_1000_lagged_SB_loans_TA + ROA + NPA_TA, data = panel, model = "within", effect = "twoways")
 summary(FEmodel3)

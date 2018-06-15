@@ -1696,6 +1696,8 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
+<div id="read-in-panel-data-and-clean" class="section level3">
+<h3>Read in Panel Data and Clean</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjpbImxpYnJhcnkoeHRzKSIsImxpYnJhcnkocGxtKSIsIiIsImRhdGEgPC0gcmVhZFJEUyhcIi4vcGFuZWwucmRzXCIpIiwiIiwicGFuZWwgPC0gcGRhdGEuZnJhbWUoZGF0YSwgaW5kZXggPSBjKFwiSURSU1NEXCIsIFwicXVhcnRlclwiKSwgZHJvcC5pbmRleD1UUlVFLCByb3cubmFtZXM9VFJVRSkiLCIiLCIjIyByZW1vdmUgYW55IEluZiBvciBOYU5zIGluIHRoZSBjaGFuZ2UgZGF0YSIsInBhbmVsJGFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0W2lzLmluZmluaXRlKHBhbmVsJGFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0KV0gPC0gTkEiLCJwYW5lbCRhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdFtpcy5uYW4ocGFuZWwkYW10X0NJX2xlc3NfMTAwX1NCX2xvYW5zX0RlbHQpXSA8LSBOQSIsIiIsInBhbmVsJGFtdF9DSV8xMDBfMjUwX1NCX2xvYW5zX0RlbHRbaXMuaW5maW5pdGUocGFuZWwkYW10X0NJXzEwMF8yNTBfU0JfbG9hbnNfRGVsdCldIDwtIE5BIiwicGFuZWwkYW10X0NJXzEwMF8yNTBfU0JfbG9hbnNfRGVsdFtpcy5uYW4ocGFuZWwkYW10X0NJXzEwMF8yNTBfU0JfbG9hbnNfRGVsdCldIDwtIE5BIiwiIiwicGFuZWwkYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHRbaXMuaW5maW5pdGUocGFuZWwkYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHQpXSA8LSBOQSIsInBhbmVsJGFtdF9DSV8yNTBfMTAwMF9TQl9sb2Fuc19EZWx0W2lzLm5hbihwYW5lbCRhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdCldIDwtIE5BIl19 -->
@@ -1718,11 +1720,11 @@ panel$amt_CI_250_1000_SB_loans_Delt[is.nan(panel$amt_CI_250_1000_SB_loans_Delt)]
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<div id="fe-models-t1-leverage-ratio" class="section level3">
-<h3>FE models: T1 Leverage Ratio</h3>
 </div>
-<div id="section" class="section level2">
-<h2>&lt; 100</h2>
+<div id="fe-models-t1-leverage-ratio" class="section level2">
+<h2>FE models: T1 Leverage Ratio</h2>
+<div id="change-in-amount-of-small-business-loans-less-than-100000" class="section level3">
+<h3>Change in $ Amount of Small Business Loans less than $100,000</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwxIDwtIHBsbShhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdCB+ICB0MV9MUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICsgbGVzc18xMDBfbGFnZ2VkX1NCX2xvYW5zX1RBICsgUk9BICsgTlBBX1RBLCBkYXRhID0gcGFuZWwsIG1vZGVsID0gXCJ3aXRoaW5cIiwgZWZmZWN0ID0gXCJ0d293YXlzXCIpIiwic3VtbWFyeShGRW1vZGVsMSkiXX0= -->
@@ -1761,8 +1763,8 @@ F-statistic: 10.4882 on 4 and 154925 DF, p-value: 1.7107e-08</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="to-250" class="section level2">
-<h2>100 to 250</h2>
+<div id="change-in-amount-of-small-business-loans-from-100000-to-250000" class="section level3">
+<h3>Change in $ Amount of Small Business Loans from $100,000 to $250,000</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwyIDwtIHBsbShhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0IH4gIHQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBYMTAwXzI1MF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSBcIndpdGhpblwiLCBlZmZlY3QgPSBcInR3b3dheXNcIikiLCJzdW1tYXJ5KEZFbW9kZWwyKSJdfQ== -->
@@ -1801,8 +1803,8 @@ F-statistic: 6.84144 on 4 and 152181 DF, p-value: 1.6783e-05</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="to-1000" class="section level2">
-<h2>250 to 1000</h2>
+<div id="change-in-amount-of-small-business-loans-from-250000-to-1000000" class="section level3">
+<h3>Change in $ Amount of Small Business Loans from $250,000 to $1,000,000</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwzIDwtIHBsbShhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdCB+ICB0MV9MUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICsgWDI1MF8xMDAwX2xhZ2dlZF9TQl9sb2Fuc19UQSArIFJPQSArIE5QQV9UQSwgZGF0YSA9IHBhbmVsLCBtb2RlbCA9IFwid2l0aGluXCIsIGVmZmVjdCA9IFwidHdvd2F5c1wiKSIsInN1bW1hcnkoRkVtb2RlbDMpIl19 -->
@@ -1840,12 +1842,12 @@ F-statistic: 77.4758 on 4 and 147335 DF, p-value: &lt; 2.22e-16</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<div id="fe-models-t1-risk-based-capital-ratio" class="section level3">
-<h3>FE models: T1 Risk-Based Capital Ratio</h3>
 </div>
 </div>
-<div id="section-1" class="section level2">
-<h2>&lt; 100</h2>
+<div id="fe-models-t1-risk-based-capital-ratio" class="section level2">
+<h2>FE models: T1 Risk-Based Capital Ratio</h2>
+<div id="change-in-amount-of-small-business-loans-less-than-100000-1" class="section level3">
+<h3>Change in $ Amount of Small Business Loans less than $100,000</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWw0IDwtIHBsbShhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdCB+ICB0MV9SQkNSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBsZXNzXzEwMF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSBcIndpdGhpblwiLCBlZmZlY3QgPSBcInR3b3dheXNcIikiLCJzdW1tYXJ5KEZFbW9kZWw0KSJdfQ== -->
@@ -1884,8 +1886,8 @@ F-statistic: 7.80996 on 4 and 154925 DF, p-value: 2.739e-06</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="to-250-1" class="section level2">
-<h2>100 to 250</h2>
+<div id="change-in-amount-of-small-business-loans-from-100000-to-250000-1" class="section level3">
+<h3>Change in $ Amount of Small Business Loans from $100,000 to $250,000</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwyIDwtIHBsbShhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0IH4gIHQxX1JCQ1JfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciArIFgxMDBfMjUwX2xhZ2dlZF9TQl9sb2Fuc19UQSArIFJPQSArIE5QQV9UQSwgZGF0YSA9IHBhbmVsLCBtb2RlbCA9IFwid2l0aGluXCIsIGVmZmVjdCA9IFwidHdvd2F5c1wiKSIsInN1bW1hcnkoRkVtb2RlbDIpIl19 -->
@@ -1924,8 +1926,8 @@ F-statistic: 3.6991 on 4 and 152181 DF, p-value: 0.0051441</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="to-1000-1" class="section level2">
-<h2>250 to 1000</h2>
+<div id="change-in-amount-of-small-business-loans-from-250000-to-1000000-1" class="section level3">
+<h3>Change in $ Amount of Small Business Loans from $250,000 to $1,000,000</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwzIDwtIHBsbShhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdCB+ICB0MV9SQkNSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBYMjUwXzEwMDBfbGFnZ2VkX1NCX2xvYW5zX1RBICsgUk9BICsgTlBBX1RBLCBkYXRhID0gcGFuZWwsIG1vZGVsID0gXCJ3aXRoaW5cIiwgZWZmZWN0ID0gXCJ0d293YXlzXCIpIiwic3VtbWFyeShGRW1vZGVsMykiXX0= -->
@@ -1963,8 +1965,9 @@ F-statistic: 82.3718 on 4 and 147335 DF, p-value: &lt; 2.22e-16</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 </div>
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiVGVzdCBGRSBNb2RlbHMiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCmBgYHtyfQpsaWJyYXJ5KHh0cykKbGlicmFyeShwbG0pCgpkYXRhIDwtIHJlYWRSRFMoIi4vcGFuZWwucmRzIikKCnBhbmVsIDwtIHBkYXRhLmZyYW1lKGRhdGEsIGluZGV4ID0gYygiSURSU1NEIiwgInF1YXJ0ZXIiKSwgZHJvcC5pbmRleD1UUlVFLCByb3cubmFtZXM9VFJVRSkKCiMjIHJlbW92ZSBhbnkgSW5mIG9yIE5hTnMgaW4gdGhlIGNoYW5nZSBkYXRhCnBhbmVsJGFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0W2lzLmluZmluaXRlKHBhbmVsJGFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0KV0gPC0gTkEKcGFuZWwkYW10X0NJX2xlc3NfMTAwX1NCX2xvYW5zX0RlbHRbaXMubmFuKHBhbmVsJGFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0KV0gPC0gTkEKCnBhbmVsJGFtdF9DSV8xMDBfMjUwX1NCX2xvYW5zX0RlbHRbaXMuaW5maW5pdGUocGFuZWwkYW10X0NJXzEwMF8yNTBfU0JfbG9hbnNfRGVsdCldIDwtIE5BCnBhbmVsJGFtdF9DSV8xMDBfMjUwX1NCX2xvYW5zX0RlbHRbaXMubmFuKHBhbmVsJGFtdF9DSV8xMDBfMjUwX1NCX2xvYW5zX0RlbHQpXSA8LSBOQQoKcGFuZWwkYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHRbaXMuaW5maW5pdGUocGFuZWwkYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHQpXSA8LSBOQQpwYW5lbCRhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdFtpcy5uYW4ocGFuZWwkYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHQpXSA8LSBOQQpgYGAKCiMjIyBGRSBtb2RlbHM6ICBUMSBMZXZlcmFnZSBSYXRpbwojIyA8IDEwMApgYGB7cn0KRkVtb2RlbDEgPC0gcGxtKGFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0IH4gIHQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBsZXNzXzEwMF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSAid2l0aGluIiwgZWZmZWN0ID0gInR3b3dheXMiKQpzdW1tYXJ5KEZFbW9kZWwxKQpgYGAKCiMjIDEwMCB0byAyNTAKYGBge3J9CkZFbW9kZWwyIDwtIHBsbShhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0IH4gIHQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBYMTAwXzI1MF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSAid2l0aGluIiwgZWZmZWN0ID0gInR3b3dheXMiKQpzdW1tYXJ5KEZFbW9kZWwyKQpgYGAKCiMjIDI1MCB0byAxMDAwCmBgYHtyfQpGRW1vZGVsMyA8LSBwbG0oYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHQgfiAgdDFfTFJfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciArIFgyNTBfMTAwMF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSAid2l0aGluIiwgZWZmZWN0ID0gInR3b3dheXMiKQpzdW1tYXJ5KEZFbW9kZWwzKQpgYGAKCiMjIyBGRSBtb2RlbHM6ICBUMSBSaXNrLUJhc2VkIENhcGl0YWwgUmF0aW8KCiMjIDwgMTAwCmBgYHtyfQpGRW1vZGVsNCA8LSBwbG0oYW10X0NJX2xlc3NfMTAwX1NCX2xvYW5zX0RlbHQgfiAgdDFfUkJDUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICsgbGVzc18xMDBfbGFnZ2VkX1NCX2xvYW5zX1RBICsgUk9BICsgTlBBX1RBLCBkYXRhID0gcGFuZWwsIG1vZGVsID0gIndpdGhpbiIsIGVmZmVjdCA9ICJ0d293YXlzIikKc3VtbWFyeShGRW1vZGVsNCkKYGBgCgojIyAxMDAgdG8gMjUwCmBgYHtyfQpGRW1vZGVsMiA8LSBwbG0oYW10X0NJXzEwMF8yNTBfU0JfbG9hbnNfRGVsdCB+ICB0MV9SQkNSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBYMTAwXzI1MF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSAid2l0aGluIiwgZWZmZWN0ID0gInR3b3dheXMiKQpzdW1tYXJ5KEZFbW9kZWwyKQpgYGAKCiMjIDI1MCB0byAxMDAwCmBgYHtyfQpGRW1vZGVsMyA8LSBwbG0oYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHQgfiAgdDFfUkJDUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICsgWDI1MF8xMDAwX2xhZ2dlZF9TQl9sb2Fuc19UQSArIFJPQSArIE5QQV9UQSwgZGF0YSA9IHBhbmVsLCBtb2RlbCA9ICJ3aXRoaW4iLCBlZmZlY3QgPSAidHdvd2F5cyIpCnN1bW1hcnkoRkVtb2RlbDMpCmBgYAo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiVGVzdCBGRSBNb2RlbHMiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCiMjIyBSZWFkIGluIFBhbmVsIERhdGEgYW5kIENsZWFuCgpgYGB7cn0KbGlicmFyeSh4dHMpCmxpYnJhcnkocGxtKQoKZGF0YSA8LSByZWFkUkRTKCIuL3BhbmVsLnJkcyIpCgpwYW5lbCA8LSBwZGF0YS5mcmFtZShkYXRhLCBpbmRleCA9IGMoIklEUlNTRCIsICJxdWFydGVyIiksIGRyb3AuaW5kZXg9VFJVRSwgcm93Lm5hbWVzPVRSVUUpCgojIyByZW1vdmUgYW55IEluZiBvciBOYU5zIGluIHRoZSBjaGFuZ2UgZGF0YQpwYW5lbCRhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdFtpcy5pbmZpbml0ZShwYW5lbCRhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdCldIDwtIE5BCnBhbmVsJGFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0W2lzLm5hbihwYW5lbCRhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdCldIDwtIE5BCgpwYW5lbCRhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0W2lzLmluZmluaXRlKHBhbmVsJGFtdF9DSV8xMDBfMjUwX1NCX2xvYW5zX0RlbHQpXSA8LSBOQQpwYW5lbCRhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0W2lzLm5hbihwYW5lbCRhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0KV0gPC0gTkEKCnBhbmVsJGFtdF9DSV8yNTBfMTAwMF9TQl9sb2Fuc19EZWx0W2lzLmluZmluaXRlKHBhbmVsJGFtdF9DSV8yNTBfMTAwMF9TQl9sb2Fuc19EZWx0KV0gPC0gTkEKcGFuZWwkYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHRbaXMubmFuKHBhbmVsJGFtdF9DSV8yNTBfMTAwMF9TQl9sb2Fuc19EZWx0KV0gPC0gTkEKYGBgCgojIyBGRSBtb2RlbHM6ICBUMSBMZXZlcmFnZSBSYXRpbwojIyMgQ2hhbmdlIGluICQgQW1vdW50IG9mIFNtYWxsIEJ1c2luZXNzIExvYW5zIGxlc3MgdGhhbiAkMTAwLDAwMApgYGB7cn0KRkVtb2RlbDEgPC0gcGxtKGFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0IH4gIHQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBsZXNzXzEwMF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSAid2l0aGluIiwgZWZmZWN0ID0gInR3b3dheXMiKQpzdW1tYXJ5KEZFbW9kZWwxKQpgYGAKCiMjIyBDaGFuZ2UgaW4gJCBBbW91bnQgb2YgU21hbGwgQnVzaW5lc3MgTG9hbnMgZnJvbSAkMTAwLDAwMCB0byAkMjUwLDAwMAoKYGBge3J9CkZFbW9kZWwyIDwtIHBsbShhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0IH4gIHQxX0xSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBYMTAwXzI1MF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSAid2l0aGluIiwgZWZmZWN0ID0gInR3b3dheXMiKQpzdW1tYXJ5KEZFbW9kZWwyKQpgYGAKIyMjIENoYW5nZSBpbiAkIEFtb3VudCBvZiBTbWFsbCBCdXNpbmVzcyBMb2FucyBmcm9tICQyNTAsMDAwIHRvICQxLDAwMCwwMDAKCmBgYHtyfQpGRW1vZGVsMyA8LSBwbG0oYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHQgfiAgdDFfTFJfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciArIFgyNTBfMTAwMF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSAid2l0aGluIiwgZWZmZWN0ID0gInR3b3dheXMiKQpzdW1tYXJ5KEZFbW9kZWwzKQpgYGAKCiMjIEZFIG1vZGVsczogIFQxIFJpc2stQmFzZWQgQ2FwaXRhbCBSYXRpbwojIyMgQ2hhbmdlIGluICQgQW1vdW50IG9mIFNtYWxsIEJ1c2luZXNzIExvYW5zIGxlc3MgdGhhbiAkMTAwLDAwMAoKYGBge3J9CkZFbW9kZWw0IDwtIHBsbShhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdCB+ICB0MV9SQkNSX3ByZV8yMDE0X2xhZ2dlZF8xX3llYXIgKyBsZXNzXzEwMF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBST0EgKyBOUEFfVEEsIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSAid2l0aGluIiwgZWZmZWN0ID0gInR3b3dheXMiKQpzdW1tYXJ5KEZFbW9kZWw0KQpgYGAKCiMjIyBDaGFuZ2UgaW4gJCBBbW91bnQgb2YgU21hbGwgQnVzaW5lc3MgTG9hbnMgZnJvbSAkMTAwLDAwMCB0byAkMjUwLDAwMAoKYGBge3J9CkZFbW9kZWwyIDwtIHBsbShhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0IH4gIHQxX1JCQ1JfcHJlXzIwMTRfbGFnZ2VkXzFfeWVhciArIFgxMDBfMjUwX2xhZ2dlZF9TQl9sb2Fuc19UQSArIFJPQSArIE5QQV9UQSwgZGF0YSA9IHBhbmVsLCBtb2RlbCA9ICJ3aXRoaW4iLCBlZmZlY3QgPSAidHdvd2F5cyIpCnN1bW1hcnkoRkVtb2RlbDIpCmBgYAoKIyMjIENoYW5nZSBpbiAkIEFtb3VudCBvZiBTbWFsbCBCdXNpbmVzcyBMb2FucyBmcm9tICQyNTAsMDAwIHRvICQxLDAwMCwwMDAKCmBgYHtyfQpGRW1vZGVsMyA8LSBwbG0oYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHQgfiAgdDFfUkJDUl9wcmVfMjAxNF9sYWdnZWRfMV95ZWFyICsgWDI1MF8xMDAwX2xhZ2dlZF9TQl9sb2Fuc19UQSArIFJPQSArIE5QQV9UQSwgZGF0YSA9IHBhbmVsLCBtb2RlbCA9ICJ3aXRoaW4iLCBlZmZlY3QgPSAidHdvd2F5cyIpCnN1bW1hcnkoRkVtb2RlbDMpCmBgYAo=</div>
 
 
 
