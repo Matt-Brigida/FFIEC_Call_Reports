@@ -7,8 +7,8 @@ The repo has the following structure:
 - Raw call report data: `/data`
 - Queries of particular schedules: `/querying_data_and_analysis/individual_schedule_queries`
 - Item queries which often operate across schedules: `/querying_data_and_analysis/item_queries`
-- Various **prelimiary** analyses are in `/querying_data_and_analysis/analyses` Don't quote or cite any results, and many filoes here will change.  
-- A reliminary panel data set I am working with (to investigate the relationship between capital levels and small business loans) is here: `querying_data_and_analysis/analyses/panel_data_analysis/full_panel/panel.rds`
+- Various **prelimiary** analyses are in `/querying_data_and_analysis/analyses` Don't quote or cite any results, and many files here will change.  
+- A preliminary panel data set I am working with (to investigate the relationship between capital levels and small business loans) is here: `querying_data_and_analysis/analyses/panel_data_analysis/full_panel/panel.rds`
 
 ## Example of Use
 
