@@ -1,6 +1,6 @@
 ## Overview
 
-This repo contains [FFIEC call reports](https://cdr.ffiec.gov/public/) for all banks by quarter.  At this point each schedule of bulk call reports are read into both a SQLite database, and saved separately as .rds files.  Queries are created to pull time series items from the .rds files.  Creating queries takes fairly good knowledge of FFIEC Call Reports.  Moreover the structure of these reports tends to change over time.
+This repo contains [FFIEC call reports](https://cdr.ffiec.gov/public/) for all banks by quarter from Q1 2001 to the present.  At this point each schedule of bulk call reports are read into both a SQLite database, and saved separately as .rds files.  Queries are created to pull time series items from the .rds files.  Creating queries takes fairly good knowledge of FFIEC Call Reports.  Moreover the structure of these reports tends to change over time.
 
 The repo has the following structure:
 
@@ -12,7 +12,7 @@ The repo has the following structure:
 
 ## Example of Use
 
-We can create a query to look at all banks births and deaths.  In R:
+We can create a query to look at all bank births and deaths.  In R:
 
 ```
 library(xts)
