@@ -1,0 +1,32 @@
+---
+title: "Model"
+output: html_document
+runtime: shiny
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(plm)
+
+panel <- readRDS(url("https://github.com/Matt-Brigida/FFIEC_Call_Reports/blob/master/querying_data_and_analysis/analyses/panel_data_analysis/full_panel/panel.rds?raw=true"))
+
+panel <- pdata.frame(panel, index = c("IDRSSD", "quarter"), drop.index=TRUE, row.names=TRUE)
+
+## remove any Inf or NaNs in the change data
+panel$amt_CI_less_100_SB_loans_Delt[is.infinite(panel$amt_CI_less_100_SB_loans_Delt)] <- NA
+panel$amt_CI_less_100_SB_loans_Delt[is.nan(panel$amt_CI_less_100_SB_loans_Delt)] <- NA
+
+panel$amt_CI_100_250_SB_loans_Delt[is.infinite(panel$amt_CI_100_250_SB_loans_Delt)] <- NA
+panel$amt_CI_100_250_SB_loans_Delt[is.nan(panel$amt_CI_100_250_SB_loans_Delt)] <- NA
+
+panel$amt_CI_250_1000_SB_loans_Delt[is.infinite(panel$amt_CI_250_1000_SB_loans_Delt)] <- NA
+panel$amt_CI_250_1000_SB_loans_Delt[is.nan(panel$amt_CI_250_1000_SB_loans_Delt)] <- NA
+
+inputPanel(
+    sliderInput(t1, "Capital Ratio", max=, min=, value = c(.05, .2))
+)
+
+renderPlotly({
+
+  panel <- panel[panel$t1_LR_pre_2014_lagged_1_year > input$t1[1] & panel$t1_LR_pre_2014_lagged_1_year < input$t1[2], ]
+})
+```
