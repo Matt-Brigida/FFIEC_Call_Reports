@@ -11,6 +11,9 @@ library(ggthemes)
 
 panelOrig <- readRDS(url("https://github.com/Matt-Brigida/FFIEC_Call_Reports/blob/master/querying_data_and_analysis/analyses/panel_data_analysis/full_panel/panel.rds?raw=true"))
 
+panelOrig <- pdata.frame(panelOrig, index = c("IDRSSD", "quarter"), drop.index=TRUE, row.names=TRUE)
+
+
 inputPanel(
     sliderInput("t1", "Capital Ratio", max=1, min=0, value = c(.05, .2), step = 0.01),
     selectizeInput("model", "Small Business Loan Size", choices = c("Less $100,000" = 1,
