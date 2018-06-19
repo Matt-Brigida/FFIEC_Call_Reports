@@ -197,3 +197,16 @@ panelify(data, "net_income_lagged_1_year")
 panelified <- do.call(rbind, as.list(panelify_env))
 
 saveRDS(panelified, "panel_net_income_lagged_1_year.rds")
+
+
+## Total Deposits (domestic deposits) --------
+
+data <- readRDS("../get_panel_data/pulling_all_firms/data_BS/domestic_deposits_lagged_1_year.rds")
+
+panelify_env <- new.env()
+
+panelify(data, "domestic_deposits_lagged_1_year")
+
+panelified <- do.call(rbind, as.list(panelify_env))
+
+saveRDS(panelified, "panel_domestic_deposits_lagged_1_year.rds")
