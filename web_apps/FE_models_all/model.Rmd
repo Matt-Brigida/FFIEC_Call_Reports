@@ -76,7 +76,7 @@ work <- eventReactive(input$do, {
     plot_y_lower_limit <- as.numeric(quantile(panel$amt_CI_less_100_SB_loans_Delt, .15, na.rm = TRUE))
     intercept <- mean(panel$amt_CI_less_100_SB_loans_Delt, na.rm = TRUE) - slope * mean(panel$t1_LR_pre_2014_lagged_1_year, na.rm = TRUE)
 
-    ggplot(panel, aes(x = t1_LR_pre_2014_lagged_1_year, amt_CI_less_100_SB_loans_Delt)) + geom_hex() + ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope, 2), "| P-value: ", round(pVal, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "Change in SB Loans (Less than $100,000)") + theme_solarized() + geom_abline(slope = slope, intercept = intercept)
+    ggplot(panel, aes(x = t1_LR_pre_2014_lagged_1_year, y = amt_CI_less_100_SB_loans_Delt)) + geom_point(aes(colour = ROA)) + scale_colour_gradient(low = "green") + theme_hc(bgcolor = "darkunica") + geom_density_2d() + ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope, 2), "| P-value: ", round(pVal, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "Change in SB Loans (Less than $100,000)") + geom_abline(slope = slope, intercept = intercept)#  + theme_solarized()  + scale_colour_hc("darkunica")
 
     } else {
         if(input$model == 2){
@@ -84,14 +84,14 @@ work <- eventReactive(input$do, {
             plot_y_lower_limit <- as.numeric(quantile(panel$amt_CI_100_250_SB_loans_Delt, .15, na.rm = TRUE))
             intercept <- mean(panel$amt_CI_100_250_SB_loans_Delt, na.rm = TRUE) - slope * mean(panel$t1_LR_pre_2014_lagged_1_year, na.rm = TRUE)
 
-            ggplot(panel, aes(x = t1_LR_pre_2014_lagged_1_year, amt_CI_100_250_SB_loans_Delt)) + geom_hex() + ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope, 2), "| P-value: ", round(pVal, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "Change in SB Loans ($100,000 to $250,000)") + theme_solarized(light = TRUE) + geom_abline(slope = slope, intercept = intercept)
+            ggplot(panel, aes(x = t1_LR_pre_2014_lagged_1_year, y = amt_CI_100_250_SB_loans_Delt)) + geom_point() + ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope, 2), "| P-value: ", round(pVal, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "Change in SB Loans ($100,000 to $250,000)") + theme_solarized(light = TRUE) + geom_abline(slope = slope, intercept = intercept)
 
             } else {
                 plot_y_upper_limit <- as.numeric(quantile(panel$amt_CI_250_1000_SB_loans_Delt, .85, na.rm = TRUE))
                 plot_y_lower_limit <- as.numeric(quantile(panel$amt_CI_250_1000_SB_loans_Delt, .15, na.rm = TRUE))
                 intercept <- mean(panel$amt_CI_250_1000_SB_loans_Delt, na.rm = TRUE) - slope * mean(panel$t1_LR_pre_2014_lagged_1_year, na.rm = TRUE)
 
-                ggplot(panel, aes(x = t1_LR_pre_2014_lagged_1_year, amt_CI_250_1000_SB_loans_Delt)) + geom_hex() + ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope, 2), "| P-value: ", round(pVal, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "Change in SB Loans ($250,000 to $1 million)") + theme_solarized(light = TRUE) + geom_abline(slope = slope, intercept = intercept)
+                ggplot(panel, aes(x = t1_LR_pre_2014_lagged_1_year, y = amt_CI_250_1000_SB_loans_Delt)) + geom_point() + ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope, 2), "| P-value: ", round(pVal, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "Change in SB Loans ($250,000 to $1 million)") + theme_solarized(light = TRUE) + geom_abline(slope = slope, intercept = intercept)
 
             }
         }
