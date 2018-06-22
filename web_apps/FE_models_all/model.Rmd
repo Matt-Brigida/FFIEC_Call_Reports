@@ -1,8 +1,11 @@
 ---
 title: "Fixed-Effects Models"
 author: "Matt Brigida"
-output: html_document
 runtime: shiny
+output: 
+ html_document:
+ theme: spacelab
+ highlight: haddock
 ---
 
 Choose your inputs and click the run button.  The capital ratio, assets, and minority status inputs create a subset of the full panel based on the particular parameters.  The loan size input determines the model's dependent variable. 
@@ -13,7 +16,11 @@ The model has both firm and time fixed effects ($\alpha_{it}$), and has the foll
 \begin{equation}
 \% \Delta SB\ Loans = \beta_1 (T1\ Lev.\ Ratio) + \beta_2 \frac{Amt.\ SB\ Loans}{TA} + \beta_3 ROA + \beta_4 \frac{NPA}{TA} + \beta_5 \frac{Deposits}{TA} + \beta_6 log(TA) + \beta_7 (post\ crisis) + \alpha_{it} + \epsilon_{it}
 \end{equation}
-where *SB* denotes "Small Business", *NPA* denotes "Non-Performing Assets", and *TA* denotes "Total Assets".  *post crisis* is an indicator variable for the years 2012---2015 inclusive.  The graphic below only shows the $\beta_1$ coefficient and p-value, as well as the $R^2$ and number of degrees of freedom.
+where *SB* denotes "Small Business", *NPA* denotes "Non-Performing Assets", and *TA* denotes "Total Assets".  *post crisis* is an indicator variable for the years 2012---2015 inclusive.  
+
+The graphic below shows the $\beta_1$ coefficient and p-value, as well as the $R^2$ and number of degrees of freedom.  The color of the points in the scatter plot are dependent on the bank's ROA.  The blue lines show the 2-Dimensional density function, so you are able to see the places on the scatterplot with the most bank observations.  The density is higher for the inner blue lines.  The black line shows the sensitivity of the change in small business loans to the T1 Leverage ratio over the sample (linear regression line).
+
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(plm)
@@ -84,14 +91,14 @@ work <- eventReactive(input$do, {
             plot_y_lower_limit <- as.numeric(quantile(panel$amt_CI_100_250_SB_loans_Delt, .15, na.rm = TRUE))
             intercept <- mean(panel$amt_CI_100_250_SB_loans_Delt, na.rm = TRUE) - slope * mean(panel$t1_LR_pre_2014_lagged_1_year, na.rm = TRUE)
 
-            ggplot(panel, aes(x = t1_LR_pre_2014_lagged_1_year, y = amt_CI_100_250_SB_loans_Delt)) + geom_point() + ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope, 2), "| P-value: ", round(pVal, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "Change in SB Loans ($100,000 to $250,000)") + theme_solarized(light = TRUE) + geom_abline(slope = slope, intercept = intercept)
+            ggplot(panel, aes(x = t1_LR_pre_2014_lagged_1_year, y = amt_CI_100_250_SB_loans_Delt)) + geom_point(aes(colour = ROA)) + scale_colour_gradient(low = "green") + theme_hc(bgcolor = "darkunica") + geom_density_2d() +  ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope, 2), "| P-value: ", round(pVal, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "Change in SB Loans ($100,000 to $250,000)") + theme_solarized(light = TRUE) + geom_abline(slope = slope, intercept = intercept)
 
             } else {
                 plot_y_upper_limit <- as.numeric(quantile(panel$amt_CI_250_1000_SB_loans_Delt, .85, na.rm = TRUE))
                 plot_y_lower_limit <- as.numeric(quantile(panel$amt_CI_250_1000_SB_loans_Delt, .15, na.rm = TRUE))
                 intercept <- mean(panel$amt_CI_250_1000_SB_loans_Delt, na.rm = TRUE) - slope * mean(panel$t1_LR_pre_2014_lagged_1_year, na.rm = TRUE)
 
-                ggplot(panel, aes(x = t1_LR_pre_2014_lagged_1_year, y = amt_CI_250_1000_SB_loans_Delt)) + geom_point() + ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope, 2), "| P-value: ", round(pVal, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "Change in SB Loans ($250,000 to $1 million)") + theme_solarized(light = TRUE) + geom_abline(slope = slope, intercept = intercept)
+                ggplot(panel, aes(x = t1_LR_pre_2014_lagged_1_year, y = amt_CI_250_1000_SB_loans_Delt)) + geom_point(aes(colour = ROA)) + scale_colour_gradient(low = "green") + theme_hc(bgcolor = "darkunica") + geom_density_2d() + ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope, 2), "| P-value: ", round(pVal, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "Change in SB Loans ($250,000 to $1 million)") + theme_solarized(light = TRUE) + geom_abline(slope = slope, intercept = intercept)
 
             }
         }
