@@ -30,6 +30,12 @@ all_t1_leverage_ratio <- do.call(merge, as.list(t1_leverage_ratio))
 write.csv(all_t1_leverage_ratio, "t1_leverage_ratio.csv")
 saveRDS(all_t1_leverage_ratio, "t1_leverage_ratio.rds")
 
+all_t1_LR_lagged_1_year <- lag(all_t1_leverage_ratio, k = 4)
+
+write.csv(all_t1_LR_lagged_1_year, "t1_LR_lagged_1_year.csv")
+saveRDS(all_t1_LR_lagged_1_year, "t1_LR_lagged_1_year.rds")
+
+
 # Check how many bank we have data for
 sum(1*(apply(all_t1_leverage_ratio, 2, function(x){sum(x, na.rm=TRUE)}) > 0))
 ## 10635
