@@ -28,7 +28,7 @@ query_t1_risk_based_capital_ratio <- function(ID){
     t1_risk_based_capital_ratio[i] <- if( length(as.numeric(eval(parse(text = paste0("sch$", code[i]))))) == 0){
                        NA
                    } else {
-                       as.numeric(eval(parse(text = paste0("sch$", code[i]))))
+                       as.numeric(gsub("%", "", eval(parse(text = paste0("sch$", code[i])))))
                    }
 
     ## rept_date[i] <- as.Date(strsplit(strsplit(reports[i], "_")[[1]][3], "\\.")[[1]][1], "%m%d%Y")

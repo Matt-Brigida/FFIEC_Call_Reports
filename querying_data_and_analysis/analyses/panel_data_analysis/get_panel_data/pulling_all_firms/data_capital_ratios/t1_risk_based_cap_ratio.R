@@ -30,6 +30,17 @@ all_t1_risk_based_capital_ratio <- do.call(merge, as.list(t1_risk_based_capital_
 write.csv(all_t1_risk_based_capital_ratio, "t1_risk_based_capital_ratio.csv")
 saveRDS(all_t1_risk_based_capital_ratio, "t1_risk_based_capital_ratio.rds")
 
+## lag 1 year
+all_T1_RBCR_lagged_1_year <- lag(all_t1_risk_based_capital_ratio, k = 4)
+
+write.csv(all_T1_RBCR_lagged_1_year, "t1_RBCR_lagged_1_year.csv")
+saveRDS(all_T1_RBCR_lagged_1_year, "t1_RBCR_lagged_1_year.rds")
+
+
+
+
+
+
 # Check how many bank we have data for
 sum(1*(apply(all_t1_risk_based_capital_ratio, 2, function(x){sum(x, na.rm=TRUE)}) > 0))
 ## 10635
