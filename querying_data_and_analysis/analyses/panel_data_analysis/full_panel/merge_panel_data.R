@@ -1,5 +1,9 @@
+## load libs
+
+library(xts)
+
 ## read in panel when not yet loaded
-panel <- readRDS('panel.rds')
+## panel <- readRDS('panel.rds')
 
 ## read in data and merge-----
 
@@ -11,15 +15,15 @@ panel <- merge(panel_total_assets_lagged_1_year, panel_total_equity_lagged_1_yea
 
 ## t1 leverage ratio (none past 2014)------
 
-panel_t1_LR_pre_2014_lagged_1_year <- readRDS("./panel_t1_LR_pre_2014_lagged_1_year.rds")
+panel_t1_LR_lagged_1_year <- readRDS("./panel_t1_LR_lagged_1_year.rds")
 
-panel <- merge(panel, panel_t1_LR_pre_2014_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
+panel <- merge(panel, panel_t1_LR_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
 
 ## t1 RBCR pre 2014------
 
-panel_t1_RBCR_pre_2014_lagged_1_year <- readRDS("./panel_t1_RBCR_pre_2014_lagged_1_year.rds")
+panel_t1_RBCR_lagged_1_year <- readRDS("./panel_t1_RBCR_lagged_1_year.rds")
 
-panel <- merge(panel, panel_t1_RBCR_pre_2014_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
+panel <- merge(panel, panel_t1_RBCR_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
 
 ### Amount of SB loans lagged 1 year
 ##
@@ -258,8 +262,3 @@ for (i in 1:dim(panel)[1]){
 panel_mdi_type <- cbind(panel, mdi_type)
 saveRDS(panel_mdi_type, "panel_mdi_type.rds")
 saveRDS(panel_mdi_ind, "panel_mdi_ind.rds")
-
-
-
-
-

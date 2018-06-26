@@ -74,6 +74,34 @@ panelified <- do.call(rbind, as.list(panelify_env))
 saveRDS(panelified, "panel_t1_RBCR_pre_2014_lagged_1_year.rds")
 
 
+## T1 leverage ratio----
+
+data <- readRDS("../get_panel_data/pulling_all_firms/data_capital_ratios/t1_LR_lagged_1_year.rds")
+
+### Reshaping data: x is the output from query (xts with IDRSSD in column name) ----
+
+panelify_env <- new.env()
+
+panelify(data, "t1_LR_lagged_1_year")
+
+panelified <- do.call(rbind, as.list(panelify_env))
+
+saveRDS(panelified, "panel_t1_LR_lagged_1_year.rds")
+
+## T1 RBCR----
+
+data <- readRDS("../get_panel_data/pulling_all_firms/data_capital_ratios/t1_RBCR_lagged_1_year.rds")
+
+### Reshaping data: x is the output from query (xts with IDRSSD in column name) ----
+
+panelify_env <- new.env()
+
+panelify(data, "t1_RBCR_lagged_1_year")
+
+panelified <- do.call(rbind, as.list(panelify_env))
+
+saveRDS(panelified, "panel_t1_RBCR_lagged_1_year.rds")
+
 ### % Change amount of SB loans
 ## amt_CI_less_100_SB_loans----
 
