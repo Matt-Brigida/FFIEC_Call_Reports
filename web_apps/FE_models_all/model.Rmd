@@ -33,8 +33,11 @@ panelOrig <- pdata.frame(panelOrig, index = c("IDRSSD", "quarter"), drop.index=T
 max_assets <- max(panelOrig$total_assets_lagged_1_year, na.rm = TRUE)
 min_assets <- min(panelOrig$total_assets_lagged_1_year, na.rm = TRUE)
 
+max_cr <- max(panelOrig$t1_LR_lagged_1_year, na.rm = TRUE)
+min_cr <- min(panelOrig$t1_LR_lagged_1_year, na.rm = TRUE)
+
 inputPanel(
-    sliderInput("t1", "Capital Ratio", max=1, min=0, value = c(.05, .2), step = 0.01),
+    sliderInput("t1", "Capital Ratio", max=max_cr, min=min_cr, value = c(.05, .2), step = 0.01),
     sliderInput("size", "Total Assets ($'000s)", max=max_assets, min=min_assets, value = c(1000, 10000), step = 100),
     selectizeInput("model", "Small Business Loan Size", choices = c("Less $100,000" = 1,
                                                                   "$100,000 to $250,000" = 2,
@@ -47,7 +50,7 @@ inputPanel(
 
 work <- eventReactive(input$do, {
     
-    panel <- panelOrig[panelOrig$t1_LR_pre_2014_lagged_1_year > input$t1[1] & panelOrig$t1_LR_pre_2014_lagged_1_year < input$t1[2], ]
+    panel <- panelOrig[panelOrig$t1_LR_lagged_1_year > input$t1[1] & panelOrig$t1_LR_lagged_1_year < input$t1[2], ]
     panel <- panel[panel$total_assets_lagged_1_year > input$size[1] & panel$total_assets_lagged_1_year < input$size[2], ]
     if(input$mdi_ind == 2){
         panel <- panel[panel$black_ind == 1, ]
@@ -58,15 +61,15 @@ work <- eventReactive(input$do, {
     }
 
     if(input$model == 1){
-        FEmodel1 <- plm(amt_CI_less_100_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + less_100_lagged_SB_loans_TA + ROA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind), data = panel, model = "within", effect = "twoways")
+        FEmodel1 <- plm(amt_CI_less_100_SB_loans_Delt ~  t1_LR_lagged_1_year + less_100_lagged_SB_loans_TA + ROA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind), data = panel, model = "within", effect = "twoways")
         result <- summary(FEmodel1)
 
     } else {
         if(input$model == 2){
-            FEmodel2 <- plm(amt_CI_100_250_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + X100_250_lagged_SB_loans_TA + ROA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind), data = panel, model = "within", effect = "twoways")
+            FEmodel2 <- plm(amt_CI_100_250_SB_loans_Delt ~  t1_LR_lagged_1_year + X100_250_lagged_SB_loans_TA + ROA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind), data = panel, model = "within", effect = "twoways")
             result <- summary(FEmodel2) 
         } else {
-            FEmodel3 <- plm(amt_CI_250_1000_SB_loans_Delt ~  t1_LR_pre_2014_lagged_1_year + X250_1000_lagged_SB_loans_TA + ROA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind), data = panel, model = "within", effect = "twoways")
+            FEmodel3 <- plm(amt_CI_250_1000_SB_loans_Delt ~  t1_LR_lagged_1_year + X250_1000_lagged_SB_loans_TA + ROA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind), data = panel, model = "within", effect = "twoways")
             result <- summary(FEmodel3)
 
         }
@@ -74,31 +77,31 @@ work <- eventReactive(input$do, {
 
     adjRsq <- result$r.squared[2]
     Rsq <- result$r.squared[1]
-    slope <- as.numeric(result$coefficients[rownames(result$coefficients) == "t1_LR_pre_2014_lagged_1_year",][1])
-    pVal <- as.numeric(result$coefficients[rownames(result$coefficients) == "t1_LR_pre_2014_lagged_1_year",][4])
+    slope <- as.numeric(result$coefficients[rownames(result$coefficients) == "t1_LR_lagged_1_year",][1])
+    pVal <- as.numeric(result$coefficients[rownames(result$coefficients) == "t1_LR_lagged_1_year",][4])
     df <- result$df[2]
     
     if(input$model == 1){
     plot_y_upper_limit <- as.numeric(quantile(panel$amt_CI_less_100_SB_loans_Delt, .85, na.rm = TRUE))
     plot_y_lower_limit <- as.numeric(quantile(panel$amt_CI_less_100_SB_loans_Delt, .15, na.rm = TRUE))
-    intercept <- mean(panel$amt_CI_less_100_SB_loans_Delt, na.rm = TRUE) - slope * mean(panel$t1_LR_pre_2014_lagged_1_year, na.rm = TRUE)
+    intercept <- mean(panel$amt_CI_less_100_SB_loans_Delt, na.rm = TRUE) - slope * mean(panel$t1_LR_lagged_1_year, na.rm = TRUE)
 
-    ggplot(panel, aes(x = t1_LR_pre_2014_lagged_1_year, y = amt_CI_less_100_SB_loans_Delt)) + geom_point(aes(colour = ROA)) + scale_colour_gradient(low = "green") + theme_hc(bgcolor = "darkunica") + geom_density_2d() + ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope, 2), "| P-value: ", round(pVal, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "Change in SB Loans (Less than $100,000)") + geom_abline(slope = slope, intercept = intercept)#  + theme_solarized()  + scale_colour_hc("darkunica")
+    ggplot(panel, aes(x = t1_LR_lagged_1_year, y = amt_CI_less_100_SB_loans_Delt)) + geom_point(aes(colour = ROA)) + scale_colour_gradient(low = "green") + theme_hc(bgcolor = "darkunica") + geom_density_2d() + ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope, 2), "| P-value: ", round(pVal, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "Change in SB Loans (Less than $100,000)") + geom_abline(slope = slope, intercept = intercept)#  + theme_solarized()  + scale_colour_hc("darkunica")
 
     } else {
         if(input$model == 2){
             plot_y_upper_limit <- as.numeric(quantile(panel$amt_CI_100_250_SB_loans_Delt, .85, na.rm = TRUE))
             plot_y_lower_limit <- as.numeric(quantile(panel$amt_CI_100_250_SB_loans_Delt, .15, na.rm = TRUE))
-            intercept <- mean(panel$amt_CI_100_250_SB_loans_Delt, na.rm = TRUE) - slope * mean(panel$t1_LR_pre_2014_lagged_1_year, na.rm = TRUE)
+            intercept <- mean(panel$amt_CI_100_250_SB_loans_Delt, na.rm = TRUE) - slope * mean(panel$t1_LR_lagged_1_year, na.rm = TRUE)
 
-            ggplot(panel, aes(x = t1_LR_pre_2014_lagged_1_year, y = amt_CI_100_250_SB_loans_Delt)) + geom_point(aes(colour = ROA)) + scale_colour_gradient(low = "green") + theme_hc(bgcolor = "darkunica") + geom_density_2d() +  ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope, 2), "| P-value: ", round(pVal, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "Change in SB Loans ($100,000 to $250,000)") + theme_solarized(light = TRUE) + geom_abline(slope = slope, intercept = intercept)
+            ggplot(panel, aes(x = t1_LR_lagged_1_year, y = amt_CI_100_250_SB_loans_Delt)) + geom_point(aes(colour = ROA)) + scale_colour_gradient(low = "green") + theme_hc(bgcolor = "darkunica") + geom_density_2d() +  ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope, 2), "| P-value: ", round(pVal, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "Change in SB Loans ($100,000 to $250,000)") + geom_abline(slope = slope, intercept = intercept) # theme_solarized(light = TRUE) + 
 
             } else {
                 plot_y_upper_limit <- as.numeric(quantile(panel$amt_CI_250_1000_SB_loans_Delt, .85, na.rm = TRUE))
                 plot_y_lower_limit <- as.numeric(quantile(panel$amt_CI_250_1000_SB_loans_Delt, .15, na.rm = TRUE))
-                intercept <- mean(panel$amt_CI_250_1000_SB_loans_Delt, na.rm = TRUE) - slope * mean(panel$t1_LR_pre_2014_lagged_1_year, na.rm = TRUE)
+                intercept <- mean(panel$amt_CI_250_1000_SB_loans_Delt, na.rm = TRUE) - slope * mean(panel$t1_LR_lagged_1_year, na.rm = TRUE)
 
-                ggplot(panel, aes(x = t1_LR_pre_2014_lagged_1_year, y = amt_CI_250_1000_SB_loans_Delt)) + geom_point(aes(colour = ROA)) + scale_colour_gradient(low = "green") + theme_hc(bgcolor = "darkunica") + geom_density_2d() + ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope, 2), "| P-value: ", round(pVal, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "Change in SB Loans ($250,000 to $1 million)") + theme_solarized(light = TRUE) + geom_abline(slope = slope, intercept = intercept)
+                ggplot(panel, aes(x = t1_LR_lagged_1_year, y = amt_CI_250_1000_SB_loans_Delt)) + geom_point(aes(colour = ROA)) + scale_colour_gradient(low = "green") + theme_hc(bgcolor = "darkunica") + geom_density_2d() + ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope, 2), "| P-value: ", round(pVal, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "Change in SB Loans ($250,000 to $1 million)") + geom_abline(slope = slope, intercept = intercept) # theme_solarized(light = TRUE) +
 
             }
         }
