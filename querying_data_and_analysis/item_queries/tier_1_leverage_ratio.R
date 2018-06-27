@@ -40,3 +40,4 @@ query_t1_leverage_ratio <- function(ID){
 }
 
 
+#### IMPORTANT: for 2015 and after the data are in 10% whereas previously it is 0.10.  So have to divide 2015 and after data by 100
