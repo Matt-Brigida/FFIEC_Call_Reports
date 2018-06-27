@@ -8,7 +8,7 @@ output:
  highlight: haddock
 ---
 
-Choose your inputs and click the run button.  The capital ratio, assets, and minority status inputs create a subset of the full panel based on the particular parameters.  The loan size input determines the model's dependent variable. 
+Choose your inputs and click the run button.  The capital ratio, assets, and minority status inputs create a subsets based on the particular parameters.  The loan size input determines the model's dependent variable.  The full panel has already been filtererd to include only observations where the leverage ratio is between -50% and 150%, and the bank's assets are less than $100 billion.
 
 The time it takes for the model to run is increasing in the number of firms in your subsample.  So if you choose a large subsample, you may have to wait a minute or two.
 
@@ -20,16 +20,30 @@ where *SB* denotes "Small Business", *NPA* denotes "Non-Performing Assets", and 
 
 The graphic below shows the $\beta_1$ coefficient and p-value, as well as the $R^2$ and number of degrees of freedom.  The color of the points in the scatter plot are dependent on the bank's ROA.  The blue lines show the 2-Dimensional density function, so you are able to see the places on the scatterplot with the most bank observations.  The density is higher for the inner blue lines.  The black line shows the sensitivity of the change in small business loans to the T1 Leverage ratio over the sample (linear regression line).
 
-
-
+<!-- read in the data -->
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(plm)
-library(ggplot2)
-library(ggthemes)
 
 panelOrig <- readRDS(url("https://github.com/Matt-Brigida/FFIEC_Call_Reports/blob/master/querying_data_and_analysis/analyses/panel_data_analysis/full_panel/panel_mdi_ind.rds?raw=true"))
 
+## panelOrig <<- pdata.frame(panelOrig, index = c("IDRSSD", "quarter"), drop.index=TRUE, row.names=TRUE)
 panelOrig <- pdata.frame(panelOrig, index = c("IDRSSD", "quarter"), drop.index=TRUE, row.names=TRUE)
+
+panelOrig <- panelOrig[panelOrig$t1_LR_lagged_1_year > -0.5, ]
+panelOrig <- panelOrig[panelOrig$t1_LR_lagged_1_year < 1.5, ]
+
+panelOrig <- panelOrig[panelOrig$total_assets_lagged_1_year > 0, ]
+panelOrig <- panelOrig[panelOrig$total_assets_lagged_1_year < 100000000, ]
+
+assign("panelOrig", panelOrig)
+```
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(ggthemes)
+
 max_assets <- max(panelOrig$total_assets_lagged_1_year, na.rm = TRUE)
 min_assets <- min(panelOrig$total_assets_lagged_1_year, na.rm = TRUE)
 
@@ -38,7 +52,7 @@ min_cr <- min(panelOrig$t1_LR_lagged_1_year, na.rm = TRUE)
 
 inputPanel(
     sliderInput("t1", "Capital Ratio", max=max_cr, min=min_cr, value = c(.05, .2), step = 0.01),
-    sliderInput("size", "Total Assets ($'000s)", max=max_assets, min=min_assets, value = c(1000, 10000), step = 100),
+    sliderInput("size", "Total Assets ($'000s)", max=max_assets, min=min_assets, value = c(1000, 1000000), step = 100),
     selectizeInput("model", "Small Business Loan Size", choices = c("Less $100,000" = 1,
                                                                   "$100,000 to $250,000" = 2,
                                                                   "$250,000 to $1,000,000" = 3)),
@@ -112,3 +126,14 @@ work()
 })
 
 ```
+
+<!-- ## Data Visualizations -->
+
+<!-- ```{r echo=FALSE, message=FALSE, warning=FALSE} -->
+<!-- library(ggplot2) -->
+<!-- library(ggthemes) -->
+<!-- renderPlot( -->
+<!-- ggplot(panelOrig, aes(t1_LR_lagged_1_year)) + -->
+<!--   geom_histogram()     -->
+<!-- ) -->
+<!-- ``` -->
