@@ -4,15 +4,29 @@ library(quantmod)
 ## lag data
 d1 <- readRDS("./amt_CI_less_100_SB_loans.rds")
 d1 <- lag(d1, k = 4)
+a1 <- lag(d1, k = 4)
 saveRDS(d1, "amt_CI_less_100_SB_loans_lagged_1_year.rds")
+saveRDS(a1, "amt_CI_less_100_SB_loans_lagged_2_years.rds")
+d3 <- (d1 / a1) - 1
+saveRDS(d3, "amt_CI_less_100_SB_loans_Delt_lagged_1_year.rds")
+
 
 d1 <- readRDS("./amt_CI_100_250_SB_loans.rds")
 d1 <- lag(d1, k = 4)
+a1 <- lag(d1, k = 4)
 saveRDS(d1, "amt_CI_100_250_SB_loans_lagged_1_year.rds")
+saveRDS(a1, "amt_CI_100_250_SB_loans_lagged_2_years.rds")
+d3 <- (d1 / a1) - 1
+saveRDS(d3, "amt_CI_100_250_SB_loans_Delt_lagged_1_year.rds")
 
 d1 <- readRDS("./amt_CI_250_1000_SB_loans.rds")
 d1 <- lag(d1, k = 4)
+a1 <- lag(d1, k = 4)
 saveRDS(d1, "amt_CI_250_1000_SB_loans_lagged_1_year.rds")
+saveRDS(a1, "amt_CI_250_1000_SB_loans_lagged_2_years.rds")
+d3 <- (d1 / a1) - 1
+saveRDS(d3, "amt_CI_250_1000_SB_loans_Delt_lagged_1_year.rds")
+
 
 ## % change data
 
