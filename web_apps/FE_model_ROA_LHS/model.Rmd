@@ -1,5 +1,5 @@
 ---
-title: "Fixed-Effects Models"
+title: "The Effect of the T1 Leverage Ratio on ROA"
 author: "Matt Brigida"
 runtime: shiny
 output: 
@@ -19,7 +19,7 @@ ROA = \beta_1 (T1\ Lev.\ Ratio) + \beta_2 \frac{Amt.\ SB\ Loans}{TA} + \beta_3 \
 \end{equation}
 where *SB* denotes "Small Business", *NPA* denotes "Non-Performing Assets", and *TA* denotes "Total Assets".  *post crisis* is an indicator variable for the years 2012---2015 inclusive.  
 
-The graphic below shows the $\beta_1$ coefficient and p-value, as well as the $R^2$ and number of degrees of freedom.  The color of the points in the scatter plot are dependent on the bank's Npn-performing assets relative to total assets.  The blue lines show the 2-Dimensional density function, so you are able to see the places on the scatterplot with the most bank observations.  The density is higher for the inner blue lines.  The black line shows the sensitivity of the change in small business loans to the T1 Leverage ratio over the sample (linear regression line).
+The graphic below shows the $\beta_1$ coefficient and p-value, as well as the $R^2$ and number of degrees of freedom.  The color of the points in the scatter plot are dependent on the bank's Non-Performing Assets relative to total assets.  The blue lines show the 2-Dimensional density function, so you are able to see the places on the scatterplot with the most bank observations.  The density is higher for the inner blue lines.  The black line shows the sensitivity of ROA to the T1 Leverage ratio over the sample (linear regression line).
 
 <!-- read in the data -->
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
