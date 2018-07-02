@@ -1,5 +1,5 @@
 ---
-title: "The Effect of the T1 Leverage Ratio on ROA"
+title: "The Effect of Small-Business Lending and the T1 Leverage Ratio on ROA"
 author: "Matt Brigida"
 runtime: shiny
 output: 
@@ -15,7 +15,7 @@ The time it takes for the model to run is increasing in the number of firms in y
 The model has both firm and time fixed effects ($\alpha_{it}$), and has the following specification.  All independent variables are lagged one year relative to ROA.
 
 \begin{equation}
-ROA = \beta_1 (T1\ Lev.\ Ratio) + \beta_2 \frac{Amt.\ SB\ Loans}{TA} + \beta_3 \Delta SB\ Loans + \beta_4 \frac{NPA}{TA} + \beta_5 \frac{Deposits}{TA} + \beta_6 log(TA) + \beta_7 (post\ crisis) + \alpha_{it} + \epsilon_{it}
+ROA = \beta_1 (T1\ Lev.\ Ratio) + \beta_2 \frac{Amt.\ SB\ Loans}{TA} + \beta_3 \% \Delta SB\ Loans + \beta_4 \frac{NPA}{TA} + \beta_5 \frac{Deposits}{TA} + \beta_6 log(TA) + \beta_7 (post\ crisis) + \alpha_{it} + \epsilon_{it}
 \end{equation}
 where *SB* denotes "Small Business", *NPA* denotes "Non-Performing Assets", and *TA* denotes "Total Assets".  *post crisis* is an indicator variable for the years 2012---2015 inclusive.  
 
@@ -100,13 +100,18 @@ work <- eventReactive(input$do, {
     slope_cap <- as.numeric(result$coefficients[2][1])
     ## pVal <- as.numeric(result$coefficients[rownames(result$coefficients) == "t1_LR_lagged_1_year",][4])
     pVal_cap <- as.numeric(result$coefficients[2,][4])
+
+    slope_PSB <- as.numeric(result$coefficients[3][1])
+    ## pVal <- as.numeric(result$coefficients[rownames(result$coefficients) == "t1_LR_lagged_1_year",][4])
+    pVal_PSB <- as.numeric(result$coefficients[3,][4])
+
     
     if(input$model == 1){
     plot_y_upper_limit <- as.numeric(quantile(panel$ROA, .85, na.rm = TRUE))
     plot_y_lower_limit <- as.numeric(quantile(panel$ROA, .15, na.rm = TRUE))
     intercept <- mean(panel$ROA, na.rm = TRUE) - slope_cap * mean(panel$t1_LR_lagged_1_year, na.rm = TRUE)
 
-    ggplot(panel, aes(x = t1_LR_lagged_1_year, y = ROA)) + geom_point(aes(colour = NPA_TA)) + scale_colour_gradient(low = "green") + theme_hc(bgcolor = "darkunica") + geom_density_2d() + ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope_cap, 2), " | P-value: ", round(pVal_cap, 2), "  Change SB Loans Coef: ", round(slope_SB, 2), " | P-Value: ", round(pVal_SB, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "ROA") + geom_abline(slope = slope_cap, intercept = intercept)#  + theme_solarized()  + scale_colour_hc("darkunica")
+    ggplot(panel, aes(x = t1_LR_lagged_1_year, y = ROA)) + geom_point(aes(colour = NPA_TA)) + scale_colour_gradient(low = "green") + theme_hc(bgcolor = "darkunica") + geom_density_2d() + ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope_cap, 2), " | P-value: ", round(pVal_cap, 2), "  Change SB Loans Coef: ", round(slope_SB, 2), " | P-Value: ", round(pVal_SB, 2), "  Prop. SB Loans Coef: ", round(slope_PSB, 2), " | P-Value: ", round(pVal_PSB, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "ROA") + geom_abline(slope = slope_cap, intercept = intercept)#  + theme_solarized()  + scale_colour_hc("darkunica")
 
     } else {
         if(input$model == 2){
@@ -114,14 +119,14 @@ work <- eventReactive(input$do, {
             plot_y_lower_limit <- as.numeric(quantile(panel$ROA, .15, na.rm = TRUE))
             intercept <- mean(panel$ROA, na.rm = TRUE) - slope_cap * mean(panel$t1_LR_lagged_1_year, na.rm = TRUE)
 
-            ggplot(panel, aes(x = t1_LR_lagged_1_year, y = ROA)) + geom_point(aes(colour = NPA_TA)) + scale_colour_gradient(low = "green") + theme_hc(bgcolor = "darkunica") + geom_density_2d() +  ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope_cap, 2), " | P-value: ", round(pVal_cap, 2), "  Change SB Loans Coef: ", round(slope_SB, 2), " | P-Value: ", round(pVal_SB, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "ROA") + geom_abline(slope = slope_cap, intercept = intercept) # theme_solarized(light = TRUE) + 
+            ggplot(panel, aes(x = t1_LR_lagged_1_year, y = ROA)) + geom_point(aes(colour = NPA_TA)) + scale_colour_gradient(low = "green") + theme_hc(bgcolor = "darkunica") + geom_density_2d() +  ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope_cap, 2), " | P-value: ", round(pVal_cap, 2), "  Change SB Loans Coef: ", round(slope_SB, 2), " | P-Value: ", round(pVal_SB, 2), "  Prop. SB Loans Coef: ", round(slope_PSB, 2), " | P-Value: ", round(pVal_PSB, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "ROA") + geom_abline(slope = slope_cap, intercept = intercept) # theme_solarized(light = TRUE) + 
 
             } else {
                 plot_y_upper_limit <- as.numeric(quantile(panel$ROA, .85, na.rm = TRUE))
                 plot_y_lower_limit <- as.numeric(quantile(panel$ROA, .15, na.rm = TRUE))
                 intercept <- mean(panel$ROA, na.rm = TRUE) - slope_cap * mean(panel$t1_LR_lagged_1_year, na.rm = TRUE)
 
-                ggplot(panel, aes(x = t1_LR_lagged_1_year, y = ROA)) + geom_point(aes(colour = NPA_TA)) + scale_colour_gradient(low = "green") + theme_hc(bgcolor = "darkunica") + geom_density_2d() + ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope_cap, 2), " | P-value: ", round(pVal_cap, 2), "  Change SB Loans Coef: ", round(slope_SB, 2), " | P-Value: ", round(pVal_SB, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "ROA") + geom_abline(slope = slope_cap, intercept = intercept) # theme_solarized(light = TRUE) +
+                ggplot(panel, aes(x = t1_LR_lagged_1_year, y = ROA)) + geom_point(aes(colour = NPA_TA)) + scale_colour_gradient(low = "green") + theme_hc(bgcolor = "darkunica") + geom_density_2d() + ylim(plot_y_lower_limit, plot_y_upper_limit) + labs(title = paste0("Capital Ratio Coef: ", round(slope_cap, 2), " | P-value: ", round(pVal_cap, 2), "  Change SB Loans Coef: ", round(slope_SB, 2), " | P-Value: ", round(pVal_SB, 2), "  Prop. SB Loans Coef: ", round(slope_PSB, 2), " | P-Value: ", round(pVal_PSB, 2)), subtitle = paste0("R-sq: ", round(Rsq, 4), "| Adj-R-sq: ", round(adjRsq, 4), "| Deg. Freedom: ", round(df, 0)), x = "T1 Leverage Ratio", y = "ROA") + geom_abline(slope = slope_cap, intercept = intercept) # theme_solarized(light = TRUE) +
 
             }
         }
