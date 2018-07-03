@@ -24,7 +24,7 @@ for (i in idrssds){
     error=function(cond) {
         message("Error, and error message is:")
         message(cond)
-                                        # Choose a return value in case of error
+        ## Choose a return value in case of error
         return(NA)
     }
     )
@@ -52,11 +52,11 @@ for (i in idrssds){
     error=function(cond) {
         message("Error, and error message is:")
         message(cond)
-                                        # Choose a return value in case of error
+        ## Choose a return value in case of error
         return(NA)
     }
     )
-    }
+}
 
 all_current_liabilities <- do.call(merge, as.list(current_liabilities))
 

@@ -1721,7 +1721,7 @@ panel &lt;- pdata.frame(data, index = c(&quot;IDRSSD&quot;, &quot;quarter&quot;)
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwxIDwtIHBsbShST0EgfiBhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdF9sYWdnZWRfMV95ZWFyICsgdDFfTFJfbGFnZ2VkXzFfeWVhciArIGxlc3NfMTAwX2xhZ2dlZF9TQl9sb2Fuc19UQSArIE5QQV9UQSArIEkobG9nKHBhbmVsJHRvdGFsX2Fzc2V0c19sYWdnZWRfMV95ZWFyKSkgKyBURF9UQSArIEkocG9zdF9jcmlzaXNfaW5kKSArIEkodDFfTFJfbGFnZ2VkXzFfeWVhciAqIGJsYWNrX2luZCkgKyBJKHQxX0xSX2xhZ2dlZF8xX3llYXIgKiBoaXNwYW5pY19pbmQpLCBkYXRhID0gcGFuZWwsIG1vZGVsID0gXCJ3aXRoaW5cIiwgZWZmZWN0ID0gXCJ0d293YXlzXCIpIiwic3VtbWFyeShGRW1vZGVsMSkiXX0= -->
-<pre class="r"><code>FEmodel1 &lt;- plm(ROA ~ amt_CI_less_100_SB_loans_Delt_lagged_1_year + t1_LR_lagged_1_year + less_100_lagged_SB_loans_TA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + I(t1_LR_lagged_1_year * black_ind) + I(t1_LR_lagged_1_year * hispanic_ind), data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
+<pre class="r"><code>FEmodel1 &lt;- plm(ROA ~ amt_CI_less_100_SB_loans_Delt_lagged_1_year + t1_LR_lagged_1_year + less_100_lagged_SB_loans_TA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + I(t1_LR_lagged_1_year * african_american_ind) + I(t1_LR_lagged_1_year * hispanic_ind), data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
 summary(FEmodel1)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBST0EgfiBhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdF9sYWdnZWRfMV95ZWFyICsgXG4gICAgdDFfTFJfbGFnZ2VkXzFfeWVhciArIGxlc3NfMTAwX2xhZ2dlZF9TQl9sb2Fuc19UQSArIE5QQV9UQSArIFxuICAgIEkobG9nKHBhbmVsJHRvdGFsX2Fzc2V0c19sYWdnZWRfMV95ZWFyKSkgKyBURF9UQSArIEkocG9zdF9jcmlzaXNfaW5kKSArIFxuICAgIEkodDFfTFJfbGFnZ2VkXzFfeWVhciAqIGJsYWNrX2luZCkgKyBJKHQxX0xSX2xhZ2dlZF8xX3llYXIgKiBcbiAgICBoaXNwYW5pY19pbmQpLCBkYXRhID0gcGFuZWwsIGVmZmVjdCA9IFwidHdvd2F5c1wiLCBtb2RlbCA9IFwid2l0aGluXCIpXG5cblVuYmFsYW5jZWQgUGFuZWw6IG4gPSA4ODE1LCBUID0gMS0zMSwgTiA9IDE2Njk2NVxuXG5SZXNpZHVhbHM6XG4gICAgICAgTWluLiAgICAgMXN0IFF1LiAgICAgIE1lZGlhbiAgICAgM3JkIFF1LiAgICAgICAgTWF4LiBcbi0xLjIxOTJlKzAwIC0xLjIzMjZlLTAzICAzLjcyNzRlLTA1ICAxLjQxOTBlLTAzICAyLjY3MDZlLTAxIFxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlICBTdGQuIEVycm9yXG5hbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdF9sYWdnZWRfMV95ZWFyICAyLjM5NjllLTA3ICAxLjE3NjJlLTA2XG50MV9MUl9sYWdnZWRfMV95ZWFyICAgICAgICAgICAgICAgICAgICAgICAgICAxLjU2OTFlLTAyICAxLjAzMjFlLTAzXG5sZXNzXzEwMF9sYWdnZWRfU0JfbG9hbnNfVEEgICAgICAgICAgICAgICAgICAxLjY3NzFlLTAyICAxLjUxNTZlLTAzXG5OUEFfVEEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC0xLjMyNDdlLTAxICA0LjEzNTFlLTAzXG5JKGxvZyhwYW5lbCR0b3RhbF9hc3NldHNfbGFnZ2VkXzFfeWVhcikpICAgICA3LjQxNDRlLTA0ICA3LjQwNTllLTA1XG5URF9UQSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxLjY3NDNlLTAzICA0Ljk2NTllLTA0XG5JKHQxX0xSX2xhZ2dlZF8xX3llYXIgKiBibGFja19pbmQpICAgICAgICAgICAxLjU5NzJlLTAzICA3Ljk0NzhlLTAzXG5JKHQxX0xSX2xhZ2dlZF8xX3llYXIgKiBoaXNwYW5pY19pbmQpICAgICAgIC0yLjQ0NjBlLTAzICA0Ljk3NzllLTAzXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0LXZhbHVlICBQcig+fHR8KSAgICBcbmFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0X2xhZ2dlZF8xX3llYXIgICAwLjIwMzggMC44Mzg1Mjc0ICAgIFxudDFfTFJfbGFnZ2VkXzFfeWVhciAgICAgICAgICAgICAgICAgICAgICAgICAgMTUuMjAzMSA8IDIuMmUtMTYgKioqXG5sZXNzXzEwMF9sYWdnZWRfU0JfbG9hbnNfVEEgICAgICAgICAgICAgICAgICAxMS4wNjU2IDwgMi4yZS0xNiAqKipcbk5QQV9UQSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLTMyLjAzNjIgPCAyLjJlLTE2ICoqKlxuSShsb2cocGFuZWwkdG90YWxfYXNzZXRzX2xhZ2dlZF8xX3llYXIpKSAgICAgMTAuMDExNSA8IDIuMmUtMTYgKioqXG5URF9UQSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMy4zNzE1IDAuMDAwNzQ3OCAqKipcbkkodDFfTFJfbGFnZ2VkXzFfeWVhciAqIGJsYWNrX2luZCkgICAgICAgICAgICAwLjIwMTAgMC44NDA3MjkwICAgIFxuSSh0MV9MUl9sYWdnZWRfMV95ZWFyICogaGlzcGFuaWNfaW5kKSAgICAgICAgLTAuNDkxNCAwLjYyMzE2NDIgICAgXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwICcqKionIDAuMDAxICcqKicgMC4wMSAnKicgMC4wNSAnLicgMC4xICcgJyAxXG5cblRvdGFsIFN1bSBvZiBTcXVhcmVzOiAgICA1Ljg1NDFcblJlc2lkdWFsIFN1bSBvZiBTcXVhcmVzOiA1LjgwMjhcblItU3F1YXJlZDogICAgICAwLjAwODc2ODZcbkFkai4gUi1TcXVhcmVkOiAtMC4wNDY3MjZcbkYtc3RhdGlzdGljOiAxNzQuODM2IG9uIDggYW5kIDE1ODExMiBERiwgcC12YWx1ZTogPCAyLjIyZS0xNlxuIn0= -->
@@ -1731,7 +1731,7 @@ Call:
 plm(formula = ROA ~ amt_CI_less_100_SB_loans_Delt_lagged_1_year + 
     t1_LR_lagged_1_year + less_100_lagged_SB_loans_TA + NPA_TA + 
     I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + 
-    I(t1_LR_lagged_1_year * black_ind) + I(t1_LR_lagged_1_year * 
+    I(t1_LR_lagged_1_year * african_american_ind) + I(t1_LR_lagged_1_year * 
     hispanic_ind), data = panel, effect = &quot;twoways&quot;, model = &quot;within&quot;)
 
 Unbalanced Panel: n = 8815, T = 1-31, N = 166965
@@ -1748,7 +1748,7 @@ less_100_lagged_SB_loans_TA                  1.6771e-02  1.5156e-03
 NPA_TA                                      -1.3247e-01  4.1351e-03
 I(log(panel$total_assets_lagged_1_year))     7.4144e-04  7.4059e-05
 TD_TA                                        1.6743e-03  4.9659e-04
-I(t1_LR_lagged_1_year * black_ind)           1.5972e-03  7.9478e-03
+I(t1_LR_lagged_1_year * african_american_ind)           1.5972e-03  7.9478e-03
 I(t1_LR_lagged_1_year * hispanic_ind)       -2.4460e-03  4.9779e-03
                                              t-value  Pr(&gt;|t|)    
 amt_CI_less_100_SB_loans_Delt_lagged_1_year   0.2038 0.8385274    
@@ -1757,7 +1757,7 @@ less_100_lagged_SB_loans_TA                  11.0656 &lt; 2.2e-16 ***
 NPA_TA                                      -32.0362 &lt; 2.2e-16 ***
 I(log(panel$total_assets_lagged_1_year))     10.0115 &lt; 2.2e-16 ***
 TD_TA                                         3.3715 0.0007478 ***
-I(t1_LR_lagged_1_year * black_ind)            0.2010 0.8407290    
+I(t1_LR_lagged_1_year * african_american_ind)            0.2010 0.8407290    
 I(t1_LR_lagged_1_year * hispanic_ind)        -0.4914 0.6231642    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -1776,7 +1776,7 @@ F-statistic: 174.836 on 8 and 158112 DF, p-value: &lt; 2.22e-16</code></pre>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwyIDwtIHBsbShST0EgfiBhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0X2xhZ2dlZF8xX3llYXIgKyB0MV9MUl9sYWdnZWRfMV95ZWFyICsgWDEwMF8yNTBfbGFnZ2VkX1NCX2xvYW5zX1RBICsgTlBBX1RBICsgSShsb2cocGFuZWwkdG90YWxfYXNzZXRzX2xhZ2dlZF8xX3llYXIpKSArIFREX1RBICsgSShwb3N0X2NyaXNpc19pbmQpICsgSSh0MV9MUl9sYWdnZWRfMV95ZWFyICogYmxhY2tfaW5kKSArIEkodDFfTFJfbGFnZ2VkXzFfeWVhciAqIGhpc3BhbmljX2luZCksIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSBcIndpdGhpblwiLCBlZmZlY3QgPSBcInR3b3dheXNcIikiLCJzdW1tYXJ5KEZFbW9kZWwyKSJdfQ== -->
-<pre class="r"><code>FEmodel2 &lt;- plm(ROA ~ amt_CI_100_250_SB_loans_Delt_lagged_1_year + t1_LR_lagged_1_year + X100_250_lagged_SB_loans_TA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + I(t1_LR_lagged_1_year * black_ind) + I(t1_LR_lagged_1_year * hispanic_ind), data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
+<pre class="r"><code>FEmodel2 &lt;- plm(ROA ~ amt_CI_100_250_SB_loans_Delt_lagged_1_year + t1_LR_lagged_1_year + X100_250_lagged_SB_loans_TA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + I(t1_LR_lagged_1_year * african_american_ind) + I(t1_LR_lagged_1_year * hispanic_ind), data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
 summary(FEmodel2)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBST0EgfiBhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0X2xhZ2dlZF8xX3llYXIgKyBcbiAgICB0MV9MUl9sYWdnZWRfMV95ZWFyICsgWDEwMF8yNTBfbGFnZ2VkX1NCX2xvYW5zX1RBICsgTlBBX1RBICsgXG4gICAgSShsb2cocGFuZWwkdG90YWxfYXNzZXRzX2xhZ2dlZF8xX3llYXIpKSArIFREX1RBICsgSShwb3N0X2NyaXNpc19pbmQpICsgXG4gICAgSSh0MV9MUl9sYWdnZWRfMV95ZWFyICogYmxhY2tfaW5kKSArIEkodDFfTFJfbGFnZ2VkXzFfeWVhciAqIFxuICAgIGhpc3BhbmljX2luZCksIGRhdGEgPSBwYW5lbCwgZWZmZWN0ID0gXCJ0d293YXlzXCIsIG1vZGVsID0gXCJ3aXRoaW5cIilcblxuVW5iYWxhbmNlZCBQYW5lbDogbiA9IDg3MjQsIFQgPSAxLTMxLCBOID0gMTY0MDkzXG5cblJlc2lkdWFsczpcbiAgICAgICBNaW4uICAgICAxc3QgUXUuICAgICAgTWVkaWFuICAgICAzcmQgUXUuICAgICAgICBNYXguIFxuLTEuMjE5MWUrMDAgLTEuMjMyMWUtMDMgIDMuNDM2M2UtMDUgIDEuNDE5MWUtMDMgIDIuNjY5OGUtMDEgXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSAgU3RkLiBFcnJvclxuYW10X0NJXzEwMF8yNTBfU0JfbG9hbnNfRGVsdF9sYWdnZWRfMV95ZWFyIC03LjQ3NTBlLTA5ICA0LjAwNjhlLTA3XG50MV9MUl9sYWdnZWRfMV95ZWFyICAgICAgICAgICAgICAgICAgICAgICAgIDEuNTQ1NWUtMDIgIDEuMDU1M2UtMDNcblgxMDBfMjUwX2xhZ2dlZF9TQl9sb2Fuc19UQSAgICAgICAgICAgICAgICAgMi4wMjQ4ZS0wMiAgMi4wNzAyZS0wM1xuTlBBX1RBICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC0xLjMzMjllLTAxICA0LjE3OTRlLTAzXG5JKGxvZyhwYW5lbCR0b3RhbF9hc3NldHNfbGFnZ2VkXzFfeWVhcikpICAgIDcuMDg2NWUtMDQgIDcuNTY3OGUtMDVcblREX1RBICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMS4zMzE5ZS0wMyAgNS4wNTEwZS0wNFxuSSh0MV9MUl9sYWdnZWRfMV95ZWFyICogYmxhY2tfaW5kKSAgICAgICAgIC0yLjczNzJlLTAzICA4LjMxNTVlLTAzXG5JKHQxX0xSX2xhZ2dlZF8xX3llYXIgKiBoaXNwYW5pY19pbmQpICAgICAgIDEuNDIyOGUtMDMgIDQuOTM5OGUtMDNcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdC12YWx1ZSAgUHIoPnx0fCkgICAgXG5hbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0X2xhZ2dlZF8xX3llYXIgIC0wLjAxODcgIDAuOTg1MTE2ICAgIFxudDFfTFJfbGFnZ2VkXzFfeWVhciAgICAgICAgICAgICAgICAgICAgICAgICAxNC42NDQ2IDwgMi4yZS0xNiAqKipcblgxMDBfMjUwX2xhZ2dlZF9TQl9sb2Fuc19UQSAgICAgICAgICAgICAgICAgIDkuNzgxMSA8IDIuMmUtMTYgKioqXG5OUEFfVEEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLTMxLjg5MTEgPCAyLjJlLTE2ICoqKlxuSShsb2cocGFuZWwkdG90YWxfYXNzZXRzX2xhZ2dlZF8xX3llYXIpKSAgICAgOS4zNjQwIDwgMi4yZS0xNiAqKipcblREX1RBICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDIuNjM3MCAgMC4wMDgzNjYgKiogXG5JKHQxX0xSX2xhZ2dlZF8xX3llYXIgKiBibGFja19pbmQpICAgICAgICAgIC0wLjMyOTIgIDAuNzQyMDI3ICAgIFxuSSh0MV9MUl9sYWdnZWRfMV95ZWFyICogaGlzcGFuaWNfaW5kKSAgICAgICAgMC4yODgwICAwLjc3MzMyNSAgICBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAgJyoqKicgMC4wMDEgJyoqJyAwLjAxICcqJyAwLjA1ICcuJyAwLjEgJyAnIDFcblxuVG90YWwgU3VtIG9mIFNxdWFyZXM6ICAgIDUuODM2MVxuUmVzaWR1YWwgU3VtIG9mIFNxdWFyZXM6IDUuNzg2MVxuUi1TcXVhcmVkOiAgICAgIDAuMDA4NTY3NlxuQWRqLiBSLVNxdWFyZWQ6IC0wLjA0NzM1MVxuRi1zdGF0aXN0aWM6IDE2Ny43OSBvbiA4IGFuZCAxNTUzMzEgREYsIHAtdmFsdWU6IDwgMi4yMmUtMTZcbiJ9 -->
@@ -1786,7 +1786,7 @@ Call:
 plm(formula = ROA ~ amt_CI_100_250_SB_loans_Delt_lagged_1_year + 
     t1_LR_lagged_1_year + X100_250_lagged_SB_loans_TA + NPA_TA + 
     I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + 
-    I(t1_LR_lagged_1_year * black_ind) + I(t1_LR_lagged_1_year * 
+    I(t1_LR_lagged_1_year * african_american_ind) + I(t1_LR_lagged_1_year * 
     hispanic_ind), data = panel, effect = &quot;twoways&quot;, model = &quot;within&quot;)
 
 Unbalanced Panel: n = 8724, T = 1-31, N = 164093
@@ -1803,7 +1803,7 @@ X100_250_lagged_SB_loans_TA                 2.0248e-02  2.0702e-03
 NPA_TA                                     -1.3329e-01  4.1794e-03
 I(log(panel$total_assets_lagged_1_year))    7.0865e-04  7.5678e-05
 TD_TA                                       1.3319e-03  5.0510e-04
-I(t1_LR_lagged_1_year * black_ind)         -2.7372e-03  8.3155e-03
+I(t1_LR_lagged_1_year * african_american_ind)         -2.7372e-03  8.3155e-03
 I(t1_LR_lagged_1_year * hispanic_ind)       1.4228e-03  4.9398e-03
                                             t-value  Pr(&gt;|t|)    
 amt_CI_100_250_SB_loans_Delt_lagged_1_year  -0.0187  0.985116    
@@ -1812,7 +1812,7 @@ X100_250_lagged_SB_loans_TA                  9.7811 &lt; 2.2e-16 ***
 NPA_TA                                     -31.8911 &lt; 2.2e-16 ***
 I(log(panel$total_assets_lagged_1_year))     9.3640 &lt; 2.2e-16 ***
 TD_TA                                        2.6370  0.008366 ** 
-I(t1_LR_lagged_1_year * black_ind)          -0.3292  0.742027    
+I(t1_LR_lagged_1_year * african_american_ind)          -0.3292  0.742027    
 I(t1_LR_lagged_1_year * hispanic_ind)        0.2880  0.773325    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -1831,7 +1831,7 @@ F-statistic: 167.79 on 8 and 155331 DF, p-value: &lt; 2.22e-16</code></pre>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwzIDwtIHBsbShST0EgfiBhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdF9sYWdnZWRfMV95ZWFyICsgdDFfTFJfbGFnZ2VkXzFfeWVhciArIFgyNTBfMTAwMF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBOUEFfVEEgKyBJKGxvZyhwYW5lbCR0b3RhbF9hc3NldHNfbGFnZ2VkXzFfeWVhcikpICsgVERfVEEgKyBJKHBvc3RfY3Jpc2lzX2luZCkgKyBJKHQxX0xSX2xhZ2dlZF8xX3llYXIgKiBibGFja19pbmQpICsgSSh0MV9MUl9sYWdnZWRfMV95ZWFyICogaGlzcGFuaWNfaW5kKSwgZGF0YSA9IHBhbmVsLCBtb2RlbCA9IFwid2l0aGluXCIsIGVmZmVjdCA9IFwidHdvd2F5c1wiKSIsInN1bW1hcnkoRkVtb2RlbDMpIl19 -->
-<pre class="r"><code>FEmodel3 &lt;- plm(ROA ~ amt_CI_250_1000_SB_loans_Delt_lagged_1_year + t1_LR_lagged_1_year + X250_1000_lagged_SB_loans_TA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + I(t1_LR_lagged_1_year * black_ind) + I(t1_LR_lagged_1_year * hispanic_ind), data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
+<pre class="r"><code>FEmodel3 &lt;- plm(ROA ~ amt_CI_250_1000_SB_loans_Delt_lagged_1_year + t1_LR_lagged_1_year + X250_1000_lagged_SB_loans_TA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + I(t1_LR_lagged_1_year * african_american_ind) + I(t1_LR_lagged_1_year * hispanic_ind), data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
 summary(FEmodel3)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBST0EgfiBhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdF9sYWdnZWRfMV95ZWFyICsgXG4gICAgdDFfTFJfbGFnZ2VkXzFfeWVhciArIFgyNTBfMTAwMF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBOUEFfVEEgKyBcbiAgICBJKGxvZyhwYW5lbCR0b3RhbF9hc3NldHNfbGFnZ2VkXzFfeWVhcikpICsgVERfVEEgKyBJKHBvc3RfY3Jpc2lzX2luZCkgKyBcbiAgICBJKHQxX0xSX2xhZ2dlZF8xX3llYXIgKiBibGFja19pbmQpICsgSSh0MV9MUl9sYWdnZWRfMV95ZWFyICogXG4gICAgaGlzcGFuaWNfaW5kKSwgZGF0YSA9IHBhbmVsLCBlZmZlY3QgPSBcInR3b3dheXNcIiwgbW9kZWwgPSBcIndpdGhpblwiKVxuXG5VbmJhbGFuY2VkIFBhbmVsOiBuID0gODU2MSwgVCA9IDEtMzEsIE4gPSAxNTkwMDlcblxuUmVzaWR1YWxzOlxuICAgICAgIE1pbi4gICAgIDFzdCBRdS4gICAgICBNZWRpYW4gICAgIDNyZCBRdS4gICAgICAgIE1heC4gXG4tMS4yMTkyNjA0NiAtMC4wMDEyMzA0NSAgMC4wMDAwMzU1MiAgMC4wMDE0MTQ2MyAgMC4yNjcxNjM3MyBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSAgU3RkLiBFcnJvclxuYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHRfbGFnZ2VkXzFfeWVhciAtOC4zODUzZS0wNyAgMS4xOTAxZS0wNlxudDFfTFJfbGFnZ2VkXzFfeWVhciAgICAgICAgICAgICAgICAgICAgICAgICAgMS41MjQwZS0wMiAgMS4wNzE5ZS0wM1xuWDI1MF8xMDAwX2xhZ2dlZF9TQl9sb2Fuc19UQSAgICAgICAgICAgICAgICAgNC4yMjU1ZS0wMyAgOS42MTU1ZS0wNFxuTlBBX1RBICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAtMS4zMDYyZS0wMSAgNC4xNzM1ZS0wM1xuSShsb2cocGFuZWwkdG90YWxfYXNzZXRzX2xhZ2dlZF8xX3llYXIpKSAgICAgNi41MDExZS0wNCAgNy42MDEzZS0wNVxuVERfVEEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMS4yNDc5ZS0wMyAgNS4wMzg3ZS0wNFxuSSh0MV9MUl9sYWdnZWRfMV95ZWFyICogYmxhY2tfaW5kKSAgICAgICAgICAgOS4zODA1ZS0wNCAgOC4wNzgxZS0wM1xuSSh0MV9MUl9sYWdnZWRfMV95ZWFyICogaGlzcGFuaWNfaW5kKSAgICAgICAgOC4zODQ3ZS0wMyAgNC43NzQ3ZS0wM1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdC12YWx1ZSAgUHIoPnx0fCkgICAgXG5hbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdF9sYWdnZWRfMV95ZWFyICAtMC43MDQ2ICAgMC40ODEwNSAgICBcbnQxX0xSX2xhZ2dlZF8xX3llYXIgICAgICAgICAgICAgICAgICAgICAgICAgIDE0LjIxNzggPCAyLjJlLTE2ICoqKlxuWDI1MF8xMDAwX2xhZ2dlZF9TQl9sb2Fuc19UQSAgICAgICAgICAgICAgICAgIDQuMzk0NSAxLjExMWUtMDUgKioqXG5OUEFfVEEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC0zMS4yOTgzIDwgMi4yZS0xNiAqKipcbkkobG9nKHBhbmVsJHRvdGFsX2Fzc2V0c19sYWdnZWRfMV95ZWFyKSkgICAgICA4LjU1MjYgPCAyLjJlLTE2ICoqKlxuVERfVEEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDIuNDc2NiAgIDAuMDEzMjcgKiAgXG5JKHQxX0xSX2xhZ2dlZF8xX3llYXIgKiBibGFja19pbmQpICAgICAgICAgICAgMC4xMTYxICAgMC45MDc1NiAgICBcbkkodDFfTFJfbGFnZ2VkXzFfeWVhciAqIGhpc3BhbmljX2luZCkgICAgICAgICAxLjc1NjEgICAwLjA3OTA4IC4gIFxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCAnKioqJyAwLjAwMSAnKionIDAuMDEgJyonIDAuMDUgJy4nIDAuMSAnICcgMVxuXG5Ub3RhbCBTdW0gb2YgU3F1YXJlczogICAgNS41NjQ4XG5SZXNpZHVhbCBTdW0gb2YgU3F1YXJlczogNS41MTg0XG5SLVNxdWFyZWQ6ICAgICAgMC4wMDgzMzY3XG5BZGouIFItU3F1YXJlZDogLTAuMDQ4MzVcbkYtc3RhdGlzdGljOiAxNTguMDU5IG9uIDggYW5kIDE1MDQxMCBERiwgcC12YWx1ZTogPCAyLjIyZS0xNlxuIn0= -->
@@ -1841,7 +1841,7 @@ Call:
 plm(formula = ROA ~ amt_CI_250_1000_SB_loans_Delt_lagged_1_year + 
     t1_LR_lagged_1_year + X250_1000_lagged_SB_loans_TA + NPA_TA + 
     I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + 
-    I(t1_LR_lagged_1_year * black_ind) + I(t1_LR_lagged_1_year * 
+    I(t1_LR_lagged_1_year * african_american_ind) + I(t1_LR_lagged_1_year * 
     hispanic_ind), data = panel, effect = &quot;twoways&quot;, model = &quot;within&quot;)
 
 Unbalanced Panel: n = 8561, T = 1-31, N = 159009
@@ -1858,7 +1858,7 @@ X250_1000_lagged_SB_loans_TA                 4.2255e-03  9.6155e-04
 NPA_TA                                      -1.3062e-01  4.1735e-03
 I(log(panel$total_assets_lagged_1_year))     6.5011e-04  7.6013e-05
 TD_TA                                        1.2479e-03  5.0387e-04
-I(t1_LR_lagged_1_year * black_ind)           9.3805e-04  8.0781e-03
+I(t1_LR_lagged_1_year * african_american_ind)           9.3805e-04  8.0781e-03
 I(t1_LR_lagged_1_year * hispanic_ind)        8.3847e-03  4.7747e-03
                                              t-value  Pr(&gt;|t|)    
 amt_CI_250_1000_SB_loans_Delt_lagged_1_year  -0.7046   0.48105    
@@ -1867,7 +1867,7 @@ X250_1000_lagged_SB_loans_TA                  4.3945 1.111e-05 ***
 NPA_TA                                      -31.2983 &lt; 2.2e-16 ***
 I(log(panel$total_assets_lagged_1_year))      8.5526 &lt; 2.2e-16 ***
 TD_TA                                         2.4766   0.01327 *  
-I(t1_LR_lagged_1_year * black_ind)            0.1161   0.90756    
+I(t1_LR_lagged_1_year * african_american_ind)            0.1161   0.90756    
 I(t1_LR_lagged_1_year * hispanic_ind)         1.7561   0.07908 .  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -1889,7 +1889,7 @@ F-statistic: 158.059 on 8 and 150410 DF, p-value: &lt; 2.22e-16</code></pre>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWw0IDwtIHBsbShST0EgfiBhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdF9sYWdnZWRfMV95ZWFyICsgdDFfUkJDUl9sYWdnZWRfMV95ZWFyICsgbGVzc18xMDBfbGFnZ2VkX1NCX2xvYW5zX1RBICsgTlBBX1RBICsgSShsb2cocGFuZWwkdG90YWxfYXNzZXRzX2xhZ2dlZF8xX3llYXIpKSArIFREX1RBICsgSShwb3N0X2NyaXNpc19pbmQpICsgSSh0MV9MUl9sYWdnZWRfMV95ZWFyICogYmxhY2tfaW5kKSArIEkodDFfTFJfbGFnZ2VkXzFfeWVhciAqIGhpc3BhbmljX2luZCksIGRhdGEgPSBwYW5lbCwgbW9kZWwgPSBcIndpdGhpblwiLCBlZmZlY3QgPSBcInR3b3dheXNcIikiLCJzdW1tYXJ5KEZFbW9kZWw0KSJdfQ== -->
-<pre class="r"><code>FEmodel4 &lt;- plm(ROA ~ amt_CI_less_100_SB_loans_Delt_lagged_1_year + t1_RBCR_lagged_1_year + less_100_lagged_SB_loans_TA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + I(t1_LR_lagged_1_year * black_ind) + I(t1_LR_lagged_1_year * hispanic_ind), data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
+<pre class="r"><code>FEmodel4 &lt;- plm(ROA ~ amt_CI_less_100_SB_loans_Delt_lagged_1_year + t1_RBCR_lagged_1_year + less_100_lagged_SB_loans_TA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + I(t1_LR_lagged_1_year * african_american_ind) + I(t1_LR_lagged_1_year * hispanic_ind), data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
 summary(FEmodel4)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBST0EgfiBhbXRfQ0lfbGVzc18xMDBfU0JfbG9hbnNfRGVsdF9sYWdnZWRfMV95ZWFyICsgXG4gICAgdDFfUkJDUl9sYWdnZWRfMV95ZWFyICsgbGVzc18xMDBfbGFnZ2VkX1NCX2xvYW5zX1RBICsgTlBBX1RBICsgXG4gICAgSShsb2cocGFuZWwkdG90YWxfYXNzZXRzX2xhZ2dlZF8xX3llYXIpKSArIFREX1RBICsgSShwb3N0X2NyaXNpc19pbmQpICsgXG4gICAgSSh0MV9MUl9sYWdnZWRfMV95ZWFyICogYmxhY2tfaW5kKSArIEkodDFfTFJfbGFnZ2VkXzFfeWVhciAqIFxuICAgIGhpc3BhbmljX2luZCksIGRhdGEgPSBwYW5lbCwgZWZmZWN0ID0gXCJ0d293YXlzXCIsIG1vZGVsID0gXCJ3aXRoaW5cIilcblxuVW5iYWxhbmNlZCBQYW5lbDogbiA9IDg4MTUsIFQgPSAxLTMxLCBOID0gMTY2OTY1XG5cblJlc2lkdWFsczpcbiAgICAgICBNaW4uICAgICAxc3QgUXUuICAgICAgTWVkaWFuICAgICAzcmQgUXUuICAgICAgICBNYXguIFxuLTEuMjE5NmUrMDAgLTEuMjM0NGUtMDMgIDMuOTM0NGUtMDUgIDEuNDE3MmUtMDMgIDIuNjc2NGUtMDEgXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgIFN0ZC4gRXJyb3JcbmFtdF9DSV9sZXNzXzEwMF9TQl9sb2Fuc19EZWx0X2xhZ2dlZF8xX3llYXIgIDQuNDM2OWUtMDcgIDEuMTc3MGUtMDZcbnQxX1JCQ1JfbGFnZ2VkXzFfeWVhciAgICAgICAgICAgICAgICAgICAgICAgIDEuMTM3MGUtMDQgIDIuMjE1MmUtMDRcbmxlc3NfMTAwX2xhZ2dlZF9TQl9sb2Fuc19UQSAgICAgICAgICAgICAgICAgIDEuNzI0N2UtMDIgIDEuNTE2OWUtMDNcbk5QQV9UQSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLTEuMzQ1NGUtMDEgIDQuMTM2NGUtMDNcbkkobG9nKHBhbmVsJHRvdGFsX2Fzc2V0c19sYWdnZWRfMV95ZWFyKSkgICAgIDQuMzY4MGUtMDQgIDcuMTY0N2UtMDVcblREX1RBICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLTEuMDc4OGUtMDMgIDQuNjU1NWUtMDRcbkkodDFfTFJfbGFnZ2VkXzFfeWVhciAqIGJsYWNrX2luZCkgICAgICAgICAgIDEuMjEwM2UtMDIgIDcuOTI0NmUtMDNcbkkodDFfTFJfbGFnZ2VkXzFfeWVhciAqIGhpc3BhbmljX2luZCkgICAgICAgIDkuMjgwOGUtMDMgIDQuOTUwM2UtMDNcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHQtdmFsdWUgIFByKD58dHwpICAgIFxuYW10X0NJX2xlc3NfMTAwX1NCX2xvYW5zX0RlbHRfbGFnZ2VkXzFfeWVhciAgIDAuMzc3MCAgIDAuNzA2MjEgICAgXG50MV9SQkNSX2xhZ2dlZF8xX3llYXIgICAgICAgICAgICAgICAgICAgICAgICAgMC41MTMzICAgMC42MDc3NiAgICBcbmxlc3NfMTAwX2xhZ2dlZF9TQl9sb2Fuc19UQSAgICAgICAgICAgICAgICAgIDExLjM2OTQgPCAyLjJlLTE2ICoqKlxuTlBBX1RBICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAtMzIuNTI2NiA8IDIuMmUtMTYgKioqXG5JKGxvZyhwYW5lbCR0b3RhbF9hc3NldHNfbGFnZ2VkXzFfeWVhcikpICAgICAgNi4wOTY1IDEuMDg3ZS0wOSAqKipcblREX1RBICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC0yLjMxNzIgICAwLjAyMDUwICogIFxuSSh0MV9MUl9sYWdnZWRfMV95ZWFyICogYmxhY2tfaW5kKSAgICAgICAgICAgIDEuNTI3MiAgIDAuMTI2NzEgICAgXG5JKHQxX0xSX2xhZ2dlZF8xX3llYXIgKiBoaXNwYW5pY19pbmQpICAgICAgICAgMS44NzQ4ICAgMC4wNjA4MiAuICBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAgJyoqKicgMC4wMDEgJyoqJyAwLjAxICcqJyAwLjA1ICcuJyAwLjEgJyAnIDFcblxuVG90YWwgU3VtIG9mIFNxdWFyZXM6ICAgIDUuODU0MVxuUmVzaWR1YWwgU3VtIG9mIFNxdWFyZXM6IDUuODExM1xuUi1TcXVhcmVkOiAgICAgIDAuMDA3MzIxM1xuQWRqLiBSLVNxdWFyZWQ6IC0wLjA0ODI1NFxuRi1zdGF0aXN0aWM6IDE0NS43NjQgb24gOCBhbmQgMTU4MTEyIERGLCBwLXZhbHVlOiA8IDIuMjJlLTE2XG4ifQ== -->
@@ -1899,7 +1899,7 @@ Call:
 plm(formula = ROA ~ amt_CI_less_100_SB_loans_Delt_lagged_1_year + 
     t1_RBCR_lagged_1_year + less_100_lagged_SB_loans_TA + NPA_TA + 
     I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + 
-    I(t1_LR_lagged_1_year * black_ind) + I(t1_LR_lagged_1_year * 
+    I(t1_LR_lagged_1_year * african_american_ind) + I(t1_LR_lagged_1_year * 
     hispanic_ind), data = panel, effect = &quot;twoways&quot;, model = &quot;within&quot;)
 
 Unbalanced Panel: n = 8815, T = 1-31, N = 166965
@@ -1916,7 +1916,7 @@ less_100_lagged_SB_loans_TA                  1.7247e-02  1.5169e-03
 NPA_TA                                      -1.3454e-01  4.1364e-03
 I(log(panel$total_assets_lagged_1_year))     4.3680e-04  7.1647e-05
 TD_TA                                       -1.0788e-03  4.6555e-04
-I(t1_LR_lagged_1_year * black_ind)           1.2103e-02  7.9246e-03
+I(t1_LR_lagged_1_year * african_american_ind)           1.2103e-02  7.9246e-03
 I(t1_LR_lagged_1_year * hispanic_ind)        9.2808e-03  4.9503e-03
                                              t-value  Pr(&gt;|t|)    
 amt_CI_less_100_SB_loans_Delt_lagged_1_year   0.3770   0.70621    
@@ -1925,7 +1925,7 @@ less_100_lagged_SB_loans_TA                  11.3694 &lt; 2.2e-16 ***
 NPA_TA                                      -32.5266 &lt; 2.2e-16 ***
 I(log(panel$total_assets_lagged_1_year))      6.0965 1.087e-09 ***
 TD_TA                                        -2.3172   0.02050 *  
-I(t1_LR_lagged_1_year * black_ind)            1.5272   0.12671    
+I(t1_LR_lagged_1_year * african_american_ind)            1.5272   0.12671    
 I(t1_LR_lagged_1_year * hispanic_ind)         1.8748   0.06082 .  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -1944,7 +1944,7 @@ F-statistic: 145.764 on 8 and 158112 DF, p-value: &lt; 2.22e-16</code></pre>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwyIDwtIHBsbShST0EgfiBhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0X2xhZ2dlZF8xX3llYXIgKyB0MV9SQkNSX2xhZ2dlZF8xX3llYXIgKyBYMTAwXzI1MF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBOUEFfVEEgKyBJKGxvZyhwYW5lbCR0b3RhbF9hc3NldHNfbGFnZ2VkXzFfeWVhcikpICsgVERfVEEgKyBJKHBvc3RfY3Jpc2lzX2luZCkgKyBJKHQxX0xSX2xhZ2dlZF8xX3llYXIgKiBibGFja19pbmQpICsgSSh0MV9MUl9sYWdnZWRfMV95ZWFyICogaGlzcGFuaWNfaW5kKSwgZGF0YSA9IHBhbmVsLCBtb2RlbCA9IFwid2l0aGluXCIsIGVmZmVjdCA9IFwidHdvd2F5c1wiKSIsInN1bW1hcnkoRkVtb2RlbDIpIl19 -->
-<pre class="r"><code>FEmodel2 &lt;- plm(ROA ~ amt_CI_100_250_SB_loans_Delt_lagged_1_year + t1_RBCR_lagged_1_year + X100_250_lagged_SB_loans_TA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + I(t1_LR_lagged_1_year * black_ind) + I(t1_LR_lagged_1_year * hispanic_ind), data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
+<pre class="r"><code>FEmodel2 &lt;- plm(ROA ~ amt_CI_100_250_SB_loans_Delt_lagged_1_year + t1_RBCR_lagged_1_year + X100_250_lagged_SB_loans_TA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + I(t1_LR_lagged_1_year * african_american_ind) + I(t1_LR_lagged_1_year * hispanic_ind), data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
 summary(FEmodel2)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBST0EgfiBhbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0X2xhZ2dlZF8xX3llYXIgKyBcbiAgICB0MV9SQkNSX2xhZ2dlZF8xX3llYXIgKyBYMTAwXzI1MF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBOUEFfVEEgKyBcbiAgICBJKGxvZyhwYW5lbCR0b3RhbF9hc3NldHNfbGFnZ2VkXzFfeWVhcikpICsgVERfVEEgKyBJKHBvc3RfY3Jpc2lzX2luZCkgKyBcbiAgICBJKHQxX0xSX2xhZ2dlZF8xX3llYXIgKiBibGFja19pbmQpICsgSSh0MV9MUl9sYWdnZWRfMV95ZWFyICogXG4gICAgaGlzcGFuaWNfaW5kKSwgZGF0YSA9IHBhbmVsLCBlZmZlY3QgPSBcInR3b3dheXNcIiwgbW9kZWwgPSBcIndpdGhpblwiKVxuXG5VbmJhbGFuY2VkIFBhbmVsOiBuID0gODcyNCwgVCA9IDEtMzEsIE4gPSAxNjQwOTNcblxuUmVzaWR1YWxzOlxuICAgICAgIE1pbi4gICAgIDFzdCBRdS4gICAgICBNZWRpYW4gICAgIDNyZCBRdS4gICAgICAgIE1heC4gXG4tMS4yMTk1ZSswMCAtMS4yMzIxZS0wMyAgMy40NzI5ZS0wNSAgMS40MTY0ZS0wMyAgMi42NzUzZS0wMSBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlICBTdGQuIEVycm9yXG5hbXRfQ0lfMTAwXzI1MF9TQl9sb2Fuc19EZWx0X2xhZ2dlZF8xX3llYXIgIDMuMjYxNWUtMDggIDQuMDA5NGUtMDdcbnQxX1JCQ1JfbGFnZ2VkXzFfeWVhciAgICAgICAgICAgICAgICAgICAgICAgNi42NTU0ZS0wNCAgMy40ODEyZS0wNFxuWDEwMF8yNTBfbGFnZ2VkX1NCX2xvYW5zX1RBICAgICAgICAgICAgICAgICAyLjAyMzFlLTAyICAyLjA3NDllLTAzXG5OUEFfVEEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLTEuMzUwNGUtMDEgIDQuMTgxMmUtMDNcbkkobG9nKHBhbmVsJHRvdGFsX2Fzc2V0c19sYWdnZWRfMV95ZWFyKSkgICAgNC4yNzE0ZS0wNCAgNy4zNzA3ZS0wNVxuVERfVEEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC0xLjE4NDZlLTAzICA0Ljc4OTllLTA0XG5JKHQxX0xSX2xhZ2dlZF8xX3llYXIgKiBibGFja19pbmQpICAgICAgICAgIDcuNzIzMGUtMDMgIDguMjkxMmUtMDNcbkkodDFfTFJfbGFnZ2VkXzFfeWVhciAqIGhpc3BhbmljX2luZCkgICAgICAgMS4xNjYzZS0wMiAgNC45NTk3ZS0wM1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0LXZhbHVlICBQcig+fHR8KSAgICBcbmFtdF9DSV8xMDBfMjUwX1NCX2xvYW5zX0RlbHRfbGFnZ2VkXzFfeWVhciAgIDAuMDgxMyAgIDAuOTM1MTcgICAgXG50MV9SQkNSX2xhZ2dlZF8xX3llYXIgICAgICAgICAgICAgICAgICAgICAgICAxLjkxMTggICAwLjA1NTkwIC4gIFxuWDEwMF8yNTBfbGFnZ2VkX1NCX2xvYW5zX1RBICAgICAgICAgICAgICAgICAgOS43NTA0IDwgMi4yZS0xNiAqKipcbk5QQV9UQSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAtMzIuMjk2NyA8IDIuMmUtMTYgKioqXG5JKGxvZyhwYW5lbCR0b3RhbF9hc3NldHNfbGFnZ2VkXzFfeWVhcikpICAgICA1Ljc5NTEgIDYuODRlLTA5ICoqKlxuVERfVEEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAtMi40NzMwICAgMC4wMTM0MCAqICBcbkkodDFfTFJfbGFnZ2VkXzFfeWVhciAqIGJsYWNrX2luZCkgICAgICAgICAgIDAuOTMxNSAgIDAuMzUxNjEgICAgXG5JKHQxX0xSX2xhZ2dlZF8xX3llYXIgKiBoaXNwYW5pY19pbmQpICAgICAgICAyLjM1MTYgICAwLjAxODY5ICogIFxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCAnKioqJyAwLjAwMSAnKionIDAuMDEgJyonIDAuMDUgJy4nIDAuMSAnICcgMVxuXG5Ub3RhbCBTdW0gb2YgU3F1YXJlczogICAgNS44MzYxXG5SZXNpZHVhbCBTdW0gb2YgU3F1YXJlczogNS43OTRcblItU3F1YXJlZDogICAgICAwLjAwNzIyMjJcbkFkai4gUi1TcXVhcmVkOiAtMC4wNDg3NzNcbkYtc3RhdGlzdGljOiAxNDEuMjQ4IG9uIDggYW5kIDE1NTMzMSBERiwgcC12YWx1ZTogPCAyLjIyZS0xNlxuIn0= -->
@@ -1954,7 +1954,7 @@ Call:
 plm(formula = ROA ~ amt_CI_100_250_SB_loans_Delt_lagged_1_year + 
     t1_RBCR_lagged_1_year + X100_250_lagged_SB_loans_TA + NPA_TA + 
     I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + 
-    I(t1_LR_lagged_1_year * black_ind) + I(t1_LR_lagged_1_year * 
+    I(t1_LR_lagged_1_year * african_american_ind) + I(t1_LR_lagged_1_year * 
     hispanic_ind), data = panel, effect = &quot;twoways&quot;, model = &quot;within&quot;)
 
 Unbalanced Panel: n = 8724, T = 1-31, N = 164093
@@ -1971,7 +1971,7 @@ X100_250_lagged_SB_loans_TA                 2.0231e-02  2.0749e-03
 NPA_TA                                     -1.3504e-01  4.1812e-03
 I(log(panel$total_assets_lagged_1_year))    4.2714e-04  7.3707e-05
 TD_TA                                      -1.1846e-03  4.7899e-04
-I(t1_LR_lagged_1_year * black_ind)          7.7230e-03  8.2912e-03
+I(t1_LR_lagged_1_year * african_american_ind)          7.7230e-03  8.2912e-03
 I(t1_LR_lagged_1_year * hispanic_ind)       1.1663e-02  4.9597e-03
                                             t-value  Pr(&gt;|t|)    
 amt_CI_100_250_SB_loans_Delt_lagged_1_year   0.0813   0.93517    
@@ -1980,7 +1980,7 @@ X100_250_lagged_SB_loans_TA                  9.7504 &lt; 2.2e-16 ***
 NPA_TA                                     -32.2967 &lt; 2.2e-16 ***
 I(log(panel$total_assets_lagged_1_year))     5.7951  6.84e-09 ***
 TD_TA                                       -2.4730   0.01340 *  
-I(t1_LR_lagged_1_year * black_ind)           0.9315   0.35161    
+I(t1_LR_lagged_1_year * african_american_ind)           0.9315   0.35161    
 I(t1_LR_lagged_1_year * hispanic_ind)        2.3516   0.01869 *  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -1999,7 +1999,7 @@ F-statistic: 141.248 on 8 and 155331 DF, p-value: &lt; 2.22e-16</code></pre>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjpbIkZFbW9kZWwzIDwtIHBsbShST0EgfiAgYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHRfbGFnZ2VkXzFfeWVhciArIHQxX1JCQ1JfbGFnZ2VkXzFfeWVhciArIFgyNTBfMTAwMF9sYWdnZWRfU0JfbG9hbnNfVEEgKyBOUEFfVEEgKyBJKGxvZyhwYW5lbCR0b3RhbF9hc3NldHNfbGFnZ2VkXzFfeWVhcikpICsgVERfVEEgKyBJKHBvc3RfY3Jpc2lzX2luZCkgKyBJKHQxX0xSX2xhZ2dlZF8xX3llYXIgKiBibGFja19pbmQpICsgSSh0MV9MUl9sYWdnZWRfMV95ZWFyICogaGlzcGFuaWNfaW5kKSwgZGF0YSA9IHBhbmVsLCBtb2RlbCA9IFwid2l0aGluXCIsIGVmZmVjdCA9IFwidHdvd2F5c1wiKSIsInN1bW1hcnkoRkVtb2RlbDMpIl19 -->
-<pre class="r"><code>FEmodel3 &lt;- plm(ROA ~  amt_CI_250_1000_SB_loans_Delt_lagged_1_year + t1_RBCR_lagged_1_year + X250_1000_lagged_SB_loans_TA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + I(t1_LR_lagged_1_year * black_ind) + I(t1_LR_lagged_1_year * hispanic_ind), data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
+<pre class="r"><code>FEmodel3 &lt;- plm(ROA ~  amt_CI_250_1000_SB_loans_Delt_lagged_1_year + t1_RBCR_lagged_1_year + X250_1000_lagged_SB_loans_TA + NPA_TA + I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + I(t1_LR_lagged_1_year * african_american_ind) + I(t1_LR_lagged_1_year * hispanic_ind), data = panel, model = &quot;within&quot;, effect = &quot;twoways&quot;)
 summary(FEmodel3)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiVHdvd2F5cyBlZmZlY3RzIFdpdGhpbiBNb2RlbFxuXG5DYWxsOlxucGxtKGZvcm11bGEgPSBST0EgfiBhbXRfQ0lfMjUwXzEwMDBfU0JfbG9hbnNfRGVsdF9sYWdnZWRfMV95ZWFyICsgXG4gICAgdDFfUkJDUl9sYWdnZWRfMV95ZWFyICsgWDI1MF8xMDAwX2xhZ2dlZF9TQl9sb2Fuc19UQSArIE5QQV9UQSArIFxuICAgIEkobG9nKHBhbmVsJHRvdGFsX2Fzc2V0c19sYWdnZWRfMV95ZWFyKSkgKyBURF9UQSArIEkocG9zdF9jcmlzaXNfaW5kKSArIFxuICAgIEkodDFfTFJfbGFnZ2VkXzFfeWVhciAqIGJsYWNrX2luZCkgKyBJKHQxX0xSX2xhZ2dlZF8xX3llYXIgKiBcbiAgICBoaXNwYW5pY19pbmQpLCBkYXRhID0gcGFuZWwsIGVmZmVjdCA9IFwidHdvd2F5c1wiLCBtb2RlbCA9IFwid2l0aGluXCIpXG5cblVuYmFsYW5jZWQgUGFuZWw6IG4gPSA4NTYxLCBUID0gMS0zMSwgTiA9IDE1OTAwOVxuXG5SZXNpZHVhbHM6XG4gICAgICBNaW4uICAgIDFzdCBRdS4gICAgIE1lZGlhbiAgICAzcmQgUXUuICAgICAgIE1heC4gXG4tMS4yMTk2NTQ4IC0wLjAwMTIzMDggIDAuMDAwMDM3MiAgMC4wMDE0MTI0ICAwLjI2NzczNzAgXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgIFN0ZC4gRXJyb3JcbmFtdF9DSV8yNTBfMTAwMF9TQl9sb2Fuc19EZWx0X2xhZ2dlZF8xX3llYXIgLTYuNzYyMGUtMDcgIDEuMTkwOGUtMDZcbnQxX1JCQ1JfbGFnZ2VkXzFfeWVhciAgICAgICAgICAgICAgICAgICAgICAgIDMuMDcyNmUtMDQgIDMuNjcyNGUtMDRcblgyNTBfMTAwMF9sYWdnZWRfU0JfbG9hbnNfVEEgICAgICAgICAgICAgICAgIDQuNDA5M2UtMDMgIDkuNjM0OWUtMDRcbk5QQV9UQSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLTEuMzI0OGUtMDEgIDQuMTc1MWUtMDNcbkkobG9nKHBhbmVsJHRvdGFsX2Fzc2V0c19sYWdnZWRfMV95ZWFyKSkgICAgIDMuNjEyNWUtMDQgIDcuNDAzMmUtMDVcblREX1RBICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLTEuMjM4NWUtMDMgIDQuNzkwNWUtMDRcbkkodDFfTFJfbGFnZ2VkXzFfeWVhciAqIGJsYWNrX2luZCkgICAgICAgICAgIDEuMTI1NWUtMDIgIDguMDU0NGUtMDNcbkkodDFfTFJfbGFnZ2VkXzFfeWVhciAqIGhpc3BhbmljX2luZCkgICAgICAgIDEuOTM5MGUtMDIgIDQuNzk3N2UtMDNcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHQtdmFsdWUgIFByKD58dHwpICAgIFxuYW10X0NJXzI1MF8xMDAwX1NCX2xvYW5zX0RlbHRfbGFnZ2VkXzFfeWVhciAgLTAuNTY3OCAgMC41NzAxMzkgICAgXG50MV9SQkNSX2xhZ2dlZF8xX3llYXIgICAgICAgICAgICAgICAgICAgICAgICAgMC44MzY3ICAwLjQwMjc2OCAgICBcblgyNTBfMTAwMF9sYWdnZWRfU0JfbG9hbnNfVEEgICAgICAgICAgICAgICAgICA0LjU3NjQgNC43MzVlLTA2ICoqKlxuTlBBX1RBICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAtMzEuNzMxOSA8IDIuMmUtMTYgKioqXG5JKGxvZyhwYW5lbCR0b3RhbF9hc3NldHNfbGFnZ2VkXzFfeWVhcikpICAgICAgNC44Nzk2IDEuMDY0ZS0wNiAqKipcblREX1RBICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC0yLjU4NTQgIDAuMDA5NzI5ICoqIFxuSSh0MV9MUl9sYWdnZWRfMV95ZWFyICogYmxhY2tfaW5kKSAgICAgICAgICAgIDEuMzk3MyAgMC4xNjIzMTQgICAgXG5JKHQxX0xSX2xhZ2dlZF8xX3llYXIgKiBoaXNwYW5pY19pbmQpICAgICAgICAgNC4wNDE0IDUuMzE2ZS0wNSAqKipcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAgJyoqKicgMC4wMDEgJyoqJyAwLjAxICcqJyAwLjA1ICcuJyAwLjEgJyAnIDFcblxuVG90YWwgU3VtIG9mIFNxdWFyZXM6ICAgIDUuNTY0OFxuUmVzaWR1YWwgU3VtIG9mIFNxdWFyZXM6IDUuNTI1OFxuUi1TcXVhcmVkOiAgICAgIDAuMDA3MDA4NlxuQWRqLiBSLVNxdWFyZWQ6IC0wLjA0OTc1NVxuRi1zdGF0aXN0aWM6IDEzMi43IG9uIDggYW5kIDE1MDQxMCBERiwgcC12YWx1ZTogPCAyLjIyZS0xNlxuIn0= -->
@@ -2009,7 +2009,7 @@ Call:
 plm(formula = ROA ~ amt_CI_250_1000_SB_loans_Delt_lagged_1_year + 
     t1_RBCR_lagged_1_year + X250_1000_lagged_SB_loans_TA + NPA_TA + 
     I(log(panel$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + 
-    I(t1_LR_lagged_1_year * black_ind) + I(t1_LR_lagged_1_year * 
+    I(t1_LR_lagged_1_year * african_american_ind) + I(t1_LR_lagged_1_year * 
     hispanic_ind), data = panel, effect = &quot;twoways&quot;, model = &quot;within&quot;)
 
 Unbalanced Panel: n = 8561, T = 1-31, N = 159009
@@ -2026,7 +2026,7 @@ X250_1000_lagged_SB_loans_TA                 4.4093e-03  9.6349e-04
 NPA_TA                                      -1.3248e-01  4.1751e-03
 I(log(panel$total_assets_lagged_1_year))     3.6125e-04  7.4032e-05
 TD_TA                                       -1.2385e-03  4.7905e-04
-I(t1_LR_lagged_1_year * black_ind)           1.1255e-02  8.0544e-03
+I(t1_LR_lagged_1_year * african_american_ind)           1.1255e-02  8.0544e-03
 I(t1_LR_lagged_1_year * hispanic_ind)        1.9390e-02  4.7977e-03
                                              t-value  Pr(&gt;|t|)    
 amt_CI_250_1000_SB_loans_Delt_lagged_1_year  -0.5678  0.570139    
@@ -2035,7 +2035,7 @@ X250_1000_lagged_SB_loans_TA                  4.5764 4.735e-06 ***
 NPA_TA                                      -31.7319 &lt; 2.2e-16 ***
 I(log(panel$total_assets_lagged_1_year))      4.8796 1.064e-06 ***
 TD_TA                                        -2.5854  0.009729 ** 
-I(t1_LR_lagged_1_year * black_ind)            1.3973  0.162314    
+I(t1_LR_lagged_1_year * african_american_ind)            1.3973  0.162314    
 I(t1_LR_lagged_1_year * hispanic_ind)         4.0414 5.316e-05 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
