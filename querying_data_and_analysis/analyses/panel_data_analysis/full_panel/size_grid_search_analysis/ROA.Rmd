@@ -1,0 +1,74 @@
+---
+title: "The Effect of Small-Business Lending and the T1 Leverage Ratio on ROA"
+author: "Matt Brigida"
+runtime: shiny
+output: 
+ html_document:
+ theme: spacelab
+ highlight: haddock
+---
+
+The full panel has been filtererd to include only observations where the leverage ratio is between -50% and 150%, and the bank's assets are less than $100 billion.
+
+The model has both firm and time fixed effects ($\alpha_{it}$), and has the following specification.  All independent variables are lagged one year relative to ROA.
+
+\begin{equation}
+ROA = \beta_1 (T1\ Lev.\ Ratio) + \beta_2 \frac{Amt.\ SB\ Loans}{TA} + \beta_3 \% \Delta SB\ Loans + \beta_4 \frac{NPA}{TA} + \beta_5 \frac{Deposits}{TA} + \beta_6 (post\ crisis) + \alpha_{it} + \epsilon_{it}
+\end{equation}
+where *SB* denotes "Small Business", *NPA* denotes "Non-Performing Assets", and *TA* denotes "Total Assets".  *post crisis* is an indicator variable for the years 2012---2015 inclusive.  
+
+<!-- read in the data -->
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(plm)
+
+panelOrig <- readRDS(url("https://github.com/Matt-Brigida/FFIEC_Call_Reports/blob/master/querying_data_and_analysis/analyses/panel_data_analysis/full_panel/ROA_LHS/panel_mdi_ind.rds?raw=true"))
+
+## panelOrig <<- pdata.frame(panelOrig, index = c("IDRSSD", "quarter"), drop.index=TRUE, row.names=TRUE)
+panelOrig <- pdata.frame(panelOrig, index = c("IDRSSD", "quarter"), drop.index=TRUE, row.names=TRUE)
+
+panelOrig <- panelOrig[panelOrig$t1_LR_lagged_1_year > -0.5, ]
+panelOrig <- panelOrig[panelOrig$t1_LR_lagged_1_year < 1.5, ]
+
+panelOrig <- panelOrig[panelOrig$total_assets_lagged_1_year > 0, ]
+panelOrig <- panelOrig[panelOrig$total_assets_lagged_1_year < 100000000, ]
+
+panel <- panelOrig
+```
+
+
+
+## Less than $100,000
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+FEmodel1 <- plm(ROA ~  amt_CI_less_100_SB_loans_Delt_lagged_1_year + t1_LR_lagged_1_year + less_100_lagged_SB_loans_TA + NPA_TA + TD_TA + I(post_crisis_ind), data = panel, model = "within", effect = "twoways")
+
+result1 <- summary(FEmodel1)
+
+t1_coef <- result1$coefficients[2,1]
+sb_coef <- result1$coefficients[3,1]
+
+```
+		
+
+
+## $100,000 to $250,000
+		
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+		
+FEMODEL2 <- plm(ROA ~ amt_CI_100_250_SB_loans_Delt_lagged_1_year + t1_LR_lagged_1_year + X100_250_lagged_SB_loans_TA + NPA_TA + TD_TA + I(post_crisis_ind), data = panel, model = "within", effect = "twoways")
+
+result2 <- summary(FEmodel2) 
+
+```
+
+
+## $250,000 to $1,000,000
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+            
+FEmodel3 <- plm(ROA ~ amt_CI_250_1000_SB_loans_Delt_lagged_1_year + t1_LR_lagged_1_year + X250_1000_lagged_SB_loans_TA + NPA_TA + TD_TA + I(post_crisis_ind), data = panel, model = "within", effect = "twoways")
+
+result3 <- summary(FEmodel3)
+
+```
+
