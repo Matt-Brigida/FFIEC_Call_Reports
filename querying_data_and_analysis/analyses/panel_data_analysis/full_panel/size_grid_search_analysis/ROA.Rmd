@@ -32,7 +32,7 @@ panelOrig <- panelOrig[panelOrig$t1_LR_lagged_1_year < 1.5, ]
 panelOrig <- panelOrig[panelOrig$total_assets_lagged_1_year > 0, ]
 panelOrig <- panelOrig[panelOrig$total_assets_lagged_1_year < 100000000, ]
 
-panel <- panelOrig
+## panel <- panelOrig
 ```
 
 
@@ -40,22 +40,86 @@ panel <- panelOrig
 ## Less than $100,000
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-FEmodel1 <- plm(ROA ~  amt_CI_less_100_SB_loans_Delt_lagged_1_year + t1_LR_lagged_1_year + less_100_lagged_SB_loans_TA + NPA_TA + TD_TA + I(post_crisis_ind), data = panel, model = "within", effect = "twoways")
+## first divide into samples by size
 
-result1 <- summary(FEmodel1)
+smallest_bank <- min(panel$total_assets_lagged_1_year, na.rm = TRUE)
+largest_bank <- max(panel$total_assets_lagged_1_year, na.rm = TRUE)
 
-t1_coef <- result1$coefficients[2,1]
-sb_coef <- result1$coefficients[3,1]
+interval_size <- 10000  # this is $10 million
+step_size <- 1000  # $1 million
+
+start_lower <- interval_size * 0
+start_upper <- interval_size * 1
+
+## initialize coefs
+t1_coef <- 0
+t1_aa_coef <- 0
+t1_his_coef <- 0
+total_t1_aa <- 0
+total_t1_his <- 0
+
+
+sb_coef <- 0
+sb_aa_coef <- 0
+sb_his_coef <- 0
+total_sb_aa <- 0
+total_sb_his <- 0
+
+## start counter
+i <- 1
+
+while (start_upper + step_size * i < largest_bank){
+
+    panel <- panelOrig[panelOrig$total_assets_lagged_1_year > (start_lower + step_size * i), ]
+    panel <- panel[panelOrig$total_assets_lagged_1_year < (start_upper + step_size * i), ]
+
+    tryCatch({
+        FEmodel1 <- plm(ROA ~  amt_CI_less_100_SB_loans_Delt_lagged_1_year + t1_LR_lagged_1_year + less_100_lagged_SB_loans_TA + NPA_TA + TD_TA + I(post_crisis_ind) + I(black_ind * t1_LR_lagged_1_year) + I(hispanic_ind * t1_LR_lagged_1_year) + I(black_ind * less_100_lagged_SB_loans_TA) + I(hispanic_ind * less_100_lagged_SB_loans_TA), data = panel, model = "within", effect = "twoways")
+
+        result1 <- summary(FEmodel1)
+
+        t1_coef <- result1$coefficients[rownames(result1$coefficients) == "t1_LR_lagged_1_year"][1]
+        t1_aa_coef <- result1$coefficients[rownames(result1$coefficients) == "I(black_ind * t1_LR_lagged_1_year)"][1]
+        t1_his_coef <- result1$coefficients[rownames(result1$coefficients) == "I(hispanic_ind * t1_LR_lagged_1_year)"][1]
+
+        total_t1_aa <- t1_coef + t1_aa_coef
+        total_t1_his <- t1_coef + t1_his_coef
+
+
+        sb_coef <- result1$coefficients[rownames(result1$coefficients) == "less_100_lagged_SB_loans_TA"][1]
+        sb_aa_coef <- result1$coefficients[rownames(result1$coefficients) == "I(black_ind * less_100_lagged_SB_loans_TA)"][1]
+        sb_his_coef <- result1$coefficients[rownames(result1$coefficients) == "I(hispanic_ind * less_100_lagged_SB_loans_TA)"][1]
+
+        total_sb_aa <- sb_coef + sb_aa_coef
+        total_sb_his <- sb_coef + sb_his_coef
+    },
+    error = function(cond){return(NA)}
+    )
+
+### increment
+    i <- i + 1
+    
+}
+
+plot(t1_coef)
+plot(total_t1_aa)
+plot(total_t1_his)
+
+
+plot(sb_coef)
+plot(total_sb_aa)
+plot(total_sb_his)
 
 ```
 		
 
+<!---
 
 ## $100,000 to $250,000
 		
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 		
-FEMODEL2 <- plm(ROA ~ amt_CI_100_250_SB_loans_Delt_lagged_1_year + t1_LR_lagged_1_year + X100_250_lagged_SB_loans_TA + NPA_TA + TD_TA + I(post_crisis_ind), data = panel, model = "within", effect = "twoways")
+FEmodel2 <- plm(ROA ~ amt_CI_100_250_SB_loans_Delt_lagged_1_year + t1_LR_lagged_1_year + X100_250_lagged_SB_loans_TA + NPA_TA + TD_TA + I(post_crisis_ind), data = panel, model = "within", effect = "twoways")
 
 result2 <- summary(FEmodel2) 
 
@@ -72,3 +136,4 @@ result3 <- summary(FEmodel3)
 
 ```
 
+-->
