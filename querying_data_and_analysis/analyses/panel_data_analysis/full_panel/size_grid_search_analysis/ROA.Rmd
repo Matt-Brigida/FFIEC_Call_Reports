@@ -78,23 +78,33 @@ while (start_upper + step_size * i < largest_bank){
 
         result1 <- summary(FEmodel1)
 
-        t1_coef <- result1$coefficients[rownames(result1$coefficients) == "t1_LR_lagged_1_year"][1]
-        t1_aa_coef <- result1$coefficients[rownames(result1$coefficients) == "I(black_ind * t1_LR_lagged_1_year)"][1]
-        t1_his_coef <- result1$coefficients[rownames(result1$coefficients) == "I(hispanic_ind * t1_LR_lagged_1_year)"][1]
+        t1_coef[i] <- result1$coefficients[rownames(result1$coefficients) == "t1_LR_lagged_1_year"][1]
+        t1_aa_coef[i] <- result1$coefficients[rownames(result1$coefficients) == "I(black_ind * t1_LR_lagged_1_year)"][1]
+        t1_his_coef[i] <- result1$coefficients[rownames(result1$coefficients) == "I(hispanic_ind * t1_LR_lagged_1_year)"][1]
 
-        total_t1_aa <- t1_coef + t1_aa_coef
-        total_t1_his <- t1_coef + t1_his_coef
+        total_t1_aa[i] <- t1_coef[i] + t1_aa_coef[i]
+        total_t1_his[i] <- t1_coef[i] + t1_his_coef[i]
 
 
-        sb_coef <- result1$coefficients[rownames(result1$coefficients) == "less_100_lagged_SB_loans_TA"][1]
-        sb_aa_coef <- result1$coefficients[rownames(result1$coefficients) == "I(black_ind * less_100_lagged_SB_loans_TA)"][1]
-        sb_his_coef <- result1$coefficients[rownames(result1$coefficients) == "I(hispanic_ind * less_100_lagged_SB_loans_TA)"][1]
+        sb_coef[i] <- result1$coefficients[rownames(result1$coefficients) == "less_100_lagged_SB_loans_TA"][1]
+        sb_aa_coef[i] <- result1$coefficients[rownames(result1$coefficients) == "I(black_ind * less_100_lagged_SB_loans_TA)"][1]
+        sb_his_coef[i] <- result1$coefficients[rownames(result1$coefficients) == "I(hispanic_ind * less_100_lagged_SB_loans_TA)"][1]
 
-        total_sb_aa <- sb_coef + sb_aa_coef
-        total_sb_his <- sb_coef + sb_his_coef
+        total_sb_aa[i] <- sb_coef[i] + sb_aa_coef[i]
+        total_sb_his[i] <- sb_coef[i] + sb_his_coef[i]
     },
     error = function(cond){return(NA)}
     )
+
+    ## output to see if all is OK
+    print(i)
+    print(t1_coef[i])
+    print(total_t1_aa[i])
+    print(total_t1_his[i])
+
+    print(sb_coef[i])
+    print(total_sb_aa[i])
+    print(total_sb_his[i])
 
 ### increment
     i <- i + 1
