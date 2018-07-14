@@ -111,14 +111,28 @@ while (start_upper + step_size * i < largest_bank){
     
 }
 
+## xaxis <- rep(0, length(t1_coef))
+xaxis <- 0
+for (k in 1:length(t1_coef)){
+          xaxis[k] <- interval_size + step_size * (k - 1)
+}
+
 plot(t1_coef)
 plot(total_t1_aa)
 plot(total_t1_his)
 
-
 plot(sb_coef)
 plot(total_sb_aa)
 plot(total_sb_his)
+
+saveRDS(xaxis, "./interval_10m_step_1m/xaxis.rds")
+saveRDS(t1_coef, "./interval_10m_step_1m/t1_coef.rds")
+saveRDS(total_t1_aa, "./interval_10m_step_1m/total_t1_aa.rds")
+saveRDS(total_t1_his, "./interval_10m_step_1m/total_t1_his.rds")
+saveRDS(sb_coef, "./interval_10m_step_1m/sb_coef.rds")
+saveRDS(total_sb_aa, "./interval_10m_step_1m/total_sb_aa.rds")
+saveRDS(total_sb_his, "./interval_10m_step_1m/total_sb_his.rds")
+
 
 ```
 		
