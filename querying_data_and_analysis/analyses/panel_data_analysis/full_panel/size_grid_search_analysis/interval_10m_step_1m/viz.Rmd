@@ -1,0 +1,37 @@
+---
+title:
+output: html_document
+---
+
+```{r}
+
+library(highcharter)
+
+xaxis <- readRDS("./xaxis.rds")
+
+t1_coef <- readRDS("./t1_coef.rds")
+
+
+t1_coef <- cbind(xaxis, t1_coef)
+t1_coef <- data.frame(t1_coef)
+
+h <- hchart(t1_coef, "line", hcaes(x = xaxis, y = t1_coef)) %>% hc_yAxis(max = .5) %>% hc_yAxis(min = -.5) %>% hc_add_theme(hc_theme_economist())
+h
+```
+
+
+```{r}
+
+library(highcharter)
+
+xaxis <- readRDS("./xaxis.rds")
+
+total_t1_aa <- readRDS("./total_t1_aa.rds")
+
+
+total_t1_aa <- cbind(xaxis, total_t1_aa)
+total_t1_aa <- data.frame(total_t1_aa)
+
+h <- hchart(total_t1_aa, "line", hcaes(x = xaxis, y = total_t1_aa)) %>% hc_yAxis(max = .5) %>% hc_yAxis(min = -.5) %>% hc_add_theme(hc_theme_economist())
+h
+```
