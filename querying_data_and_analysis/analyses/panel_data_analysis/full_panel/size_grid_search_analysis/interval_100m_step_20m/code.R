@@ -18,8 +18,8 @@ panelOrig <- panelOrig[panelOrig$total_assets_lagged_1_year < 100000000, ]
 smallest_bank <- min(panelOrig$total_assets_lagged_1_year, na.rm = TRUE)
 largest_bank <- max(panelOrig$total_assets_lagged_1_year, na.rm = TRUE)
 
-interval_size <- 50000  # this is $10 million
-step_size <- 10000  # $10 million
+interval_size <- 100000  # this is $100 million
+step_size <- 20000  # $20 million
 
 start_lower <- interval_size * 0
 start_upper <- interval_size * 1
