@@ -1,0 +1,60 @@
+---
+title:
+output: html_document
+---
+
+```{r echo = FALSE}
+
+library(highcharter)
+hcoptslang <- getOption("highcharter.lang")
+hcoptslang$numericSymbols <-c( "k", "M", "B" ,"T", "P" ,"E")
+options(highcharter.lang = hcoptslang)
+
+xaxis <- readRDS("./xaxis.rds")
+
+t1_coef <- readRDS("./t1_coef.rds")
+
+
+t1_coef <- cbind(xaxis, t1_coef)
+t1_coef <- data.frame(t1_coef)
+
+names(t1_coef) <- c("Total_Assets", "T1_Cap_Coef_All_Banks")
+
+h <- hchart(t1_coef, "line", hcaes(x = "Total_Assets", y = "T1_Cap_Coef_All_Banks")) %>% hc_yAxis(max = .5) %>% hc_yAxis(min = -.5) %>% hc_add_theme(hc_theme_economist()) %>% hc_title(text = "All Banks")
+h
+```
+
+
+```{r echo = FALSE}
+
+library(highcharter)
+
+xaxis <- readRDS("./xaxis.rds")
+
+total_t1_aa <- readRDS("./total_t1_aa.rds")
+
+
+total_t1_aa <- cbind(xaxis, total_t1_aa)
+total_t1_aa <- data.frame(total_t1_aa)
+
+names(total_t1_aa) <- c("Total_Assets", "T1_Cap_Coef_AA_subset")
+
+h <- hchart(total_t1_aa, "line", hcaes(x = "Total_Assets", y = "T1_Cap_Coef_AA_subset")) %>% hc_yAxis(max = .5) %>% hc_yAxis(min = -.5) %>% hc_add_theme(hc_theme_economist())  %>% hc_title(text = "African-American-Owned Banks")
+h
+```
+
+```{r echo = FALSE}
+
+library(highcharter)
+
+xaxis <- readRDS("./xaxis.rds")
+
+total_t1_his <- readRDS("./total_t1_his.rds")
+
+total_t1_his <- cbind(xaxis, total_t1_his)
+total_t1_his <- data.frame(total_t1_his)
+
+names(total_t1_his) <- c("Total_Assets", "T1_Cap_Coef_Hispanic_subset")
+
+h <- hchart(total_t1_his, "line", hcaes(x = "Total_Assets", y = "T1_Cap_Coef_Hispanic_subset")) %>% hc_yAxis(max = .5) %>% hc_yAxis(min = -.5) %>% hc_add_theme(hc_theme_economist())  %>% hc_title(text = "Hispanic-Owned Banks")
+h
