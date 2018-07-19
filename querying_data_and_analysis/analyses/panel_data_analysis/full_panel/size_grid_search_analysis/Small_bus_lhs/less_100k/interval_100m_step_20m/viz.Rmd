@@ -1,0 +1,26 @@
+---
+title:
+output: html_document
+---
+
+```{r echo = FALSE, message = FALSE, warning = FALSE}
+
+library(highcharter)
+hcoptslang <- getOption("highcharter.lang")
+hcoptslang$numericSymbols <-c( "k", "M", "B" ,"T", "P" ,"E")
+options(highcharter.lang = hcoptslang)
+
+xaxis <- readRDS("./xaxis.rds")
+
+t1_coef <- readRDS("./t1_coef.rds")
+
+
+t1_coef <- cbind(xaxis, t1_coef)
+t1_coef <- data.frame(t1_coef)
+
+names(t1_coef) <- c("Total_Assets", "T1_Cap_Coef_All_Banks")
+
+h <- hchart(t1_coef, "line", hcaes(x = "Total_Assets", y = "T1_Cap_Coef_All_Banks")) %>% hc_yAxis(max = 1000) %>% hc_yAxis(min = -1000) %>% hc_add_theme(hc_theme_economist()) %>% hc_title(text = "All Banks")
+h
+```
+
