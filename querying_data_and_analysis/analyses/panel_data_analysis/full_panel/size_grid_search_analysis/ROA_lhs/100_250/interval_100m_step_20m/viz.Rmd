@@ -2,7 +2,6 @@
 title:
 output: html_document
 ---
-
 ```{r echo = FALSE}
 
 library(highcharter)
@@ -20,10 +19,10 @@ t1_coef <- data.frame(t1_coef)
 
 names(t1_coef) <- c("Total_Assets", "T1_Cap_Coef_All_Banks")
 
-h <- hchart(t1_coef, "line", hcaes(x = "Total_Assets", y = "T1_Cap_Coef_All_Banks")) %>% hc_yAxis(max = .5) %>% hc_yAxis(min = -.5) %>% hc_add_theme(hc_theme_economist()) %>% hc_title(text = "All Banks")
+h <- hchart(t1_coef, "line", hcaes(x = "Total_Assets", y = "T1_Cap_Coef_All_Banks")) %>% hc_yAxis(max = .5) %>% hc_yAxis(min = -.5) %>% hc_add_theme(hc_theme_economist()) %>% hc_title(text = "Effect on ROA") %>% hc_subtitle(text = "$100,000 to $250,000 SB Loans:  All Banks") %>% hc_credits(text = "https://github.com/Matt-Brigida/FFIEC_Call_Reports", href = "https://github.com/Matt-Brigida/FFIEC_Call_Reports", enabled = TRUE) %>% hc_tooltip(crosshairs = TRUE, backgroundColor = "#FCFFC5", shared = TRUE, borderWidth = 5) %>%  hc_exporting(enabled = TRUE)
 h
 ```
-
+<!---
 
 ```{r echo = FALSE}
 
@@ -58,3 +57,5 @@ names(total_t1_his) <- c("Total_Assets", "T1_Cap_Coef_Hispanic_subset")
 
 h <- hchart(total_t1_his, "line", hcaes(x = "Total_Assets", y = "T1_Cap_Coef_Hispanic_subset")) %>% hc_yAxis(max = .5) %>% hc_yAxis(min = -.5) %>% hc_add_theme(hc_theme_economist())  %>% hc_title(text = "Hispanic-Owned Banks")
 h
+```
+-->
