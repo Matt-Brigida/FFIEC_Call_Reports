@@ -45,25 +45,24 @@ panel_250_input_fn <- function(data, num_epochs = 1) {
 
 ##  define the feature columns for our model
 ## says we can do transformations here, but doesn't specify how.  Look at.
-cols_linear_feature <- feature_columns(
+cols <- feature_columns(
     column_numeric("t1_LR_lagged_1_year"),
     column_numeric("less_100_lagged_SB_loans_TA"),
-    column_numeric("ROA")
-    )
-
-cols_dnn_feature <- feature_columns(
+    column_numeric("ROA"),
     column_numeric("NPA_TA"),
     column_numeric("TD_TA")
     )
 
 
-model100 <- dnn_linear_combined_regressor(linear_feature_columns = cols_linear_feature, dnn_feature_columns = cols_dnn_feature, dnn_hidden_units = c(100, 50))
-model250 <- dnn_linear_combined_regressor(linear_feature_columns = cols_linear_feature, dnn_feature_columns = cols_dnn_feature, dnn_hidden_units = c(100, 50))
+model100 <- linear_regressor(feature_columns = cols)
+model250 <- linear_regressor(feature_columns = cols)
+
 
 ## create train and test set-----
 indices <- sample(1:nrow(panelOrig), size = 0.80 * nrow(panelOrig))
 train <- panelOrig[indices, ]
 test  <- panelOrig[-indices, ]
+
 
 # train the small loan model
 model100 %>% train(panel_100_input_fn(train, num_epochs = 10))
