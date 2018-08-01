@@ -21,13 +21,16 @@ panelOrig <- panelOrig[panelOrig$total_assets_lagged_1_year < 100000000, ]
 
 panelOrig <- panelOrig[complete.cases(panelOrig), ]
 
+panelOrig$log_TA <- log(panelOrig$total_assets_lagged_1_year)
+panelOrig$aa_cap_int <- panelOrig$t1_LR_lagged_1_year * panelOrig$black_ind
+panelOrig$his_cap_int <- panelOrig$t1_LR_lagged_1_year * panelOrig$hispanic_ind
 
 ### Construct model-------
 
 ## return an input_fn for a given subset of data
 panel_100_input_fn <- function(data, num_epochs = 1) {
   input_fn(data,
-           features = c("t1_LR_lagged_1_year", "less_100_lagged_SB_loans_TA", "ROA", "NPA_TA", "TD_TA", "total_assets_lagged_1_year", "hispanic_ind", "black_ind"),
+           features = c("t1_LR_lagged_1_year", "less_100_lagged_SB_loans_TA", "ROA", "NPA_TA", "TD_TA", "log_TA", "aa_cap_int", "his_cap_int"),
            response = "amt_CI_less_100_SB_loans_Delt",
            batch_size = 32,
            num_epochs = num_epochs)
@@ -36,7 +39,7 @@ panel_100_input_fn <- function(data, num_epochs = 1) {
 
 panel_250_input_fn <- function(data, num_epochs = 1) {
   input_fn(data,
-           features = c("t1_LR_lagged_1_year", "less_100_lagged_SB_loans_TA", "ROA", "NPA_TA", "TD_TA", "total_assets_lagged_1_year", "hispanic_ind", "black_ind"),
+           features = c("t1_LR_lagged_1_year", "less_100_lagged_SB_loans_TA", "ROA", "NPA_TA", "TD_TA", "log_TA", "aa_cap_int", "his_cap_int"),
            response = "amt_CI_100_250_SB_loans_Delt",
            batch_size = 32,
            num_epochs = num_epochs)
@@ -48,12 +51,15 @@ panel_250_input_fn <- function(data, num_epochs = 1) {
 cols_linear_feature <- feature_columns(
     column_numeric("t1_LR_lagged_1_year"),
     column_numeric("less_100_lagged_SB_loans_TA"),
-    column_numeric("ROA")
+    column_numeric("ROA"),
+    column_numeric("NPA_TA"),
+    column_numeric("TD_TA")
     )
 
 cols_dnn_feature <- feature_columns(
-    column_numeric("NPA_TA"),
-    column_numeric("TD_TA")
+        column_numeric("log_TA"),
+        column_numeric("aa_cap_int"),
+        column_numeric("his_cap_int")
     )
 
 
@@ -69,17 +75,62 @@ test  <- panelOrig[-indices, ]
 model100 %>% train(panel_100_input_fn(train, num_epochs = 10))
 model100 %>% evaluate(panel_100_input_fn(test))
 obs <- panelOrig[(dim(panelOrig)[1] - 100):dim(panelOrig)[1], ]
-model100 %>% predict(panel_100_input_fn(obs))
+preds100 <- model100 %>% predict(panel_100_input_fn(obs))
+
+plot(unlist(preds100$predictions), obs$amt_CI_less_100_SB_loans_Delt)
+head(cbind(unlist(preds100$predictions), obs$amt_CI_less_100_SB_loans_Delt), n = 10)
+##            [,1]        [,2]
+##  [1,] 0.4270232 -0.13109461
+##  [2,] 0.3705657  0.15055762
+##  [3,] 0.4644383  0.14267269
+##  [4,] 0.4469931  0.25698324
+##  [5,] 0.4669707 -0.05136778
+##  [6,] 0.4854952  0.17542017
+##  [7,] 0.3864466  0.06015038
+##  [8,] 0.4233899  0.30363423
+##  [9,] 0.4475814 -0.12955693
+## [10,] 0.3572634 -0.14838710
+
+cor.test(unlist(preds100$predictions), obs$amt_CI_less_100_SB_loans_Delt)
+## data:  unlist(preds100$predictions) and obs$amt_CI_less_100_SB_loans_Delt
+## t = 0.48256, df = 99, p-value = 0.6305
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.1484020  0.2415942
+## sample estimates:
+##        cor 
+## 0.04844224 
+
 
 saved_model_dir <- model_dir(model100)
-
 tensorboard(log_dir = saved_model_dir, launch_browser = TRUE)  ## doesnt work
-
 
 
 model250 %>% train(panel_250_input_fn(train, num_epochs = 10))
 model250 %>% evaluate(panel_250_input_fn(test))
 obs <- panelOrig[(dim(panelOrig)[1] - 100):dim(panelOrig)[1], ]
-model250 %>% predict(panel_250_input_fn(obs))
-
 preds250 <- model250 %>% predict(panel_250_input_fn(obs))
+
+plot(unlist(preds100$predictions), obs$amt_CI_less_100_SB_loans_Delt)
+head(cbind(unlist(preds100$predictions), obs$amt_CI_less_100_SB_loans_Delt), n = 10)
+##            [,1]        [,2]
+##  [1,] 0.4270232 -0.13109461
+##  [2,] 0.3705657  0.15055762
+##  [3,] 0.4644383  0.14267269
+##  [4,] 0.4469931  0.25698324
+##  [5,] 0.4669707 -0.05136778
+##  [6,] 0.4854952  0.17542017
+##  [7,] 0.3864466  0.06015038
+##  [8,] 0.4233899  0.30363423
+##  [9,] 0.4475814 -0.12955693
+## [10,] 0.3572634 -0.14838710
+
+cor.test(unlist(preds100$predictions), obs$amt_CI_less_100_SB_loans_Delt)
+## data:  unlist(preds100$predictions) and obs$amt_CI_less_100_SB_loans_Delt
+## t = 0.48256, df = 99, p-value = 0.6305
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.1484020  0.2415942
+## sample estimates:
+##        cor 
+## 0.04844224 
