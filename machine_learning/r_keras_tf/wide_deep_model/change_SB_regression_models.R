@@ -3,6 +3,7 @@
 ### Load libraries-------
 
 library("tfestimators")
+library("keras")
 
 ### Pull and clean data from github---------
 
@@ -77,7 +78,10 @@ model100 %>% evaluate(panel_100_input_fn(test))
 obs <- panelOrig[(dim(panelOrig)[1] - 100):dim(panelOrig)[1], ]
 preds100 <- model100 %>% predict(panel_100_input_fn(obs))
 
-plot(unlist(preds100$predictions), obs$amt_CI_less_100_SB_loans_Delt)
+true_values100 <- obs$amt_CI_less_100_SB_loans_Delt
+predictions100 <- unlist(preds100$predictions)
+  
+plot(predictions100, true_values100)
 head(cbind(unlist(preds100$predictions), obs$amt_CI_less_100_SB_loans_Delt), n = 10)
 ##            [,1]        [,2]
 ##  [1,] 0.4270232 -0.13109461
@@ -99,8 +103,13 @@ cor.test(unlist(preds100$predictions), obs$amt_CI_less_100_SB_loans_Delt)
 ##  -0.1484020  0.2415942
 ## sample estimates:
 ##        cor 
-## 0.04844224 
+## 0.04844224
 
+## root mean squared error
+sq_errors100 <- (true_values100 - predictions100)^2
+avg_error100 <- sum(sq_errors100) / (length(sq_errors100))
+rmse <- sqrt(avg_error100)
+# [1] 0.4330372
 
 saved_model_dir <- model_dir(model100)
 tensorboard(log_dir = saved_model_dir, launch_browser = TRUE)  ## doesnt work
@@ -111,8 +120,11 @@ model250 %>% evaluate(panel_250_input_fn(test))
 obs <- panelOrig[(dim(panelOrig)[1] - 100):dim(panelOrig)[1], ]
 preds250 <- model250 %>% predict(panel_250_input_fn(obs))
 
-plot(unlist(preds100$predictions), obs$amt_CI_less_100_SB_loans_Delt)
-head(cbind(unlist(preds100$predictions), obs$amt_CI_less_100_SB_loans_Delt), n = 10)
+predictions250 <- unlist(preds250$predictions)
+true_values250 <- obs$amt_CI_100_250_SB_loans_Delt
+
+plot(predictions250, true_values250)
+head(cbind(predictions250, true_values250))
 ##            [,1]        [,2]
 ##  [1,] 0.4270232 -0.13109461
 ##  [2,] 0.3705657  0.15055762
@@ -125,8 +137,8 @@ head(cbind(unlist(preds100$predictions), obs$amt_CI_less_100_SB_loans_Delt), n =
 ##  [9,] 0.4475814 -0.12955693
 ## [10,] 0.3572634 -0.14838710
 
-cor.test(unlist(preds100$predictions), obs$amt_CI_less_100_SB_loans_Delt)
-## data:  unlist(preds100$predictions) and obs$amt_CI_less_100_SB_loans_Delt
+cor.test(predictions250, true_values250)
+## data:  unlist(preds250$predictions) and obs$amt_CI_less_250_SB_loans_Delt
 ## t = 0.48256, df = 99, p-value = 0.6305
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
@@ -134,3 +146,9 @@ cor.test(unlist(preds100$predictions), obs$amt_CI_less_100_SB_loans_Delt)
 ## sample estimates:
 ##        cor 
 ## 0.04844224 
+
+## root mean squared error
+sq_errors250 <- (true_values250 - predictions250)^2
+avg_error250 <- sum(sq_errors250) / (length(sq_errors250))
+rmse <- sqrt(avg_error250)
+# [1] 0.4636793
