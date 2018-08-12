@@ -141,13 +141,16 @@ panel$TD_TA <- panel$domestic_deposits_lagged_1_year / panel$total_assets_lagged
 
 panel$post_crisis_ind <- ifelse(panel$quarter %in% 45:60, 1, 0)
 
+theindex_panel <- paste0(panel$quarter, "_", panel$IDRSSD)
+panel <- cbind(theindex_panel, panel)
+
 saveRDS(panel, "panel.rds")
 
 ### creating MDI insicators and subsets-------------
 
 ### preparing MDI data -----
 
-mdi <- read.csv("./new_jim_mdi_dataset.csv", header = TRUE, stringsAsFactors = FALSE, na.strings=c(""," ","NA"))
+mdi <- read.csv("../new_jim_mdi_dataset.csv", header = TRUE, stringsAsFactors = FALSE, na.strings=c(""," ","NA"))
 mdi$CITY <- na.locf(mdi$CITY)
 mdi$STATE <- na.locf(mdi$STATE)
 mdi$MinorityStatusCode <- na.locf(mdi$MinorityStatusCode)
@@ -173,13 +176,13 @@ mdi_multi <- subset(mdi, MinorityStatusCode == "M")
 
 ### Create subsets--------
 
-panel_non_mdi <- subset(panel, !(IDRSSD %in% mdi$IDRSSD))
-panel_mdi <- subset(panel, (IDRSSD %in% mdi$IDRSSD))
-panel_mdi_black <- subset(panel, (IDRSSD %in% mdi_black$IDRSSD))
-panel_mdi_hispanic <- subset(panel, (IDRSSD %in% mdi_hispanic$IDRSSD))
-panel_mdi_asian <- subset(panel, (IDRSSD %in% mdi_asian$IDRSSD))
-panel_mdi_native <- subset(panel, (IDRSSD %in% mdi_native$IDRSSD))
-panel_mdi_multi <- subset(panel, (IDRSSD %in% mdi_multi$IDRSSD))
+panel_non_mdi <- subset(panel, !(theindex_panel %in% mdi$theindex))
+panel_mdi <- subset(panel, (theindex_panel %in% mdi$theindex))
+panel_mdi_black <- subset(panel, (theindex_panel %in% mdi_black$theindex))
+panel_mdi_hispanic <- subset(panel, (theindex_panel %in% mdi_hispanic$theindex))
+panel_mdi_asian <- subset(panel, (theindex_panel %in% mdi_asian$theindex))
+panel_mdi_native <- subset(panel, (theindex_panel %in% mdi_native$theindex))
+panel_mdi_multi <- subset(panel, (theindex_panel %in% mdi_multi$theindex))
 panel_mdi_bhn <- rbind(panel_mdi_black, panel_mdi_hispanic, panel_mdi_native)
 
 
@@ -195,35 +198,35 @@ multi_ind <- 0
 
 ## all mdi
 for (i in 1:dim(panel)[1]){
-    mdi_ind[i] <- ifelse(panel$IDRSSD[i] %in% panel_mdi$IDRSSD, 1, 0)
+    mdi_ind[i] <- ifelse(panel$theindex_panel[i] %in% panel_mdi$theindex_panel, 1, 0)
 }
 
 panel_mdi_ind <- cbind(panel, mdi_ind)
 
 ## asian mdi
 for (i in 1:dim(panel)[1]){
-    asian_ind[i] <- ifelse(panel$IDRSSD[i] %in% panel_mdi_asian$IDRSSD, 1, 0)
+    asian_ind[i] <- ifelse(panel$theindex_panel[i] %in% panel_mdi_asian$theindex_panel, 1, 0)
 }
 
 panel_mdi_ind <- cbind(panel_mdi_ind, asian_ind)
 
 ## non asian mdi
 for (i in 1:dim(panel)[1]){
-    bhn_ind[i] <- ifelse(panel$IDRSSD[i] %in% panel_mdi_bhn$IDRSSD, 1, 0)
+    bhn_ind[i] <- ifelse(panel$theindex_panel[i] %in% panel_mdi_bhn$theindex_panel, 1, 0)
 }
 
 panel_mdi_ind <- cbind(panel_mdi_ind, bhn_ind)
 
 ## black mdi
 for (i in 1:dim(panel)[1]){
-    black_ind[i] <- ifelse(panel$IDRSSD[i] %in% panel_mdi_black$IDRSSD, 1, 0)
+    black_ind[i] <- ifelse(panel$theindex_panel[i] %in% panel_mdi_black$theindex_panel, 1, 0)
 }
 
 panel_mdi_ind <- cbind(panel_mdi_ind, black_ind)
 
 ## hispanic mdi
 for (i in 1:dim(panel)[1]){
-    hispanic_ind[i] <- ifelse(panel$IDRSSD[i] %in% panel_mdi_hispanic$IDRSSD, 1, 0)
+    hispanic_ind[i] <- ifelse(panel$theindex_panel[i] %in% panel_mdi_hispanic$theindex_panel, 1, 0)
 }
 
 panel_mdi_ind <- cbind(panel_mdi_ind, hispanic_ind)
@@ -235,19 +238,19 @@ panel_mdi_ind <- cbind(panel_mdi_ind, hispanic_ind)
 mdi_type <- ""
 
 for (i in 1:dim(panel)[1]){
-    mdi_type[i] <- if(panel$IDRSSD[i] %in% panel_mdi_asian$IDRSSD){
+    mdi_type[i] <- if(panel$theindex_panel[i] %in% panel_mdi_asian$theindex_panel){
                        "MDI_Asian"
                    } else {
-                       if(panel$IDRSSD[i] %in% panel_mdi_black$IDRSSD){
+                       if(panel$theindex_panel[i] %in% panel_mdi_black$theindex_panel){
                            "MDI_African_American"
                        } else {
-                           if(panel$IDRSSD[i] %in% panel_mdi_hispanic$IDRSSD){
+                           if(panel$theindex_panel[i] %in% panel_mdi_hispanic$theindex_panel){
                                "MDI_Hispanic"
                            } else {
-                               if(panel$IDRSSD[i] %in% panel_mdi_native$IDRSSD){
+                               if(panel$theindex_panel[i] %in% panel_mdi_native$theindex_panel){
                                    "MDI_Native_American"
                                } else {
-                                   if(panel$IDRSSD[i] %in% panel_mdi_multi$IDRSSD){
+                                   if(panel$theindex_panel[i] %in% panel_mdi_multi$theindex_panel){
                                        "MDI_Multi"
                                    } else {
                                        "Non-MDI"
