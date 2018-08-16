@@ -95,13 +95,11 @@ panel_total_deposits_lagged_1_year <- readRDS("./panel_domestic_deposits_lagged_
 
 panel <- merge(panel, panel_total_deposits_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
 
+##
 
+totSBloans_Delt <- readRDS("./panel_totSBloans_Delt.rds")
 
-
-
-
-
-
+panel <- merge(panel, totSBloans_Delt, by = c("quarter", "IDRSSD"), all = FALSE)
 
 
 ##########################################
@@ -265,3 +263,4 @@ for (i in 1:dim(panel)[1]){
 panel_mdi_type <- cbind(panel, mdi_type)
 saveRDS(panel_mdi_type, "panel_mdi_type.rds")
 saveRDS(panel_mdi_ind, "panel_mdi_ind.rds")
+

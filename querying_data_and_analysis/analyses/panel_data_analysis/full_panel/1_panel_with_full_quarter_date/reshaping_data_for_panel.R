@@ -238,3 +238,39 @@ panelify(data, "domestic_deposits_lagged_1_year")
 panelified <- do.call(rbind, as.list(panelify_env))
 
 saveRDS(panelified, "panel_domestic_deposits_lagged_1_year.rds")
+
+## Total SB Loan Data) --------
+
+data <- readRDS("./totSBloans.rds")
+
+panelify_env <- new.env()
+
+panelify(data, "totSBloans")
+
+panelified <- do.call(rbind, as.list(panelify_env))
+
+saveRDS(panelified, "panel_totSBloans.rds")
+
+## Total SB Loan Data Lag --------
+
+data <- readRDS("./totSBloans_lagged_1_year.rds")
+
+panelify_env <- new.env()
+
+panelify(data, "totSBloans_lagged_1_year")
+
+panelified <- do.call(rbind, as.list(panelify_env))
+
+saveRDS(panelified, "panel_totSBloans_lagged_1_year.rds")
+
+## Total SB Loan Data Delt --------
+
+data <- readRDS("./totSBloans_Delt.rds")
+
+panelify_env <- new.env()
+
+panelify(data, "totSBloans_Delt")
+
+panelified <- do.call(rbind, as.list(panelify_env))
+
+saveRDS(panelified, "panel_totSBloans_Delt.rds")
