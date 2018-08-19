@@ -16,18 +16,18 @@ modifiedSum <- function(x, y) {
 
 
 ### create total SB loans xts object-----
-totSBloans <- modifiedSum(small, medium)
+totSB_CI_loans <- modifiedSum(small, medium)
 
-totSBloans <- modifiedSum(totSBloans, large)
+totSB_CI_loans <- modifiedSum(totSB_CI_loans, large)
 
 ## lag
 
-totSBloans_lagged_1_year <- lag(totSBloans, k = 4)
+totSB_CI_loans_lagged_1_year <- lag(totSB_CI_loans, k = 4)
 
 ## % change
 
-totSBloans_Delt <- totSBloans / totSBloans_lagged_1_year - 1
+totSB_CI_loans_Delt <- totSB_CI_loans / totSB_CI_loans_lagged_1_year - 1
 
-saveRDS(totSBloans, "totSBloans.rds")
-saveRDS(totSBloans_lagged_1_year, "totSBloans_lagged_1_year.rds")
-saveRDS(totSBloans_Delt, "totSBloans_Delt.rds")
+saveRDS(totSB_CI_loans, "totSB_CI_loans.rds")
+saveRDS(totSB_CI_loans_lagged_1_year, "totSB_CI_loans_lagged_1_year.rds")
+saveRDS(totSB_CI_loans_Delt, "totSB_CI_loans_Delt.rds")
