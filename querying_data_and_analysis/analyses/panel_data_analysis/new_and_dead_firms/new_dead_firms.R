@@ -31,6 +31,8 @@ for (i in 2:length(quarters)){
     births[[quarters[i]]] <- idrssds[[i]][!(idrssds[[i]] %in% idrssds[[i - 1]])]
 }
 
+saveRDS(births, "idrssd_births_list_through_12312017.rds")
+
 saveRDS(as.vector(unlist(births)), "idrssd_births_through_12312017.rds")
 
 ### firms in quarter 3 that are not in quarter 4
