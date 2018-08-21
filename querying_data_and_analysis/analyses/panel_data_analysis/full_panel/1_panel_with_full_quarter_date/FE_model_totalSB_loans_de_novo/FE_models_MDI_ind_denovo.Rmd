@@ -28,6 +28,8 @@ panel1 <- panel1[complete.cases(panel1), ]
 ## problem is lm() gets rid of NAs, and so is shorter than panel---first must complete.cases
 panel1$TETA_resid_LR <- lm(panel1$TETA ~ panel1$t1_LR_lagged_1_year)$resid
 
+## ignoring inflation just to test ----
+# panel1$big_bank <- ifelse(panel1$total_assets_lagged_1_year > 1000000, 1, 0)
 
 FEmodel1 <- plm(totSBloans_Delt ~  t1_LR_lagged_1_year + TETA_resid_LR + tot_lagged_SB_loans_TA + ROA + NPA_TA + I(log(panel1$total_assets_lagged_1_year)) + TD_TA + I(post_crisis_ind) + I(t1_LR_lagged_1_year * black_ind) + I(t1_LR_lagged_1_year * hispanic_ind) + de_novo, data = panel1, model = "within", effect = "twoways")
 summary(FEmodel1)
