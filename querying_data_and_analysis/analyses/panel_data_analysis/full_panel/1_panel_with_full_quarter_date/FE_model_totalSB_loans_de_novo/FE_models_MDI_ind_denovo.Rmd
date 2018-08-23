@@ -8,7 +8,7 @@ output: html_notebook
 ```{r}
 library(plm)
 
-data <- readRDS("../panel_mdi_ind_denovo.rds")
+data <- readRDS("../LHS_SB_data_code/panel_mdi_ind_denovo.rds")
 
 panel <- pdata.frame(data, index = c("IDRSSD", "quarter"), drop.index=FALSE, row.names=TRUE)
 panel$totSBloans_Delt[ !is.finite(panel$totSBloans_Delt) ] <- NA
@@ -51,7 +51,7 @@ for(i in 1:dim(panel1)[1]){
 ## ignoring inflation just to test ----
 # panel1$big_bank <- ifelse(panel1$total_assets_lagged_1_year > 1000000, 1, 0)
 
-FEmodel1 <- plm(totSBloans_Delt ~  t1_LR_lagged_1_year + TETA_resid_LR + tot_lagged_SB_loans_TA + ROA + NPA_TA + I(log(panel1$total_assets_lagged_1_year)) + TD_TA + post_crisis_ind + fin_crisis_ind + I(t1_LR_lagged_1_year * black_ind) + I(t1_LR_lagged_1_year * hispanic_ind) + de_novo, data = panel1, model = "within", effect = "individual")
+FEmodel1 <- plm(totSBloans_Delt ~  t1_LR_lagged_1_year + TETA_resid_LR + tot_lagged_SB_loans_TA + ROA + NPA_TA + I(log(panel1$total_assets_lagged_1_year)) + I(log(panel1$total_assets_lagged_1_year) * ROA) + TD_TA + post_crisis_ind + fin_crisis_ind + I(t1_LR_lagged_1_year * black_ind) + I(t1_LR_lagged_1_year * hispanic_ind) + de_novo, data = panel1, model = "within", effect = "individual")
 summary(FEmodel1)
 ```
 
@@ -87,6 +87,6 @@ for(i in 1:dim(panel2)[1]){
 }
 
 
-FEmodel2 <- plm(totSBloans_Delt ~  t1_RBCR_lagged_1_year + TETA_resid_RBCR + tot_lagged_SB_loans_TA + ROA + NPA_TA + I(log(panel2$total_assets_lagged_1_year)) + TD_TA + post_crisis_ind + fin_crisis_ind + I(t1_RBCR_lagged_1_year * black_ind) + I(t1_RBCR_lagged_1_year * hispanic_ind) + de_novo, data = panel2, model = "within", effect = "individual")
+FEmodel2 <- plm(totSBloans_Delt ~  t1_RBCR_lagged_1_year + TETA_resid_RBCR + tot_lagged_SB_loans_TA + ROA + NPA_TA + I(log(panel2$total_assets_lagged_1_year)) + I(log(panel2$total_assets_lagged_1_year) * ROA) + TD_TA + post_crisis_ind + fin_crisis_ind + I(t1_RBCR_lagged_1_year * black_ind) + I(t1_RBCR_lagged_1_year * hispanic_ind) + de_novo, data = panel2, model = "within", effect = "individual")
 summary(FEmodel2)
 ```
