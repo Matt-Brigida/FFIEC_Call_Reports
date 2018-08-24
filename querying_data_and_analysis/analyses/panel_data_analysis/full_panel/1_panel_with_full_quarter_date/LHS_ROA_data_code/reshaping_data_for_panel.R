@@ -30,44 +30,41 @@ panelified <- do.call(rbind, as.list(panelify_env))
 saveRDS(panelified, "panel_total_assets.rds")
 
 
-
-
-
 ## NPA 30 to 89 --------
 
-data <- readRDS("../../get_panel_data/pulling_all_firms/non_performing_loans/npa_30_89_lagged_1_year.rds")
+data <- readRDS("../../../get_panel_data/pulling_all_firms/non_performing_loans/npa_30_89.rds")
 
 panelify_env <- new.env()
 
-panelify(data, "npa_30_89_lagged_1_year")
+panelify(data, "npa_30_89")
 
 panelified <- do.call(rbind, as.list(panelify_env))
 
-saveRDS(panelified, "panel_npa_30_89_lagged_1_year.rds")
+saveRDS(panelified, "panel_npa_30_89.rds")
 
 ## NPA 90 plus --------
 
-data <- readRDS("../../get_panel_data/pulling_all_firms/non_performing_loans/npa_90_plus_lagged_1_year.rds")
+data <- readRDS("../../../get_panel_data/pulling_all_firms/non_performing_loans/npa_90_plus.rds")
 
 panelify_env <- new.env()
 
-panelify(data, "npa_90_plus_lagged_1_year")
+panelify(data, "npa_90_plus")
 
 panelified <- do.call(rbind, as.list(panelify_env))
 
-saveRDS(panelified, "panel_npa_90_plus_lagged_1_year.rds")
+saveRDS(panelified, "panel_npa_90_plus.rds")
 
 ## NPA nonacc --------
 
-data <- readRDS("../../get_panel_data/pulling_all_firms/non_performing_loans/npa_nonacc_lagged_1_year.rds")
+data <- readRDS("../../../get_panel_data/pulling_all_firms/non_performing_loans/npa_nonacc.rds")
 
 panelify_env <- new.env()
 
-panelify(data, "npa_nonacc_lagged_1_year")
+panelify(data, "npa_nonacc")
 
 panelified <- do.call(rbind, as.list(panelify_env))
 
-saveRDS(panelified, "panel_npa_nonacc_lagged_1_year.rds")
+saveRDS(panelified, "panel_npa_nonacc.rds")
 
 ## Net income --------
 
@@ -87,12 +84,14 @@ saveRDS(panelified, "panel_net_income.rds")
 
 ## Total SB Loan Data Delt Lagged 1 Year --------
 
-data <- readRDS("./totSBloans_Delt.rds")
+data <- readRDS("../../../get_panel_data/pulling_all_firms/data_small_business_loans/totSBloans_Delt_lagged_1_year.rds")
+
+data <- lag(data, k = 4)
 
 panelify_env <- new.env()
 
-panelify(data, "totSBloans_Delt")
+panelify(data, "totSBloans_Delt_lagged_1_year")
 
 panelified <- do.call(rbind, as.list(panelify_env))
 
-saveRDS(panelified, "panel_totSBloans_Delt.rds")
+saveRDS(panelified, "panel_totSBloans_Delt_lagged_1_year.rds")

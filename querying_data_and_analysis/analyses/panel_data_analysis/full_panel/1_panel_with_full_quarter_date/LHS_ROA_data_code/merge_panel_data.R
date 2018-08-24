@@ -7,99 +7,117 @@ library(xts)
 
 ## read in data and merge-----
 
-panel_total_equity_lagged_1_year <- readRDS("panel_total_equity_lagged_1_year.rds")
+panel_total_equity_lagged_1_year <- readRDS("../LHS_SB_data_code/panel_total_equity_lagged_1_year.rds")
 
-panel_total_assets_lagged_1_year <- readRDS("panel_total_assets_lagged_1_year.rds")
+panel_total_assets_lagged_1_year <- readRDS("../LHS_SB_data_code/panel_total_assets_lagged_1_year.rds")
 
 panel <- merge(panel_total_assets_lagged_1_year, panel_total_equity_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
 
-## t1 leverage ratio (none past 2014)------
+## total assets not lagged ----------
 
-panel_t1_LR_lagged_1_year <- readRDS("./panel_t1_LR_lagged_1_year.rds")
+panel_total_assets <- readRDS("./panel_total_assets.rds")
+
+panel <- merge(panel, panel_total_assets, by = c("quarter", "IDRSSD"), all = FALSE)
+
+## t1 leverage ratio------
+
+panel_t1_LR_lagged_1_year <- readRDS("../LHS_SB_data_code/panel_t1_LR_lagged_1_year.rds")
 
 panel <- merge(panel, panel_t1_LR_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
 
 ## t1 RBCR pre 2014------
 
-panel_t1_RBCR_lagged_1_year <- readRDS("./panel_t1_RBCR_lagged_1_year.rds")
+panel_t1_RBCR_lagged_1_year <- readRDS("../LHS_SB_data_code/panel_t1_RBCR_lagged_1_year.rds")
 
 panel <- merge(panel, panel_t1_RBCR_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
 
 ### Amount of SB loans lagged 1 year
 ##
 
-panel_amt_CI_less_100_SB_loans_lagged_1_year <- readRDS("./panel_amt_CI_less_100_SB_loans_lagged_1_year.rds")
+panel_amt_CI_less_100_SB_loans_lagged_1_year <- readRDS("../LHS_SB_data_code/panel_amt_CI_less_100_SB_loans_lagged_1_year.rds")
 
 panel <- merge(panel, panel_amt_CI_less_100_SB_loans_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
 
 ##
 
-panel_amt_CI_100_250_SB_loans_lagged_1_year <- readRDS("./panel_amt_CI_100_250_SB_loans_lagged_1_year.rds")
+panel_amt_CI_100_250_SB_loans_lagged_1_year <- readRDS("../LHS_SB_data_code/panel_amt_CI_100_250_SB_loans_lagged_1_year.rds")
 
 panel <- merge(panel, panel_amt_CI_100_250_SB_loans_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
 
 ##
 
-panel_amt_CI_250_1000_SB_loans_lagged_1_year <- readRDS("./panel_amt_CI_250_1000_SB_loans_lagged_1_year.rds")
+panel_amt_CI_250_1000_SB_loans_lagged_1_year <- readRDS("../LHS_SB_data_code/panel_amt_CI_250_1000_SB_loans_lagged_1_year.rds")
 
 panel <- merge(panel, panel_amt_CI_250_1000_SB_loans_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
 
-### % change in SB loans 
 ##
 
-panel_amt_CI_less_100_SB_loans_Delt <- readRDS("./panel_amt_CI_less_100_SB_loans_Delt.rds")
-
-panel <- merge(panel, panel_amt_CI_less_100_SB_loans_Delt, by = c("quarter", "IDRSSD"), all = FALSE)
-
-##
-
-panel_amt_CI_100_250_SB_loans_Delt <- readRDS("./panel_amt_CI_100_250_SB_loans_Delt.rds")
-
-panel <- merge(panel, panel_amt_CI_100_250_SB_loans_Delt, by = c("quarter", "IDRSSD"), all = FALSE)
-
-##
-
-panel_amt_CI_250_1000_SB_loans_Delt <- readRDS("./panel_amt_CI_250_1000_SB_loans_Delt.rds")
-
-panel <- merge(panel, panel_amt_CI_250_1000_SB_loans_Delt, by = c("quarter", "IDRSSD"), all = FALSE)
-
-##
-
-panel_npa_30_89_lagged_1_year <- readRDS("./panel_npa_30_89_lagged_1_year.rds")
+panel_npa_30_89_lagged_1_year <- readRDS("../LHS_SB_data_code/panel_npa_30_89_lagged_1_year.rds")
 
 panel <- merge(panel, panel_npa_30_89_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
 
-
 ##
 
-panel_npa_90_plus_lagged_1_year <- readRDS("./panel_npa_90_plus_lagged_1_year.rds")
+panel_npa_90_plus_lagged_1_year <- readRDS("../LHS_SB_data_code/panel_npa_90_plus_lagged_1_year.rds")
 
 panel <- merge(panel, panel_npa_90_plus_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
 
 
 ##
 
-panel_npa_nonacc_lagged_1_year <- readRDS("./panel_npa_nonacc_lagged_1_year.rds")
+panel_npa_nonacc_lagged_1_year <- readRDS("../LHS_SB_data_code/panel_npa_nonacc_lagged_1_year.rds")
 
 panel <- merge(panel, panel_npa_nonacc_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
 
 ##
 
-panel_net_income_lagged_1_year <- readRDS("./panel_net_income_lagged_1_year.rds")
+panel_npa_30_89 <- readRDS("./panel_npa_30_89.rds")
+
+panel <- merge(panel, panel_npa_30_89, by = c("quarter", "IDRSSD"), all = FALSE)
+
+##
+
+panel_npa_90_plus <- readRDS("./panel_npa_90_plus.rds")
+
+panel <- merge(panel, panel_npa_90_plus, by = c("quarter", "IDRSSD"), all = FALSE)
+
+
+##
+
+panel_npa_nonacc <- readRDS("./panel_npa_nonacc.rds")
+
+panel <- merge(panel, panel_npa_nonacc, by = c("quarter", "IDRSSD"), all = FALSE)
+
+
+##
+
+panel_net_income_lagged_1_year <- readRDS("../LHS_SB_data_code/panel_net_income_lagged_1_year.rds")
 
 panel <- merge(panel, panel_net_income_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
 
 ##
 
-panel_total_deposits_lagged_1_year <- readRDS("./panel_domestic_deposits_lagged_1_year.rds")
+panel_net_income <- readRDS("./panel_net_income.rds")
+
+panel <- merge(panel, panel_net_income, by = c("quarter", "IDRSSD"), all = FALSE)
+
+##
+
+panel_total_deposits_lagged_1_year <- readRDS("../LHS_SB_data_code/panel_domestic_deposits_lagged_1_year.rds")
 
 panel <- merge(panel, panel_total_deposits_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
 
 ##
 
-totSBloans_Delt <- readRDS("./panel_totSBloans_Delt.rds")
+totSBloans_Delt <- readRDS("../LHS_SB_data_code/panel_totSBloans_Delt.rds")
 
 panel <- merge(panel, totSBloans_Delt, by = c("quarter", "IDRSSD"), all = FALSE)
+
+##
+
+totSBloans_Delt_lagged_1_year <- readRDS("./panel_totSBloans_Delt_lagged_1_year.rds")
+
+panel <- merge(panel, totSBloans_Delt_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
 
 
 ##########################################
@@ -110,14 +128,14 @@ panel <- merge(panel, totSBloans_Delt, by = c("quarter", "IDRSSD"), all = FALSE)
 panel[] <- lapply(panel, function(x) as.numeric(as.character(x)))
 
 ## remove any Inf or NaNs in the change data
-panel$amt_CI_less_100_SB_loans_Delt[is.infinite(panel$amt_CI_less_100_SB_loans_Delt)] <- NA
-panel$amt_CI_less_100_SB_loans_Delt[is.nan(panel$amt_CI_less_100_SB_loans_Delt)] <- NA
+## panel$amt_CI_less_100_SB_loans_Delt[is.infinite(panel$amt_CI_less_100_SB_loans_Delt)] <- NA
+## panel$amt_CI_less_100_SB_loans_Delt[is.nan(panel$amt_CI_less_100_SB_loans_Delt)] <- NA
 
-panel$amt_CI_100_250_SB_loans_Delt[is.infinite(panel$amt_CI_100_250_SB_loans_Delt)] <- NA
-panel$amt_CI_100_250_SB_loans_Delt[is.nan(panel$amt_CI_100_250_SB_loans_Delt)] <- NA
+## panel$amt_CI_100_250_SB_loans_Delt[is.infinite(panel$amt_CI_100_250_SB_loans_Delt)] <- NA
+## panel$amt_CI_100_250_SB_loans_Delt[is.nan(panel$amt_CI_100_250_SB_loans_Delt)] <- NA
 
-panel$amt_CI_250_1000_SB_loans_Delt[is.infinite(panel$amt_CI_250_1000_SB_loans_Delt)] <- NA
-panel$amt_CI_250_1000_SB_loans_Delt[is.nan(panel$amt_CI_250_1000_SB_loans_Delt)] <- NA
+## panel$amt_CI_250_1000_SB_loans_Delt[is.infinite(panel$amt_CI_250_1000_SB_loans_Delt)] <- NA
+## panel$amt_CI_250_1000_SB_loans_Delt[is.nan(panel$amt_CI_250_1000_SB_loans_Delt)] <- NA
 
 
 ### creating regression variables------
@@ -128,16 +146,15 @@ panel$tot_lagged_SB_loans_TA <- panel$tot_SB_loans_lagged_1_year / panel$total_a
 panel$less_100_lagged_SB_loans_TA <- panel$amt_CI_less_100_SB_loans_lagged_1_year / panel$total_assets_lagged_1_year
 panel$X100_250_lagged_SB_loans_TA <- panel$amt_CI_100_250_SB_loans_lagged_1_year / panel$total_assets_lagged_1_year
 panel$X250_1000_lagged_SB_loans_TA <- panel$amt_CI_250_1000_SB_loans_lagged_1_year / panel$total_assets_lagged_1_year
-panel$ROA <- panel$net_income_lagged_1_year / panel$total_assets_lagged_1_year
-panel$tot_NPA <- panel$npa_30_89_lagged_1_year + panel$npa_90_plus_lagged_1_year + panel$npa_nonacc_lagged_1_year
-panel$NPA_TA <- panel$tot_NPA / panel$total_assets_lagged_1_year
-panel$TD_TA <- panel$domestic_deposits_lagged_1_year / panel$total_assets_lagged_1_year
+panel$ROA <- panel$net_income / panel$total_assets
+panel$ROA_lagged_1 <- panel$net_income / panel$total_assets
+panel$tot_NPA <- panel$npa_30_89 + panel$npa_90_plus + panel$npa_nonacc
+panel$tot_NPA_TA <- panel$tot_NPA / panel$total_assets
+panel$tot_NPA_lagged_1 <- panel$npa_30_89_lagged_1_year + panel$npa_90_plus_lagged_1_year + panel$npa_nonacc_lagged_1_year
+panel$NPA_TA_lagged_1 <- panel$tot_NPA_lagged_1 / panel$total_assets_lagged_1_year
+panel$TD_TA_lagged_1 <- panel$domestic_deposits_lagged_1_year / panel$total_assets_lagged_1_year
 
 ### create time indicator variables
-
-## post-crisis indicator for 2012 to 2015
-
-panel$post_crisis_ind <- ifelse(panel$quarter %in% 45:60, 1, 0)
 
 theindex_panel <- paste0(panel$quarter, "_", panel$IDRSSD)
 panel <- cbind(theindex_panel, panel)
@@ -148,7 +165,7 @@ saveRDS(panel, "panel.rds")
 
 ### preparing MDI data -----
 
-mdi <- read.csv("../new_jim_mdi_dataset.csv", header = TRUE, stringsAsFactors = FALSE, na.strings=c(""," ","NA"))
+mdi <- read.csv("../../new_jim_mdi_dataset.csv", header = TRUE, stringsAsFactors = FALSE, na.strings=c(""," ","NA"))
 mdi$CITY <- na.locf(mdi$CITY)
 mdi$STATE <- na.locf(mdi$STATE)
 mdi$MinorityStatusCode <- na.locf(mdi$MinorityStatusCode)
