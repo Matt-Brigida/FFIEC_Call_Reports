@@ -1,0 +1,166 @@
+---
+title: "Test FE Models"
+output: html_notebook
+---
+
+### Read in Panel Data
+
+```{r}
+library(plm)
+
+data <- readRDS("../LHS_ROA_data_code/panel_mdi_ind_denovo.rds")
+
+panel <- pdata.frame(data, index = c("IDRSSD", "quarter"), drop.index=FALSE, row.names=TRUE)
+panel$totSBloans_Delt_lagged_1_year[ !is.finite(panel$totSBloans_Delt_lagged_1_year) ] <- NA
+
+panel$TETA_lagged_1_year <- panel$total_equity_lagged_1_year / panel$total_assets_lagged_1_year
+
+```
+
+## FE models:  T1 Leverage Ratio
+
+###  ROA
+
+All RHS variables are lagged 1 year relative to ROA.  
+
+```{r cache=TRUE}
+
+panel1 <- panel[, c("quarter", "totSBloans_Delt_lagged_1_year", "t1_LR_lagged_1_year", "tot_lagged_SB_loans_TA", "ROA", "ROA_lagged_1", "NPA_TA_lagged_1", "total_assets_lagged_1_year", "TD_TA_lagged_1", "african_am_ind", "hispanic_ind", "de_novo", "TETA_lagged_1_year")]
+
+panel1 <- panel1[complete.cases(panel1), ]
+
+## problem is lm() gets rid of NAs, and so is shorter than panel---first must complete.cases
+panel1$TETA_resid_LR_lagged_1 <- lm(panel1$TETA_lagged_1_year ~ panel1$t1_LR_lagged_1_year)$resid
+
+## create fin crisis and post crisis inds
+# fin crisis
+for(i in 1:dim(panel1)[1]){
+  if((as.numeric(as.character(panel1$quarter[i])) > 20081231) & (as.numeric(as.character(panel1$quarter[i])) < 20120101)){
+    panel1$fin_crisis_ind[i] <-  1
+  } else {
+    panel1$fin_crisis_ind[i] <-  0
+  }
+}
+
+# post crisis
+for(i in 1:dim(panel1)[1]){
+  if((as.numeric(as.character(panel1$quarter[i])) > 20111231) & (as.numeric(as.character(panel1$quarter[i])) < 20160101)){
+    panel1$post_crisis_ind[i] <-  1
+  } else {
+    panel1$post_crisis_ind[i] <-  0
+  }
+}
+
+
+## ignoring inflation just to test ----
+# panel1$big_bank <- ifelse(panel1$total_assets_lagged_1_year > 1000000, 1, 0)
+
+FEmodel1a <- plm(ROA ~  ROA_lagged_1 + t1_LR_lagged_1_year + TETA_resid_LR_lagged_1 + totSBloans_Delt_lagged_1_year + tot_lagged_SB_loans_TA + NPA_TA_lagged_1 + I(log(panel1$total_assets_lagged_1_year)) + I(log(panel1$total_assets_lagged_1_year) * NPA_TA_lagged_1) + TD_TA_lagged_1 + post_crisis_ind + fin_crisis_ind + I(t1_LR_lagged_1_year * african_am_ind) + I(t1_LR_lagged_1_year * hispanic_ind) + de_novo, data = panel1, model = "within", effect = "individual")
+summary(FEmodel1a)
+FEmodel1b <- plm(ROA ~  t1_LR_lagged_1_year + TETA_resid_LR_lagged_1 + totSBloans_Delt_lagged_1_year + tot_lagged_SB_loans_TA + NPA_TA_lagged_1 + I(log(panel1$total_assets_lagged_1_year)) + I(log(panel1$total_assets_lagged_1_year) * NPA_TA_lagged_1) + TD_TA_lagged_1 + post_crisis_ind + fin_crisis_ind + I(t1_LR_lagged_1_year * african_am_ind) + I(t1_LR_lagged_1_year * hispanic_ind) + de_novo, data = panel1, model = "within", effect = "individual")
+summary(FEmodel1b)
+
+```
+
+###  NPA as a Percent of Total Assets
+
+All RHS variables are lagged 1 year relative to NPA.
+
+
+```{r cache=TRUE}
+
+panel2 <- panel[, c("quarter", "totSBloans_Delt_lagged_1_year", "t1_LR_lagged_1_year", "tot_lagged_SB_loans_TA", "ROA_lagged_1", "tot_NPA_TA", "total_assets_lagged_1_year", "TD_TA_lagged_1", "NPA_TA_lagged_1", "african_am_ind", "hispanic_ind", "de_novo", "TETA_lagged_1_year")]
+
+panel2 <- panel2[complete.cases(panel2), ]
+
+## problem is lm() gets rid of NAs, and so is shorter than panel---first must complete.cases
+panel2$TETA_resid_LR_lagged_1 <- lm(panel2$TETA_lagged_1_year ~ panel2$t1_LR_lagged_1_year)$resid
+
+## create fin crisis and post crisis inds
+# fin crisis
+for(i in 1:dim(panel2)[1]){
+  if((as.numeric(as.character(panel2$quarter[i])) > 20081231) & (as.numeric(as.character(panel2$quarter[i])) < 20120101)){
+    panel2$fin_crisis_ind[i] <-  1
+  } else {
+    panel2$fin_crisis_ind[i] <-  0
+  }
+}
+
+# post crisis
+for(i in 1:dim(panel2)[1]){
+  if((as.numeric(as.character(panel2$quarter[i])) > 20111231) & (as.numeric(as.character(panel2$quarter[i])) < 20160101)){
+    panel2$post_crisis_ind[i] <-  1
+  } else {
+    panel2$post_crisis_ind[i] <-  0
+  }
+}
+
+
+## ignoring inflation just to test ----
+# panel2$big_bank <- ifelse(panel2$total_assets_lagged_1_year > 1000000, 1, 0)
+
+FEmodel2a <- plm(tot_NPA_TA ~  NPA_TA_lagged_1 + t1_LR_lagged_1_year + TETA_resid_LR_lagged_1 + totSBloans_Delt_lagged_1_year + tot_lagged_SB_loans_TA + ROA_lagged_1 + I(log(panel2$total_assets_lagged_1_year)) + I(log(panel2$total_assets_lagged_1_year) * ROA_lagged_1) + TD_TA_lagged_1 + post_crisis_ind + fin_crisis_ind + I(t1_LR_lagged_1_year * african_am_ind) + I(t1_LR_lagged_1_year * hispanic_ind) + de_novo, data = panel2, model = "within", effect = "individual")
+summary(FEmodel2a)
+FEmodel2b <- plm(tot_NPA_TA ~  t1_LR_lagged_1_year + TETA_resid_LR_lagged_1 + totSBloans_Delt_lagged_1_year + tot_lagged_SB_loans_TA + ROA_lagged_1 + I(log(panel2$total_assets_lagged_1_year)) + I(log(panel2$total_assets_lagged_1_year) * ROA_lagged_1) + TD_TA_lagged_1 + post_crisis_ind + fin_crisis_ind + I(t1_LR_lagged_1_year * african_am_ind) + I(t1_LR_lagged_1_year * hispanic_ind) + de_novo, data = panel2, model = "within", effect = "individual")
+summary(FEmodel2b)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## FE models:  T1 Risk-Based Capital Ratio
+### Change in $ Amount of Total Small Business Loans 
+
+```{r cache=TRUE, eval = FALSE}
+
+panel2 <- panel[, c("quarter", "totSBloans_Delt", "t1_RBCR_lagged_1_year", "tot_lagged_SB_loans_TA", "ROA", "NPA_TA", "total_assets_lagged_1_year", "TD_TA", "post_crisis_ind", "african_am_ind", "hispanic_ind", "de_novo", "TETA")]
+
+panel2 <- panel2[complete.cases(panel2), ]
+
+## problem is lm() gets rid of NAs, and so is shorter than panel---first must complete.cases
+panel2$TETA_resid_RBCR <- lm(panel2$TETA ~ panel2$t1_RBCR_lagged_1_year)$resid
+
+## create fin crisis and post crisis inds
+# fin crisis
+for(i in 1:dim(panel2)[1]){
+  if((as.numeric(as.character(panel2$quarter[i])) > 20081231) & (as.numeric(as.character(panel2$quarter[i])) < 20120101)){
+    panel2$fin_crisis_ind[i] <-  1
+  } else {
+    panel2$fin_crisis_ind[i] <-  0
+  }
+}
+
+# post crisis
+for(i in 1:dim(panel2)[1]){
+  if((as.numeric(as.character(panel2$quarter[i])) > 20111231) & (as.numeric(as.character(panel2$quarter[i])) < 20160101)){
+    panel2$post_crisis_ind[i] <-  1
+  } else {
+    panel2$post_crisis_ind[i] <-  0
+  }
+}
+
+
+FEmodel2 <- plm(totSBloans_Delt ~  t1_RBCR_lagged_1_year + TETA_resid_RBCR + tot_lagged_SB_loans_TA + ROA + NPA_TA + I(log(panel2$total_assets_lagged_1_year)) + I(log(panel2$total_assets_lagged_1_year) * ROA) + TD_TA + post_crisis_ind + fin_crisis_ind + I(t1_RBCR_lagged_1_year * african_am_ind) + I(t1_RBCR_lagged_1_year * hispanic_ind) + de_novo, data = panel2, model = "within", effect = "individual")
+summary(FEmodel2)
+```

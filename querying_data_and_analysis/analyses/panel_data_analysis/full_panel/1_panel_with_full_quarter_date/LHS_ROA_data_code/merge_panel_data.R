@@ -147,7 +147,7 @@ panel$less_100_lagged_SB_loans_TA <- panel$amt_CI_less_100_SB_loans_lagged_1_yea
 panel$X100_250_lagged_SB_loans_TA <- panel$amt_CI_100_250_SB_loans_lagged_1_year / panel$total_assets_lagged_1_year
 panel$X250_1000_lagged_SB_loans_TA <- panel$amt_CI_250_1000_SB_loans_lagged_1_year / panel$total_assets_lagged_1_year
 panel$ROA <- panel$net_income / panel$total_assets
-panel$ROA_lagged_1 <- panel$net_income / panel$total_assets
+panel$ROA_lagged_1 <- panel$net_income_lagged_1_year / panel$total_assets_lagged_1_year
 panel$tot_NPA <- panel$npa_30_89 + panel$npa_90_plus + panel$npa_nonacc
 panel$tot_NPA_TA <- panel$tot_NPA / panel$total_assets
 panel$tot_NPA_lagged_1 <- panel$npa_30_89_lagged_1_year + panel$npa_90_plus_lagged_1_year + panel$npa_nonacc_lagged_1_year
@@ -207,7 +207,7 @@ mdi_ind <- 0
 bhn_ind <- 0
 hispanic_ind <- 0
 asian_ind <- 0
-black_ind <- 0
+african_am_ind <- 0
 native_ind <- 0
 multi_ind <- 0
 
@@ -234,10 +234,10 @@ panel_mdi_ind <- cbind(panel_mdi_ind, bhn_ind)
 
 ## black mdi
 for (i in 1:dim(panel)[1]){
-    black_ind[i] <- ifelse(panel$theindex_panel[i] %in% panel_mdi_black$theindex_panel, 1, 0)
+    african_am_ind[i] <- ifelse(panel$theindex_panel[i] %in% panel_mdi_black$theindex_panel, 1, 0)
 }
 
-panel_mdi_ind <- cbind(panel_mdi_ind, black_ind)
+panel_mdi_ind <- cbind(panel_mdi_ind, african_am_ind)
 
 ## hispanic mdi
 for (i in 1:dim(panel)[1]){
