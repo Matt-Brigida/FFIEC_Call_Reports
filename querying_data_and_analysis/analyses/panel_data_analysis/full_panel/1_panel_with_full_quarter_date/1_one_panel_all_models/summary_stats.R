@@ -25,7 +25,7 @@ data_na_cc <- data_na[complete.cases(data_na), ]
 data_multi_cc <- data_multi[complete.cases(data_multi), ]
 
 ### remove unnecessary columns-------
-var <- c("theindex_panel", "quarter", "IDRSSD", "npa_30_89_lagged_1_year", "npa_90_plus_lagged_1_year", "npa_nonacc_lagged_1_year", "net_income_lagged_1_year", "domestic_deposits_lagged_1_year", "tot_SB_loans_lagged_1_year", "tot_NPA", "post_crisis_ind", "mdi_ind", "asian_ind", "bhn_ind", "black_ind", "hispanic_ind")
+var <- c("theindex_panel", "quarter", "IDRSSD", "total_assets", "amt_CI_less_100_SB_loans_lagged_1_year", "amt_CI_100_250_SB_loans_lagged_1_year", "amt_CI_250_1000_SB_loans_lagged_1_year", "npa_30_89_lagged_1_year", "npa_90_plus_lagged_1_year", "npa_30_89", "npa_90_plus", "npa_nonacc", "npa_nonacc_lagged_1_year", "net_income", "net_income_lagged_1_year", "domestic_deposits_lagged_1_year", "tot_SB_loans_lagged_1_year", "totSBloans_Delt_lagged_1_year", "less_100_lagged_SB_loans_TA", "X100_250_lagged_SB_loans_TA", "X250_1000_lagged_SB_loans_TA", "ROA", "tot_NPA_lagged_1")#, "post_crisis_ind", "mdi_ind", "asian_ind", "bhn_ind", "black_ind", "hispanic_ind")
 
 data_non_mdi_cc <- data.frame(data_non_mdi_cc[, !(names(data_non_mdi_cc) %in% var)])
 data_aa_cc <- data.frame(data_aa_cc[, !(names(data_aa_cc) %in% var)])

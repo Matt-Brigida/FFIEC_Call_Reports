@@ -1,6 +1,6 @@
 library(plm)
 
-panel <- readRDS("../full_panel.rds")
+panel <- readRDS("../../full_panel.rds")
 
 
 ## without lagged SB loans

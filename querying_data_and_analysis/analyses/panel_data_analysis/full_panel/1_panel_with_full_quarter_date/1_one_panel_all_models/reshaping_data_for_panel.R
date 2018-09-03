@@ -95,3 +95,17 @@ panelify(data, "totSBloans_Delt_lagged_1_year")
 panelified <- do.call(rbind, as.list(panelify_env))
 
 saveRDS(panelified, "panel_totSBloans_Delt_lagged_1_year.rds")
+
+## Total Number of SB Loan Data Delt Lagged 1 year --------
+
+data <- readRDS("../../../get_panel_data/pulling_all_firms/data_small_business_loans/")
+
+data <- lag(data, k = 4)
+
+panelify_env <- new.env()
+
+panelify(data, "totSBloans_Delt_lagged_1_year")
+
+panelified <- do.call(rbind, as.list(panelify_env))
+
+saveRDS(panelified, "panel_totSBloans_Delt_lagged_1_year.rds")
