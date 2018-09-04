@@ -86,8 +86,6 @@ saveRDS(panelified, "panel_net_income.rds")
 
 data <- readRDS("../../../get_panel_data/pulling_all_firms/data_small_business_loans/totSBloans_Delt_lagged_1_year.rds")
 
-data <- lag(data, k = 4)
-
 panelify_env <- new.env()
 
 panelify(data, "totSBloans_Delt_lagged_1_year")
@@ -96,16 +94,28 @@ panelified <- do.call(rbind, as.list(panelify_env))
 
 saveRDS(panelified, "panel_totSBloans_Delt_lagged_1_year.rds")
 
-## Total Number of SB Loan Data Delt Lagged 1 year --------
+## Total Number of SB Loan Data Delt  --------
 
-data <- readRDS("../../../get_panel_data/pulling_all_firms/data_small_business_loans/")
+data <- readRDS("../../../get_panel_data/pulling_all_firms/data_small_business_loans/num_loans/totNumSBloans_Delt.rds")
+
+panelify_env <- new.env()
+
+panelify(data, "totNumSBloans_Delt")
+
+panelified <- do.call(rbind, as.list(panelify_env))
+
+saveRDS(panelified, "panel_totNumSBloans_Delt.rds")
+
+## Total Number of SB Loan Data Delt Lagged 1  --------
+
+data <- readRDS("../../../get_panel_data/pulling_all_firms/data_small_business_loans/num_loans/totNumSBloans_Delt.rds")
 
 data <- lag(data, k = 4)
 
 panelify_env <- new.env()
 
-panelify(data, "totSBloans_Delt_lagged_1_year")
+panelify(data, "totNumSBloans_Delt_lagged_1")
 
 panelified <- do.call(rbind, as.list(panelify_env))
 
-saveRDS(panelified, "panel_totSBloans_Delt_lagged_1_year.rds")
+saveRDS(panelified, "panel_totNumSBloans_Delt_lagged_1.rds")

@@ -10,6 +10,10 @@ panel <- pdata.frame(data, index = c("IDRSSD", "quarter"), drop.index=FALSE, row
 panel$totSBloans_Delt_lagged_1_year[ !is.finite(panel$totSBloans_Delt_lagged_1_year) ] <- NA
 panel$totSBloans_Delt[ !is.finite(panel$totSBloans_Delt) ] <- NA
 
+panel$totNumSBloans_Delt_lagged_1[ !is.finite(panel$totNumSBloans_Delt_lagged_1) ] <- NA
+panel$totNumSBloans_Delt[ !is.finite(panel$totNumSBloans_Delt) ] <- NA
+
+
 ## create total equity variable
 panel$TETA_lagged_1_year <- panel$total_equity_lagged_1_year / panel$total_assets_lagged_1_year
 

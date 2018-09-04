@@ -115,9 +115,21 @@ panel <- merge(panel, totSBloans_Delt, by = c("quarter", "IDRSSD"), all = FALSE)
 
 ##
 
-totSBloans_Delt_lagged_1_year <- readRDS("../LHS_ROA_data_code/panel_totSBloans_Delt_lagged_1_year.rds")
+totSBloans_Delt_lagged_1_year <- readRDS("../LHS_SB_data_code/panel_totSBloans_Delt_lagged_1_year.rds")
 
 panel <- merge(panel, totSBloans_Delt_lagged_1_year, by = c("quarter", "IDRSSD"), all = FALSE)
+
+##
+
+totNumSBloans_Delt <- readRDS("../LHS_SB_data_code/panel_totNumSBloans_Delt.rds")
+
+panel <- merge(panel, totNumSBloans_Delt, by = c("quarter", "IDRSSD"), all = FALSE)
+
+##
+
+totNumSBloans_Delt_Lagged_1 <- readRDS("../LHS_SB_data_code/panel_totNumSBloans_Delt_lagged_1.rds")
+
+panel <- merge(panel, totNumSBloans_Delt_Lagged_1, by = c("quarter", "IDRSSD"), all = FALSE)
 
 
 ##########################################
