@@ -9,7 +9,7 @@ panel <- readRDS("../../full_panel.rds")
 
 ## variables
 
-var <- c("quarter", "totSBloans_Delt", "t1_LR_lagged_1_year", "tot_SB_loans_TA_lagged_1", "ROA_lagged_1", "NPA_TA_lagged_1", "total_assets_lagged_1_year", "TD_TA_lagged_1", "african_am_ind", "hispanic_ind", "de_novo", "TETA_lagged_1_year", "post_crisis_ind", "fin_crisis_ind")
+var <- c("quarter", "totSBloans_Delt", "totNumSBloans_Delt", "t1_LR_lagged_1_year", "tot_SB_loans_TA_lagged_1", "ROA_lagged_1", "NPA_TA_lagged_1", "total_assets_lagged_1_year", "TD_TA_lagged_1", "african_am_ind", "hispanic_ind", "de_novo", "TETA_lagged_1_year", "post_crisis_ind", "fin_crisis_ind")
 
 panel_vars <- data.frame(panel[, var])
 
@@ -24,62 +24,63 @@ h_vars <- panel_vars[panel_vars$hispanic_ind == 1, ]
 
 ## remove aa and h indicators----
 
+inds <- c("african_am_ind", "hispanic_ind", "quarter", "TETA_lagged_1_year")
+
+not_mdi_vars <- not_mdi_vars[ , !(names(not_mdi_vars) %in% inds)]
+aa_vars <- aa_vars[ , !(names(aa_vars) %in% inds)]
+h_vars <- h_vars[ , !(names(h_vars) %in% inds)]
+
 
 ## create tables with stargazer
 
-stargazer(aa_vars, type = "html", title="Descriptive Statistics: African American MDIs", digits=3, out="aa_summary_statistics.htm", covariate.labels = c("% Change Amt. S. Bus. Loans", "% Change Num. S. Bus. Loans", "Amt. Loans", "Loans/TA", "Total Equity", "ROA", "NPLs", "Liquid Assets", "Core Deposits", "Committments", "Total Assets", "ln(Total Assets)", "Large Bank", "Troubled Bank", "De Novo"))
+stargazer(aa_vars, type = "html", title="Descriptive Statistics: African American MDIs", digits=3, out="aa_summary_statistics.htm", covariate.labels = c("% Change Amt. S. Bus. Loans", "% Change Num. S. Bus. Loans", "Tier 1 Leverage Ratio", "Small-Business Loans", "ROA", "NPA", "Total Assets", "Deposits", "De Novo", "Post Crisis", "Financial Crisis"))
 
 apply(aa_vars, 2, median)
 
- ##      CSBLTOT       CNUMSBL        SBLTOT     SBLTOT_TA         EQTA0 
- ## 4.838109e-03 -3.867403e-02  2.298000e+04  2.199227e-01  8.652972e-02 
- ##         ROA0          NPA0        LIQTA0       CORETA0   BCOMMITTAC0 
- ## 3.255115e-03  4.075653e-02  3.058702e-01  4.186915e-01  5.816088e-02 
- ##     RCFD2170         LNTA0       BIGBANK       BADBANK        DENOVO 
- ## 9.099700e+04  1.142229e+01  0.000000e+00  0.000000e+00  0.000000e+00 
+##            totSBloans_Delt         totNumSBloans_Delt 
+##              -3.494022e-02              -3.067485e-02 
+##        t1_LR_lagged_1_year   tot_SB_loans_TA_lagged_1 
+##               8.630000e-02               3.856615e-02 
+##               ROA_lagged_1            NPA_TA_lagged_1 
+##               6.455006e-04               3.518268e-03 
+## total_assets_lagged_1_year             TD_TA_lagged_1 
+##               1.052330e+05               8.650878e-01 
+##                    de_novo            post_crisis_ind 
+##               0.000000e+00               0.000000e+00 
+##             fin_crisis_ind 
+##               0.000000e+00 
 
-stargazer(h_vars, type = "html", title="Descriptive Statistics: Hispanic MDIs", digits=3, out="h_summary_statistics.htm", covariate.labels = c("% Change Amt. S. Bus. Loans", "% Change Num. S. Bus. Loans", "Amt. Loans", "Loans/TA", "Total Equity", "ROA", "NPLs", "Liquid Assets", "Core Deposits", "Committments",  "Total Assets", "ln(Total Assets)", "Large Bank", "Troubled Bank", "De Novo"))
+stargazer(h_vars, type = "html", title="Descriptive Statistics: Hispanic MDIs", digits=3, out="h_summary_statistics.htm", covariate.labels = c("% Change Amt. S. Bus. Loans", "% Change Num. S. Bus. Loans", "Tier 1 Leverage Ratio", "Small-Business Loans", "ROA", "NPA", "Total Assets", "Deposits", "De Novo", "Post Crisis", "Financial Crisis"))
 
 apply(h_vars, 2, median)
 
- ##     CSBLTOT       CNUMSBL        SBLTOT     SBLTOT_TA         EQTA0 
- ## 0.000000e+00 -3.827751e-02  3.435700e+04  1.202521e-01  1.002287e-01 
- ##         ROA0          NPA0        LIQTA0       CORETA0   BCOMMITTAC0 
- ## 6.820809e-03  2.181300e-02  3.147261e-01  3.336667e-01  5.500099e-02 
- ##     RCFD2170         LNTA0       BIGBANK       BADBANK        DENOVO 
- ## 2.269520e+05  1.229209e+01  0.000000e+00  0.000000e+00  0.000000e+00 
+##            totSBloans_Delt         totNumSBloans_Delt 
+##              -1.549727e-02              -2.892562e-02 
+##        t1_LR_lagged_1_year   tot_SB_loans_TA_lagged_1 
+##               1.027520e-01               3.363510e-02 
+##               ROA_lagged_1            NPA_TA_lagged_1 
+##               3.447064e-03               1.270425e-03 
+## total_assets_lagged_1_year             TD_TA_lagged_1 
+##               1.801880e+05               8.325599e-01 
+##                    de_novo            post_crisis_ind 
+##               0.000000e+00               0.000000e+00 
+##             fin_crisis_ind 
+##               0.000000e+00 
 
-stargazer(not_mdi_vars, type = "html", title="Descriptive Statistics: Non-MDIs", digits=3, out="not_mdi_vars_summary_statistics.htm", covariate.labels = c("% Change Amt. S. Bus. Loans", "% Change Num. S. Bus. Loans", "Amt. Loans", "Loans/TA", "Total Equity", "ROA", "NPLs", "Liquid Assets", "Core Deposits", "Committments",  "Total Assets", "ln(Total Assets)", "Large Bank", "Troubled Bank", "De Novo"))
+stargazer(not_mdi_vars, type = "html", title="Descriptive Statistics: Non-MDIs", digits=3, out="non_mdi_summary_statistics.htm", covariate.labels = c("% Change Amt. S. Bus. Loans", "% Change Num. S. Bus. Loans", "Tier 1 Leverage Ratio", "Small-Business Loans", "ROA", "NPA", "Total Assets", "Deposits", "De Novo", "Post Crisis", "Financial Crisis"))
 
 apply(not_mdi_vars, 2, median)
 
- ##      CSBLTOT       CNUMSBL        SBLTOT     SBLTOT_TA         EQTA0 
- ## 2.412613e-02 -7.462687e-03  2.212400e+04  1.494018e-01  1.000197e-01 
- ##         ROA0          NPA0        LIQTA0       CORETA0   BCOMMITTAC0 
- ## 9.408143e-03  1.419297e-02  2.967097e-01  4.645642e-01  6.256911e-02 
- ##     RCFD2170         LNTA0       BIGBANK       BADBANK        DENOVO 
- ## 1.337200e+05  1.173678e+01  0.000000e+00  0.000000e+00  0.000000e+00 
+##            totSBloans_Delt         totNumSBloans_Delt 
+##               7.259599e-03              -5.277045e-03 
+##        t1_LR_lagged_1_year   tot_SB_loans_TA_lagged_1 
+##               9.729700e-02               5.149902e-02 
+##               ROA_lagged_1            NPA_TA_lagged_1 
+##               4.181979e-03               7.799764e-04 
+## total_assets_lagged_1_year             TD_TA_lagged_1 
+##               1.716860e+05               8.496946e-01 
+##                    de_novo            post_crisis_ind 
+##               0.000000e+00               0.000000e+00 
+##             fin_crisis_ind 
+##               0.000000e+00 
 
-
-### get NUMSBL summary stats
-
-## non-MDI
-median(not_mdi_subset$NUMSBL, na.rm = T)
-mean(not_mdi_subset$NUMSBL, na.rm = T)
-sd(not_mdi_subset$NUMSBL, na.rm = T)
-min(not_mdi_subset$NUMSBL, na.rm = T)
-max(not_mdi_subset$NUMSBL, na.rm = T)
-
-## AA
-median(aa_subset$NUMSBL, na.rm = T)
-mean(aa_subset$NUMSBL, na.rm = T)
-sd(aa_subset$NUMSBL, na.rm = T)
-min(aa_subset$NUMSBL, na.rm = T)
-max(aa_subset$NUMSBL, na.rm = T)
-
-## H
-median(h_subset$NUMSBL, na.rm = T)
-mean(h_subset$NUMSBL, na.rm = T)
-sd(h_subset$NUMSBL, na.rm = T)
-min(h_subset$NUMSBL, na.rm = T)
-max(h_subset$NUMSBL, na.rm = T)
