@@ -75,3 +75,26 @@ saveRDS(all_domestic_deposits, "domestic_deposits.rds")
 
 all_domestic_deposits_lagged_1_year <- lag(all_domestic_deposits, k = 4)
 saveRDS(all_domestic_deposits_lagged_1_year, "domestic_deposits_lagged_1_year.rds")
+
+### Cash Item 1 ------
+
+cash_non_interest_RCON <- new.env()
+
+for (i in idrssds){
+## code for domestic deposits: RCON2200
+    assign("tmpta", RC_query(i, code = "RCON0081"))
+
+    names(tmpta) <- paste0("ID_", i)
+
+    assign(paste0("ID_", i),
+           tmpta, envir = cash_non_interest_RCON)
+
+    }
+
+all_cash_non_interest_RCON <- do.call(merge, as.list(cash_non_interest_RCON))
+
+write.csv(all_cash_non_interest_RCON, "cash_non_interest_RCON.csv")
+saveRDS(all_cash_non_interest_RCON, "cash_non_interest_RCON.rds")
+
+all_cash_non_interest_RCON_lagged_1_year <- lag(all_cash_non_interest_RCON, k = 4)
+saveRDS(all_cash_non_interest_RCON_lagged_1_year, "cash_non_interest_RCON_lagged_1_year.rds")
