@@ -72,50 +72,39 @@ model1 <- dnn_linear_combined_regressor(linear_feature_columns = cols_linear_fea
 model250 <- dnn_linear_combined_regressor(linear_feature_columns = cols_linear_feature, dnn_feature_columns = cols_dnn_feature, dnn_hidden_units = c(100, 50))
 
 ## create train and test set-----
-indices <- sample(1:nrow(panelOrig), size = 0.80 * nrow(panelOrig))
-train <- panelOrig[indices, ]
-test  <- panelOrig[-indices, ]
+indices <- sample(1:nrow(panel), size = 0.80 * nrow(panel))
+train <- panel[indices, ]
+test  <- panel[-indices, ]
 
 # train the small loan model
-model100 %>% train(panel_100_input_fn(train, num_epochs = 10))
-model100 %>% evaluate(panel_100_input_fn(test))
-obs <- panelOrig[(dim(panelOrig)[1] - 100):dim(panelOrig)[1], ]
-preds100 <- model100 %>% predict(panel_100_input_fn(obs))
+model1 %>% train(panel_input_fn(train, num_epochs = 10))
+model1 %>% evaluate(panel_input_fn(test))
+obs <- panel[(dim(panel)[1] - 100):dim(panel)[1], ]
+preds1 <- model1 %>% predict(panel_input_fn(obs))
 
-true_values100 <- obs$amt_CI_less_100_SB_loans_Delt
-predictions100 <- unlist(preds100$predictions)
+true_values1 <- obs$totSBloans_Delt
+predictions1 <- unlist(preds1$predictions)
 
-plot(predictions100, true_values100)
-head(cbind(unlist(preds100$predictions), obs$amt_CI_less_100_SB_loans_Delt), n = 10)
-##            [,1]        [,2]
-##  [1,] 0.4270232 -0.13109461
-##  [2,] 0.3705657  0.15055762
-##  [3,] 0.4644383  0.14267269
-##  [4,] 0.4469931  0.25698324
-##  [5,] 0.4669707 -0.05136778
-##  [6,] 0.4854952  0.17542017
-##  [7,] 0.3864466  0.06015038
-##  [8,] 0.4233899  0.30363423
-##  [9,] 0.4475814 -0.12955693
-## [10,] 0.3572634 -0.14838710
+plot(predictions1, true_values1)
+head(cbind(unlist(preds1$predictions), obs$totSBloans_Delt), n = 10)
 
-cor.test(unlist(preds100$predictions), obs$amt_CI_less_100_SB_loans_Delt)
-## data:  unlist(preds100$predictions) and obs$amt_CI_less_100_SB_loans_Delt
-## t = 0.48256, df = 99, p-value = 0.6305
+cor.test(unlist(preds1$predictions), obs$totSBloans_Delt)
+## data:  unlist(preds1$predictions) and obs$totSBloans_Delt
+## t = 0.93091, df = 99, p-value = 0.3542
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  -0.1484020  0.2415942
+##  -0.1041826  0.2834326
 ## sample estimates:
-##        cor
-## 0.04844224
+##        cor 
+## 0.09315342 
 
 ## root mean squared error
-sq_errors100 <- (true_values100 - predictions100)^2
-avg_error100 <- sum(sq_errors100) / (length(sq_errors100))
-rmse <- sqrt(avg_error100)
-# [1] 0.4330372
+sq_errors1 <- (true_values1 - predictions1)^2
+avg_error1 <- sum(sq_errors1) / (length(sq_errors1))
+rmse <- sqrt(avg_error1)
+## 1.528965
 
-saved_model_dir <- model_dir(model100)
+saved_model_dir <- model_dir(model1)
 tensorboard(log_dir = saved_model_dir, launch_browser = TRUE)  ## doesnt work
 
 
