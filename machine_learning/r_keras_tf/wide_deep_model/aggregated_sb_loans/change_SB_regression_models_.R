@@ -9,24 +9,23 @@ library("keras")
 
 panelOrig <- readRDS(url("https://github.com/Matt-Brigida/FFIEC_Call_Reports/blob/master/querying_data_and_analysis/analyses/panel_data_analysis/full_panel/1_panel_with_full_quarter_date/1_one_panel_all_models/full_panel.rds?raw=true"))
 
-cols <- c("quarter", "totSBloans_Delt", "t1_LR_lagged_1_year", "tot_SB_loans_TA_lagged_1", "ROA_lagged_1", "NPA_TA_lagged_1", "total_assets_lagged_1_year", "TD_TA_lagged_1", "african_am_ind", "hispanic_ind", "de_novo", "TETA_lagged_1_year", "post_crisis_ind", "fin_crisis_ind")
+cols <- c("quarter", "totNumSBloans_Delt", "totSBloans_Delt", "t1_LR_lagged_1_year", "tot_SB_loans_TA_lagged_1", "ROA_lagged_1", "NPA_TA_lagged_1", "total_assets_lagged_1_year", "TD_TA_lagged_1", "african_am_ind", "hispanic_ind", "de_novo", "TETA_lagged_1_year", "post_crisis_ind", "fin_crisis_ind")
 
 panel <- panelOrig[, cols]
 
+## Create indicator and other variables 
+
+panel$log_TA_lagged_1 <- log(panel$total_assets_lagged_1_year)
+panel$aa_t1_int <- panel$african_am_ind * panel$t1_LR_lagged_1_year
+panel$h_t1_int <- panel$hispanic_ind * panel$t1_LR_lagged_1_year
+panel$log_TA_ROA <- log(panel$total_assets_lagged_1_year) * panel$ROA_lagged_1
+panel$log_TA_NPA <- log(panel$total_assets_lagged_1_year) * panel$NPA_TA_lagged_1
+
+
+## get rid of NAs
+
 panel <- panel[complete.cases(panel), ]
-# panelOrig <- panelOrig[panelOrig$t1_LR_lagged_1_year > -0.5, ]
-# panelOrig <- panelOrig[panelOrig$t1_LR_lagged_1_year < 1.5, ]
-#
-# panelOrig <- panelOrig[panelOrig$total_assets_lagged_1_year > 0, ]
-# panelOrig <- panelOrig[panelOrig$total_assets_lagged_1_year < 100000000, ]
-
-## get rid of NaN and such
-
-## panelOrig <- panelOrig[complete.cases(panelOrig), ]
-
-## panelOrig$log_TA <- log(panelOrig$total_assets_lagged_1_year)
-## panelOrig$aa_cap_int <- panelOrig$t1_LR_lagged_1_year * panelOrig$black_ind
-## panelOrig$his_cap_int <- panelOrig$t1_LR_lagged_1_year * panelOrig$hispanic_ind
+panel$TE_orthogonal <- lm(panel$TETA_lagged_1_year ~ panel$t1_LR_lagged_1_year)$resid
 
 ### Construct model-------
 
@@ -35,7 +34,7 @@ panel <- panel[complete.cases(panel), ]
 ## return an input_fn for a given subset of data
 panel_input_fn <- function(data, num_epochs = 1) {
   input_fn(data,
-           features = c("t1_LR_lagged_1_year", "tot_SB_loans_TA_lagged_1", "ROA_lagged_1", "NPA_TA_lagged_1", "TD_TA_lagged_1", "total_assets_lagged_1_year"),
+           features = c("t1_LR_lagged_1_year", "tot_SB_loans_TA_lagged_1", "ROA_lagged_1", "NPA_TA_lagged_1", "TD_TA_lagged_1", "log_TA_lagged_1", "aa_t1_int", "h_t1_int", "log_TA_ROA", "log_TA_NPA"),
            response = "totSBloans_Delt",
            batch_size = 32,
            num_epochs = num_epochs)
@@ -54,17 +53,19 @@ panel_250_input_fn <- function(data, num_epochs = 1) {
 ##  define the feature columns for our model
 ## says we can do transformations here, but doesn't specify how.  Look at.
 cols_linear_feature <- feature_columns(
-    column_numeric("t1_LR_lagged_1_year"),
     column_numeric("tot_SB_loans_TA_lagged_1"),
     column_numeric("NPA_TA_lagged_1"),
-    column_numeric("TD_TA_lagged_1")
+    column_numeric("log_TA_lagged_1"),
+    column_numeric("TD_TA_lagged_1"),
+    column_numeric("ROA_lagged_1")
     )
 
 cols_dnn_feature <- feature_columns(
-    column_numeric("total_assets_lagged_1_year"),
-    column_numeric("ROA_lagged_1")
-        ## column_numeric("aa_cap_int"),
-        ## column_numeric("his_cap_int")
+    column_numeric("t1_LR_lagged_1_year"),
+    column_numeric("aa_t1_int"),
+    column_numeric("h_t1_int"),
+    column_numeric("log_TA_ROA"),
+    column_numeric("log_TA_NPA")
     )
 
 
@@ -90,19 +91,19 @@ head(cbind(unlist(preds1$predictions), obs$totSBloans_Delt), n = 10)
 
 cor.test(unlist(preds1$predictions), obs$totSBloans_Delt)
 ## data:  unlist(preds1$predictions) and obs$totSBloans_Delt
-## t = 0.93091, df = 99, p-value = 0.3542
+## t = 9.5319, df = 99, p-value = 1.149e-15
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  -0.1041826  0.2834326
+##  0.5739325 0.7815496
 ## sample estimates:
-##        cor 
-## 0.09315342 
+##      cor 
+## 0.691776 
 
 ## root mean squared error
 sq_errors1 <- (true_values1 - predictions1)^2
 avg_error1 <- sum(sq_errors1) / (length(sq_errors1))
 rmse <- sqrt(avg_error1)
-## 1.528965
+## [1] 1.342739
 
 saved_model_dir <- model_dir(model1)
 tensorboard(log_dir = saved_model_dir, launch_browser = TRUE)  ## doesnt work
