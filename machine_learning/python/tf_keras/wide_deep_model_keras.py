@@ -4,8 +4,10 @@ import rpy2.robjects as robjects
 from rpy2.robjects import pandas2ri
 pandas2ri.activate()
 # import requests
-
-import tensorflow
+import numpy as np
+import tensorflow as tf
+from tensorflow import keras
+import scipy as sc
 
 ## translate the following to python-------
 
@@ -27,3 +29,25 @@ df1.head()
 df2 = df1.dropna(how='any')
 
 df2.head()
+
+
+
+
+## create interaction and transformed variables --------
+
+df2['SB_AA_Int'] = df2['tot_SB_loans_TA_lagged_1'] * df2['african_am_ind']
+
+df2['SB_H_Int'] = df2['tot_SB_loans_TA_lagged_1'] * df2['hispanic_ind']
+df2['LN_TA'] = np.log(df2['total_assets_lagged_1_year'])
+
+sum(df2['SB_AA_Int'])
+sum(df2['SB_H_Int'])
+sum(df2['total_assets_lagged_1_year'])
+sum(df2['LN_TA'])
+
+## now orthogonalize TE wrt t1 leverage ratio----
+
+df2.head()
+
+
+## divide into training and testing data total_assets_lagged_1_year
