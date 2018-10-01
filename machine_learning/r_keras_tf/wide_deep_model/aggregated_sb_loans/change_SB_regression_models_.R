@@ -29,8 +29,6 @@ panel$TE_orthogonal <- lm(panel$TETA_lagged_1_year ~ panel$t1_LR_lagged_1_year)$
 
 ### Construct model-------
 
-## FEmodel1 <- plm(totSBloans_Delt ~  t1_LR_lagged_1_year + + I(t1_LR_lagged_1_year * african_am_ind) + I(t1_LR_lagged_1_year * hispanic_ind) + TETA_lagged_1_year + tot_SB_loans_TA_lagged_1 + ROA_lagged_1 + NPA_TA_lagged_1 + I(log(panel$total_assets_lagged_1_year)) + TD_TA_lagged_1 + post_crisis_ind + fin_crisis_ind + de_novo, data = panel, model = "within", effect = "individual")
-
 ## return an input_fn for a given subset of data
 panel_input_fn <- function(data, num_epochs = 1) {
   input_fn(data,
@@ -61,7 +59,6 @@ cols_dnn_feature <- feature_columns(
 
 
 model1 <- dnn_linear_combined_regressor(linear_feature_columns = cols_linear_feature, dnn_feature_columns = cols_dnn_feature, dnn_hidden_units = c(100, 50))
-# model250 <- dnn_linear_combined_regressor(linear_feature_columns = cols_linear_feature, dnn_feature_columns = cols_dnn_feature, dnn_hidden_units = c(100, 50))
 
 ## create train and test set-----
 indices <- sample(1:nrow(panel), size = 0.80 * nrow(panel))
@@ -97,4 +94,4 @@ rmse <- sqrt(avg_error1)
 ## [1] 1.342739
 
 saved_model_dir <- model_dir(model1)
-tensorboard(log_dir = saved_model_dir, launch_browser = TRUE)  ## doesnt work
+tensorboard(log_dir = saved_model_dir, launch_browser = TRUE)  
