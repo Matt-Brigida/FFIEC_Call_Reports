@@ -74,3 +74,26 @@ all_farmland <- do.call(merge, as.list(farmland))
 
 write.csv(all_farmland, "farmland.csv")
 saveRDS(all_farmland, "farmland.rds")
+
+
+
+### revolving: RCON1797
+
+revolving <- new.env()
+
+## firm type 1
+for (i in idrssds){
+    
+    assign("tmpc1", RCCI_query(i, code = "RCON1797"))
+
+    names(tmpc1) <- paste0("ID_", i)
+
+    assign(paste0("ID_", i),
+           tmpc1, envir = revolving)
+
+    }
+
+all_revolving <- do.call(merge, as.list(revolving))
+
+write.csv(all_revolving, "revolving.csv")
+saveRDS(all_revolving, "revolving.rds")
