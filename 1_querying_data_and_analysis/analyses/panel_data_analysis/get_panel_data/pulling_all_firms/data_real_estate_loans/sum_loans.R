@@ -5,9 +5,16 @@ library(quantmod)
 
 ### Aggregate all SB loans into one series ------
 
-small <- readRDS("./amt_CI_less_100_SB_loans.rds")
-medium <- readRDS("./amt_CI_100_250_SB_loans.rds")
-large <- readRDS("./amt_CI_250_1000_SB_loans.rds")
+one <- readRDS("./closed_end_first.rds")
+two <- readRDS("./closed_end_junior.rds")
+three <- readRDS("./farmland.rds")
+four <- readRDS("./multifamily.rds")
+five <- readRDS("./one_four_res.rds")
+six <- readRDS("./other_construction.rds")
+seven <- readRDS("./other_nonf_nonr.rds")
+eight <- readRDS("./owner_occupied_nonf_nonr.rds")
+nine <- readRDS("./revolving.rds")
+
 
 ## from here: https://stackoverflow.com/questions/42628385/sum-list-of-matrices-with-nas
 modifiedSum <- function(x, y) {
@@ -16,9 +23,15 @@ modifiedSum <- function(x, y) {
 
 
 ### create total SB loans xts object-----
-totSB_CI_loans <- modifiedSum(small, medium)
+total_RE_loans <- modifiedSum(one, two)
+total_RE_loans <- modifiedSum(total_RE_loans, three)
+total_RE_loans <- modifiedSum(total_RE_loans, four)
+total_RE_loans <- modifiedSum(total_RE_loans, five)
+total_RE_loans <- modifiedSum(total_RE_loans, six)
+total_RE_loans <- modifiedSum(total_RE_loans, seven)
+total_RE_loans <- modifiedSum(total_RE_loans, eight)
+total_RE_loans <- modifiedSum(total_RE_loans, nine)
 
-totSB_CI_loans <- modifiedSum(totSB_CI_loans, large)
 
 ## lag
 
@@ -28,4 +41,4 @@ totSB_CI_loans <- modifiedSum(totSB_CI_loans, large)
 
 ## totSB_CI_loans_Delt <- totSB_CI_loans / totSB_CI_loans_lagged_1_year - 1
 
-saveRDS(totSB_CI_loans, "totSB_CI_loans.rds")
+saveRDS(total_RE_loans, "total_RE_loans.rds")
