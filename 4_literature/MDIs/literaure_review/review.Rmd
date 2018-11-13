@@ -1,0 +1,23 @@
+---
+title: "Literature Review"
+author: Matt Brigida, Ph.D.
+date: "December 1, 2018"
+header-includes:
+   - \setlength\parindent{24pt}
+abstract: "This reviews the relevant literature on MDIs."
+always_allow_html: yes
+bibliography: references.bib
+output:
+  pdf_document:
+    fig_caption: yes
+    highlight: tango
+    keep_tex: yes
+    number_sections: yes
+---
+
+
+# The Communities that MDIs Serve 
+
+
+
+
