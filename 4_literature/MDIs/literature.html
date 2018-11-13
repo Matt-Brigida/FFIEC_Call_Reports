@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2018-11-12 Mon 19:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MDI Literature</title>
+<meta name="generator" content="Org mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">MDI Literature</h1>
+
+<div id="outline-container-org0da4093" class="outline-2">
+<h2 id="org0da4093"><span class="section-number-2">1</span> MDIs and CDFIs</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org5eb0399" class="outline-3">
+<h3 id="org5eb0399"><span class="section-number-3">1.1</span> Minority Depository Institutions at the Dawn of the 21st Century,&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Federal_Reserve">Federal_Reserve</span>&#xa0;<span class="Working_Paper">Working_Paper</span></span></h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-org1f31c56" class="outline-4">
+<h4 id="org1f31c56"><span class="section-number-4">1.1.1</span> Abstract:</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+Financial globalization and international migration have altered the socioeconomic demographic makeup as well as the financial dynamics in immigrant-receiving countries. An outcome is the emergence and strengthening of a formal financial sector consisting of financialinstitutions that are owned and/or operated by a variety of  ethnic groups. Known as minority depository institutions (MDIs), they are often small community banks associated with an ethnic minority group. <b>This paper examines how MDIs are rooted and localized in different ways with different groups</b>, and are shaped by different regulatory and institutional contexts. <b>Specifically, it finds that MDIs serve co-ethnics first and foremost, and utilize ethnic assets, bonding social capital in particular, to develop their customer base while branching out to other groups by developing bridging social capital and broadening their product lines</b>.
+</p>
+</div>
+</div>
+<div id="outline-container-org21a63c8" class="outline-4">
+<h4 id="org21a63c8"><span class="section-number-4">1.1.2</span> Citation:</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+@techreport{liminority,
+  title={Minority Depository Institutions at the Dawn of the 21st Century},
+  author={Li, Wei and Lo, Lucia and Zhang, Eva},
+  institution={working paper, available at <a href="https://www">https://www</a>. fedpartnership. gov/federal-reserve-resources}
+}
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org697e755" class="outline-3">
+<h3 id="org697e755"><span class="section-number-3">1.2</span> A Capital Infusion Program for Community Development: The Case of  the Community Development Capital Initiative&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Federal_Reserve">Federal_Reserve</span>&#xa0;<span class="Working_Paper">Working_Paper</span></span></h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-orgefcaaa9" class="outline-4">
+<h4 id="orgefcaaa9"><span class="section-number-4">1.2.1</span> Abstract:</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+This study investigates the Community Development Capital Initiative (CDCI) program, the characteristics of  the participants, and their subsequent small business lending behavior. Results show that participating banks are larger, older, and hold relatively less loan loss reserves when compared to a control sample of  non-participating banks. While participating banks experience stronger growth in small business lending in comparison to a control group of non-participating peers, the results do not indicate that the CDCI program led to an increase in small business lending. Overall, <b>participation in the CDCI program did not lead to the desired result: an increase in small business lending by participating banks</b>.
+</p>
+</div>
+</div>
+<div id="outline-container-org173b473" class="outline-4">
+<h4 id="org173b473"><span class="section-number-4">1.2.2</span> Citation:</h4>
+</div>
+<div id="outline-container-orge503860" class="outline-4">
+<h4 id="orge503860"><span class="section-number-4">1.2.3</span> URL: <a href="https://www.fedpartnership.gov/-/media/federal-reserve-resources/research/a-capital-infusion-program-for-community-development-the-case-of-the-community-development-capital-initiative-robinson.pdf">https://www.fedpartnership.gov/-/media/federal-reserve-resources/research/a-capital-infusion-program-for-community-development-the-case-of-the-community-development-capital-initiative-robinson.pdf</a></h4>
+</div>
+</div>
+<div id="outline-container-orgade682a" class="outline-3">
+<h3 id="orgade682a"><span class="section-number-3">1.3</span> Annual Report on Preserving Minority Depository Institutions&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Federal_Reserve">Federal_Reserve</span>&#xa0;<span class="Working_Paper">Working_Paper</span></span></h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-org4546d52" class="outline-4">
+<h4 id="org4546d52"><span class="section-number-4">1.3.1</span> Abstract:</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+The Board submits this report pursuant to section 367 of  the Dodd-Frank Act. Section 367 of  theDodd-Frank Act requires the Board to submit anannual report to the Congress detailing the actionstaken to fulfill the requirements outlined in sec-tion 308 of  the Financial Institutions Reform,Recovery, and Enforcement Act (FIRREA) of  1989,as amended by the Dodd-Frank Act in 2010. Inaddition to the annual reporting requirement, FIR-REA section 308 requires the Federal ReserveSystem (System) to devote efforts toward preservingminority ownership of  minority depository institu-tions (MDIs).The System’s Partnership for Progress (PFP) pro-gram was established in 2008 because the System rec-ognized the importance of  MDIs and wanted toindependently take steps to preserve and promotethese institutions. The System supports an inclusivefinancial system and understands the challengesinherent in providing access to credit and otherfinancial services in traditionally underserved areas.As such, the System remains committed to identify-ing additional opportunities to support the preserva-tion of  these organizations.At year-end 2017, the System supervised 16 MDIs,which collectively represented approximately 2 per-cent of  the 801 community and regional banks in theSystem’s community and regional banking organiza-tions portfolio. To support these institutions and toaccomplish minority depository-related FIRREAgoals, the System continues to dedicate resources toengage in outreach and technical assistance activities.Throughout 2017, staff  from the Board as well asPFP-dedicated staff  from each of  the 12 FederalReserve Banks (FRBs) engaged in activities to support MDIs. Highlights of  those activities included:
+</p>
+
+<p>
+• Organizing the biennial Interagency MinorityDepository Institutions and Community Development Financial Institutions (CDFI) Bank Conference that took place April 5-6, 2017, in Los Angeles, California. The meeting was hosted at the Los Angeles branch of  the Federal Reserve Bank ofSan Francisco, and all planning was done in con-junction with staff  from the Office of  the Comp-troller of  the Currency (OCC) and Federal DepositInsurance Corporation (FDIC). The theme of  theconference was “Expanding the Impact: IncreasingCapacity &amp; Influence,” and attendance includedover 175 people, mostly consisting of  MDI bankleadership;
+</p>
+
+<p>
+• Organizing a post-conference workshop with theCDFI Fund to educate non-CDFI MDIs aboutthe benefits and application process of  CDFIcertification;
+</p>
+
+<p>
+• Strengthening the partnership between the Board’sDivision of  Consumer and Community Affairs(C&amp;CA) and Division of  Supervision and Regula-tion (S&amp;R) divisions to share management of  thePFP program and diversify the resources and pro-graming available to MDIs. The System alsoworked to encourage partnership between exam-iner and community development staff  at the Fed-eral Reserve Banks (FRBs) to bring additionalresources to MDIs around the country;
+</p>
+
+<p>
+• Attending the National Bankers Association(NBA) annual meeting in Washington, D.C., andhosting an exhibit table;
+</p>
+
+<p>
+• Providing technical assistance to MDIs on a widevariety of  topics, including improving regulatoryratings, navigating the regulatory applications pro-cess, understanding changes to the CommunityReinvestment Act, and refining capital-planningpractices;
+</p>
+
+<p>
+• Co-sponsoring the “Forum for Minority Bankers,”which was a partnership between the Board ofGovernors and the Federal Reserve Banks of  Kan-sas City (lead sponsor), Atlanta, Richmond, Phila-delphia, and St Louis. The forum is a national pro-gram that provides minority bank leaders withindustry and leadership development knowledgethat will enhance their careers and networks. It washeld in September 2017 in Kansas City, Missouri;acilitating in-person meetings between FederalReserve and MDI leaders to better understand thechallenges and opportunities facing FederalReserve-regulated MDIs;
+</p>
+
+<p>
+• Presenting Federal Reserve-commissioned researchon MDIs at the annual interagency conference inLos Angeles and commissioning further researchfor 2018 to broaden the body of  research materialavailable to MDIs; andmaintaining a public website, which provides a fullmenu of  banking resources—including regulatoryguidance—relevant to MDIs.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb145364" class="outline-4">
+<h4 id="orgb145364"><span class="section-number-4">1.3.2</span> Citation:</h4>
+</div>
+<div id="outline-container-org356d923" class="outline-4">
+<h4 id="org356d923"><span class="section-number-4">1.3.3</span> URL: <a href="https://www.federalreserve.gov/publications/files/preserving-minority-depository-institutions-2018.pdf">https://www.federalreserve.gov/publications/files/preserving-minority-depository-institutions-2018.pdf</a></h4>
+</div>
+</div>
+<div id="outline-container-orgeb8cc0b" class="outline-3">
+<h3 id="orgeb8cc0b"><span class="section-number-3">1.4</span> Minority Depository Institutions and Inclusive Community Development in California’s Post-Crisis Urban Context</h3>
+<div class="outline-text-3" id="text-1-4">
+</div>
+<div id="outline-container-orgccf5dbf" class="outline-4">
+<h4 id="orgccf5dbf"><span class="section-number-4">1.4.1</span> Abstract:</h4>
+</div>
+<div id="outline-container-org85de00d" class="outline-4">
+<h4 id="org85de00d"><span class="section-number-4">1.4.2</span> Citation:</h4>
+</div>
+<div id="outline-container-org1d06659" class="outline-4">
+<h4 id="org1d06659"><span class="section-number-4">1.4.3</span> Author: Melody Chiong</h4>
+</div>
+<div id="outline-container-orga138bd4" class="outline-4">
+<h4 id="orga138bd4"><span class="section-number-4">1.4.4</span> URL:</h4>
+</div>
+</div>
+<div id="outline-container-org2c05f77" class="outline-3">
+<h3 id="org2c05f77"><span class="section-number-3">1.5</span> The Economic Impact and Societal Gain from United Bank of Philadelphia Financing of Philadelphia Technician Training Institute</h3>
+<div class="outline-text-3" id="text-1-5">
+</div>
+<div id="outline-container-org552f9e9" class="outline-4">
+<h4 id="org552f9e9"><span class="section-number-4">1.5.1</span> Abstract:</h4>
+</div>
+<div id="outline-container-orgefe6abc" class="outline-4">
+<h4 id="orgefe6abc"><span class="section-number-4">1.5.2</span> Citation:</h4>
+</div>
+<div id="outline-container-orgcd9e25a" class="outline-4">
+<h4 id="orgcd9e25a"><span class="section-number-4">1.5.3</span> Author: Russ Kashian</h4>
+</div>
+<div id="outline-container-org5ae0462" class="outline-4">
+<h4 id="org5ae0462"><span class="section-number-4">1.5.4</span> URL:</h4>
+</div>
+</div>
+<div id="outline-container-org3dddbdc" class="outline-3">
+<h3 id="org3dddbdc"><span class="section-number-3">1.6</span> Mission-Oriented Bank Closings and Small Business Credit Availability in Low-Income and Minority Neighborhoods</h3>
+<div class="outline-text-3" id="text-1-6">
+</div>
+<div id="outline-container-orgc063fba" class="outline-4">
+<h4 id="orgc063fba"><span class="section-number-4">1.6.1</span> Abstract:</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<p>
+We conduct an investigation examining the relationship between bank closings and change in credit availability to local areas. The results of our research show significant frictions in credit supply to small businesses as a result of <b>banks closings, including Minority Depository Institutions and Community Development Financial Institutions (mission-oriented banks), which appear potent enough to cause cumulative declines in aggregate small business lending in certain neighborhoods. We also find evidence that such bank lending supply effects have repercussions on the growth of  the number of small businesses. We find this to be true particularly for LMI and minority neighborhoods</b>. In part some of  the changes in credit in local areas stem from disruptions in lending relationships or changes in bank branch presence. Some of the effects of bank credit supply shocks are mitigated by policy interventions, such as whether FDIC bank-closing interventions involved loss sharing agreements, and the extent of banking concentration or competition in the local area.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org339e47e" class="outline-4">
+<h4 id="org339e47e"><span class="section-number-4">1.6.2</span> Citation:</h4>
+</div>
+<div id="outline-container-org5711345" class="outline-4">
+<h4 id="org5711345"><span class="section-number-4">1.6.3</span> Author: Maude Toussaint-Comeau and Robin Newberger</h4>
+</div>
+<div id="outline-container-org64d1f0f" class="outline-4">
+<h4 id="org64d1f0f"><span class="section-number-4">1.6.4</span> URL:</h4>
+</div>
+</div>
+<div id="outline-container-org9a56753" class="outline-3">
+<h3 id="org9a56753"><span class="section-number-3">1.7</span> Minority-owned banks and their primary local market areas</h3>
+<div class="outline-text-3" id="text-1-7">
+</div>
+<div id="outline-container-org99bc200" class="outline-4">
+<h4 id="org99bc200"><span class="section-number-4">1.7.1</span> Abstract:</h4>
+<div class="outline-text-4" id="text-1-7-1">
+<p>
+In this article, <b>we analyze the experience and performance of  MDIs in their primary local service areas in recent periods, including before, during, and after the 2008 financial crisis</b>. We provide a review of the sector, highlighting key policies and initiatives pertaining to and affecting these institutions, and provide a brief review of previous research. We document trends in the sector, including: 1) <b>the characteristics of the locations where MDIs tend to do business</b>; 2) <b>the changing landscape of  MDIs in terms of openings, closings, and mergers by ethnic ownership</b>; and 3) <b>the performance of MDIs as measured by selected financial ratios, including loan quality, operating income, and funding sources</b>. <b>We present these trends over time, comparing MDIs with nonminority-owned (non-MDI) community banks</b>.
+</p>
+
+<p>
+The results of our analysis <b>confirm previous research findings that suggest that MDIs are more likely to focus on communities of  diverse ethnic and immigrant backgrounds</b>, and <b>within similar markets MDIs may be lending to different customers that have relatively greater income and credit constraints than those served by non-MDIs</b> (for example, Kashian et al, 2014). In addition, <b>we analyze the implications of changes to MDI banking structure (such as institutional closures) in places in which these banks have traditionally operated. We find mixed prospects for access to financial services. On the one hand,the MDI sector as a whole appears to have continued to maintain a presence in some markets to a greater extent than the aggressive closure rates of  these institutions would suggest. That is, even during an active period of mergers, acquisitions, and failures within the sector, new MDIs were being formed; and some MDIs were able to expand their deposits and geographical footprint. However, there is reason for concern in terms of  the overall MDI sector’s prospects for expanding its reach to customers in low-income areas, subsequent to the financial crisis. In some instances where MDIs have closed, they are being replaced by non-MDIs</b>.
+</p>
+</div>
+</div>
+<div id="outline-container-orge15cff4" class="outline-4">
+<h4 id="orge15cff4"><span class="section-number-4">1.7.2</span> Citation:</h4>
+</div>
+<div id="outline-container-orgddc8877" class="outline-4">
+<h4 id="orgddc8877"><span class="section-number-4">1.7.3</span> Author: Maude Toussaint-Comeau and Robin Newberger</h4>
+</div>
+<div id="outline-container-org95b1eb8" class="outline-4">
+<h4 id="org95b1eb8"><span class="section-number-4">1.7.4</span> URL:</h4>
+</div>
+</div>
+<div id="outline-container-org27c185e" class="outline-3">
+<h3 id="org27c185e"><span class="section-number-3">1.8</span> Low-and Moderate-Income Surveys&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Federal_Reserve">Federal_Reserve</span>&#xa0;<span class="Survey">Survey</span></span></h3>
+<div class="outline-text-3" id="text-1-8">
+</div>
+<div id="outline-container-orgba096b1" class="outline-4">
+<h4 id="orgba096b1"><span class="section-number-4">1.8.1</span> Description:</h4>
+<div class="outline-text-4" id="text-1-8-1">
+<p>
+SeveralFRBs, including the Federal Reserve Bank ofKansas City, which retains a large number ofstate-member MDIs, publish quarterly results fromsurveys designed to measure the economic condi-tions of  LMI populations and the condition oforganizations that serve them.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcbcabe3" class="outline-3">
+<h3 id="orgcbcabe3"><span class="section-number-3">1.9</span> Research on Ethnic Minority Neighborhoods&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Federal_Reserve">Federal_Reserve</span>&#xa0;<span class="Survey">Survey</span></span></h3>
+<div class="outline-text-3" id="text-1-9">
+</div>
+<div id="outline-container-org1a01f8c" class="outline-4">
+<h4 id="org1a01f8c"><span class="section-number-4">1.9.1</span> Description:</h4>
+<div class="outline-text-4" id="text-1-9-1">
+<p>
+Fed-eral Reserve researchers also are interested inunderstanding the health, challenges, and opportu-nities of  ethnic minorities across the United States.In 2017, the Federal Reserve Bank of  Chicagoreleased a study entitled “Competitiveness of  Eth-nic Minority Neighborhoods in MetropolitanAreas in the Seventh District.” This article exam-ined employment change in ethnic minority neigh-borhoods and the extent to which these places areintegrated in their region’s economy, and exploredthe different factors associated with this integration.
+</p>
+</div>
+</div>
+<div id="outline-container-org6a96bf0" class="outline-4">
+<h4 id="org6a96bf0"><span class="section-number-4">1.9.2</span> URL:</h4>
+</div>
+</div>
+<div id="outline-container-org8ff91ab" class="outline-3">
+<h3 id="org8ff91ab"><span class="section-number-3">1.10</span> 2017 Small Business Credit Survey</h3>
+<div class="outline-text-3" id="text-1-10">
+</div>
+<div id="outline-container-org414e590" class="outline-4">
+<h4 id="org414e590"><span class="section-number-4">1.10.1</span> Description:</h4>
+<div class="outline-text-4" id="text-1-10-1">
+<p>
+Timely information on small business financing needs, decisions and outcomes is critical to understanding and fostering the sector’s health and growth. This is especially important for MDI banks, many of whom specialize in small business lending to minority-owned businesses. To provide these insights to policymakers, researchers and service providers, the Small Business Credit Survey is a national collaboration among the 12 Federal Reserve Banks of  the System. In 2017, the Federal Reserve Bank of  New York conducted a survey ofPuerto Rico, home to Banco Popular, the largestFed-regulated MDI. The goals of  the survey wereto fill data gaps and to provide stakeholders,including policymakers, relevant and timely infor-mation on this important economic sector. Thissurvey was completed in May 2017, prior to hurri-canes Irma and Maria, which caused extensivedamage across Puerto Rico. Therefore, the resultsof  this year’s survey do not necessarily accuratelyreflect the current state of  the sector post-storms.Where these and last year’s results may prove use-ful is in establishing benchmarks, both point-in-time and trends, as the island and the small busi-ness sector recover. The Federal Reserve Bank ofNew York will continue to monitor this and othereconomic developments in Puerto Rico, recogniz-ing that the top priority remains meeting theimmediate humanitarian needs of  the people ofPuerto Rico
+</p>
+</div>
+</div>
+
+<div id="outline-container-org563385d" class="outline-4">
+<h4 id="org563385d"><span class="section-number-4">1.10.2</span> URL:</h4>
+</div>
+</div>
+
+<div id="outline-container-orge856f60" class="outline-3">
+<h3 id="orge856f60"><span class="section-number-3">1.11</span> Capital-raising among minority-owned banks before and after the financial crisis</h3>
+<div class="outline-text-3" id="text-1-11">
+</div>
+<div id="outline-container-org749334a" class="outline-4">
+<h4 id="org749334a"><span class="section-number-4">1.11.1</span> Description:</h4>
+</div>
+<div id="outline-container-org6d76c8b" class="outline-4">
+<h4 id="org6d76c8b"><span class="section-number-4">1.11.2</span> Author: Robin Newberger</h4>
+</div>
+</div>
+<div id="outline-container-org288089d" class="outline-3">
+<h3 id="org288089d"><span class="section-number-3">1.12</span> Some General Useful Notes and their Source:</h3>
+<div class="outline-text-3" id="text-1-12">
+</div>
+<div id="outline-container-org33b0ae4" class="outline-4">
+<h4 id="org33b0ae4"><span class="section-number-4">1.12.1</span> Well-Capitalized Minimums:  <a href="https://www.fedpartnership.gov/bank-life-cycle/topic-index/capital-requirements">https://www.fedpartnership.gov/bank-life-cycle/topic-index/capital-requirements</a></h4>
+<div class="outline-text-4" id="text-1-12-1">
+<p>
+In order to operate without regulatory restrictions, an institution must be well-capitalized. To be well-capitalized, a bank must have:
+</p>
+
+<p>
+A tier 1 leverage ratio (tier 1 capital/total asset) of 5 percent
+A tier 1 risk-based ratio (tier 1 capital/risk-weighted assets) of 6 percent
+A total risk-based capital ratio (tier 1 + tier 2 capital/risk-weighted asset) of 10 percent
+</p>
+
+<p>
+<i>Personal Note</i>: This means that risk-weighted assets should be less than total assets.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org10f1ca7" class="outline-3">
+<h3 id="org10f1ca7"><span class="section-number-3">1.13</span> The Changing Face of Communities Served by Minority Depository Institutions: 2001-2015</h3>
+<div class="outline-text-3" id="text-1-13">
+</div>
+<div id="outline-container-org37907e5" class="outline-4">
+<h4 id="org37907e5"><span class="section-number-4">1.13.1</span> Abstract:</h4>
+<div class="outline-text-4" id="text-1-13-1">
+<p>
+This research analyzes factors related to the increase ofthe numbers ofMinority Depository Institutions (MDIs) from 2000 to 2015. There were 164and 174 MDIs in 2000 and 2015, respectively, according to a study by the Federal Depository Insurance Corporation. After separating thesebanks into Black-owned, Hispanic-owned, Asian American-owned and Native American-owned, this research found that the 10 bank increasewas not equally distributed across the MDI categories. The number of Black-owned banks decreased, but the number of Asian American-owned banks increased. The objective of this study is to expand the literature by disaggregating the growth and change in the industry by the subset categories of MDIs.  Disaggregationmakes it is possible to identify which typesof bankswitnessed changes in theircomposition.  It is also possible to identify the mechanism (merger, failure, and take-over) through which these changes occurred.
+</p>
+</div>
+</div>
+<div id="outline-container-org594918b" class="outline-4">
+<h4 id="org594918b"><span class="section-number-4">1.13.2</span> Citation:</h4>
+<div class="outline-text-4" id="text-1-13-2">
+<p>
+@techreport{kashianchanging,
+  title={The Changing Face of Communities Served by Minority Depository Institutions: 2001-2015},
+  author={Kashian, Russell D and Contreras, Fernanda and Perez-Valdez, Claudia},
+  institution={working paper draft, posted on Partnership for Progress website and available at <a href="https://www">https://www</a>. communitybanking. org/\~{}/media/files/communitybanking/2016/session1\<sub>paper4</sub>\<sub>kashian</sub>. pdf}
+}
+</p>
+</div>
+</div>
+<div id="outline-container-org5129e73" class="outline-4">
+<h4 id="org5129e73"><span class="section-number-4">1.13.3</span> Useful notes:</h4>
+<div class="outline-text-4" id="text-1-13-3">
+</div>
+<ol class="org-ol">
+<li><a id="orgbe66a9f"></a>See table 3, BlkBs tend to serve Blk communities and poorer communities.<br /></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orge966bd1" class="outline-3">
+<h3 id="orge966bd1"><span class="section-number-3">1.14</span> Ownership changes and lending at minority banks&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Journal_of_Banking_and_Finance">Journal_of_Banking_and_Finance</span>&#xa0;<span class="1996">1996</span></span></h3>
+<div class="outline-text-3" id="text-1-14">
+</div>
+<div id="outline-container-org7c7d479" class="outline-4">
+<h4 id="org7c7d479"><span class="section-number-4">1.14.1</span> Abstract:</h4>
+<div class="outline-text-4" id="text-1-14-1">
+<p>
+This paper examines the lending patterns of 34 commercial banks during alternate periods of minority and non-minority ownership in the 1980s and early 1990s. The principal finding, obtained using a partial adjustment analysis of bank lending and bank capital, is that <b>loan growth is slower when banks are owned by minorities compared to when they are owned by non-minorities</b>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb70d13f" class="outline-4">
+<h4 id="orgb70d13f"><span class="section-number-4">1.14.2</span> Citation:</h4>
+<div class="outline-text-4" id="text-1-14-2">
+<p>
+@article{dahl1996ownership,
+  title={Ownership changes and lending at minority banks: A note},
+  author={Dahl, Drew},
+  journal={Journal of Banking \&amp; Finance},
+  volume={20},
+  number={7},
+  pages={1289&#x2013;1301},
+  year={1996},
+  publisher={Elsevier}
+}
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org3bfa865" class="outline-3">
+<h3 id="org3bfa865"><span class="section-number-3">1.15</span> Whom do black-owned banks serve&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Federal_Reserve">Federal_Reserve</span></span></h3>
+<div class="outline-text-3" id="text-1-15">
+</div>
+<div id="outline-container-org288697a" class="outline-4">
+<h4 id="org288697a"><span class="section-number-4">1.15.1</span> Notes:</h4>
+<div class="outline-text-4" id="text-1-15-1">
+<p>
+Poverty in Areas Served by Black-Owned Banks Deep poverty, for individuals in families reporting income  under  50  percent  of  the  federal  poverty  level,  affected  less  than  10  percent  of  the  nation  as  a  whole  in  2000  and  2011.  But  <b>deep-poverty  figures  were  substantially  larger  for  communities  served  by  BOBs  and  almost  twice  as  large  where  those banks hold at least 20 percent of a community’s deposits</b>. For  poverty  as  officially  measured,  the  rate  rose from 14.5 percent in 2000 to 17.3 percent in 2011.  The  pattern  for  individuals  in  families  below double the official poverty line resembles that for the other poverty cut-offs. It is notable that, where BOBs hold at least 20 percent of a community’s deposits, more than half of the residents live below the double-poverty cut-off. This finding suggests that BOBs tend to serve low-income customers with very limited asset holdings. (See “Poverty Rates for U.S. Areas Served by Black-Owned Banks.”) 
+</p>
+</div>
+</div>
+<div id="outline-container-org2e0f4de" class="outline-4">
+<h4 id="org2e0f4de"><span class="section-number-4">1.15.2</span> Citation:</h4>
+<div class="outline-text-4" id="text-1-15-2">
+<p>
+@article{kashian2014whom,
+  title={Whom do black-owned banks serve},
+  author={Kashian, R and McGregory, Richard and McCrank, Derrek Grunfelder},
+  journal={Communities banking. Boston Federal Reserve Bank.(Summer)},
+  pages={29&#x2013;31},
+  year={2014}
+}
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2018-11-12 Mon 19:49</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

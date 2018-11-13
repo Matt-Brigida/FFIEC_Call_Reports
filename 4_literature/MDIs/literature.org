@@ -1,0 +1,130 @@
+#+TITLE: MDI Literature
+#+OPTIONS: toc:nil
+
+** MDIs and CDFIs
+*** Minority Depository Institutions at the Dawn of the 21st Century, :Federal_Reserve:Working_Paper:
+**** Abstract: 
+     Financial globalization and international migration have altered the socioeconomic demographic makeup as well as the financial dynamics in immigrant-receiving countries. An outcome is the emergence and strengthening of a formal financial sector consisting of financialinstitutions that are owned and/or operated by a variety of  ethnic groups. Known as minority depository institutions (MDIs), they are often small community banks associated with an ethnic minority group. *This paper examines how MDIs are rooted and localized in different ways with different groups*, and are shaped by different regulatory and institutional contexts. *Specifically, it finds that MDIs serve co-ethnics first and foremost, and utilize ethnic assets, bonding social capital in particular, to develop their customer base while branching out to other groups by developing bridging social capital and broadening their product lines*.
+**** Citation:
+@techreport{liminority,
+  title={Minority Depository Institutions at the Dawn of the 21st Century},
+  author={Li, Wei and Lo, Lucia and Zhang, Eva},
+  institution={working paper, available at https://www. fedpartnership. gov/federal-reserve-resources}
+}
+*** A Capital Infusion Program for Community Development: The Case of  the Community Development Capital Initiative :Federal_Reserve:Working_Paper:
+**** Abstract:
+This study investigates the Community Development Capital Initiative (CDCI) program, the characteristics of  the participants, and their subsequent small business lending behavior. Results show that participating banks are larger, older, and hold relatively less loan loss reserves when compared to a control sample of  non-participating banks. While participating banks experience stronger growth in small business lending in comparison to a control group of non-participating peers, the results do not indicate that the CDCI program led to an increase in small business lending. Overall, *participation in the CDCI program did not lead to the desired result: an increase in small business lending by participating banks*.
+**** Citation:
+**** URL: https://www.fedpartnership.gov/-/media/federal-reserve-resources/research/a-capital-infusion-program-for-community-development-the-case-of-the-community-development-capital-initiative-robinson.pdf
+*** Annual Report on Preserving Minority Depository Institutions :Federal_Reserve:Working_Paper:
+**** Abstract:
+     
+     The Board submits this report pursuant to section 367 of  the Dodd-Frank Act. Section 367 of  theDodd-Frank Act requires the Board to submit anannual report to the Congress detailing the actionstaken to fulfill the requirements outlined in sec-tion 308 of  the Financial Institutions Reform,Recovery, and Enforcement Act (FIRREA) of  1989,as amended by the Dodd-Frank Act in 2010. Inaddition to the annual reporting requirement, FIR-REA section 308 requires the Federal ReserveSystem (System) to devote efforts toward preservingminority ownership of  minority depository institu-tions (MDIs).The System’s Partnership for Progress (PFP) pro-gram was established in 2008 because the System rec-ognized the importance of  MDIs and wanted toindependently take steps to preserve and promotethese institutions. The System supports an inclusivefinancial system and understands the challengesinherent in providing access to credit and otherfinancial services in traditionally underserved areas.As such, the System remains committed to identify-ing additional opportunities to support the preserva-tion of  these organizations.At year-end 2017, the System supervised 16 MDIs,which collectively represented approximately 2 per-cent of  the 801 community and regional banks in theSystem’s community and regional banking organiza-tions portfolio. To support these institutions and toaccomplish minority depository-related FIRREAgoals, the System continues to dedicate resources toengage in outreach and technical assistance activities.Throughout 2017, staff  from the Board as well asPFP-dedicated staff  from each of  the 12 FederalReserve Banks (FRBs) engaged in activities to support MDIs. Highlights of  those activities included:
+
+• Organizing the biennial Interagency MinorityDepository Institutions and Community Development Financial Institutions (CDFI) Bank Conference that took place April 5-6, 2017, in Los Angeles, California. The meeting was hosted at the Los Angeles branch of  the Federal Reserve Bank ofSan Francisco, and all planning was done in con-junction with staff  from the Office of  the Comp-troller of  the Currency (OCC) and Federal DepositInsurance Corporation (FDIC). The theme of  theconference was “Expanding the Impact: IncreasingCapacity & Influence,” and attendance includedover 175 people, mostly consisting of  MDI bankleadership;
+
+• Organizing a post-conference workshop with theCDFI Fund to educate non-CDFI MDIs aboutthe benefits and application process of  CDFIcertification;
+
+• Strengthening the partnership between the Board’sDivision of  Consumer and Community Affairs(C&CA) and Division of  Supervision and Regula-tion (S&R) divisions to share management of  thePFP program and diversify the resources and pro-graming available to MDIs. The System alsoworked to encourage partnership between exam-iner and community development staff  at the Fed-eral Reserve Banks (FRBs) to bring additionalresources to MDIs around the country;
+
+• Attending the National Bankers Association(NBA) annual meeting in Washington, D.C., andhosting an exhibit table;
+
+• Providing technical assistance to MDIs on a widevariety of  topics, including improving regulatoryratings, navigating the regulatory applications pro-cess, understanding changes to the CommunityReinvestment Act, and refining capital-planningpractices;
+
+• Co-sponsoring the “Forum for Minority Bankers,”which was a partnership between the Board ofGovernors and the Federal Reserve Banks of  Kan-sas City (lead sponsor), Atlanta, Richmond, Phila-delphia, and St Louis. The forum is a national pro-gram that provides minority bank leaders withindustry and leadership development knowledgethat will enhance their careers and networks. It washeld in September 2017 in Kansas City, Missouri;acilitating in-person meetings between FederalReserve and MDI leaders to better understand thechallenges and opportunities facing FederalReserve-regulated MDIs;
+
+• Presenting Federal Reserve-commissioned researchon MDIs at the annual interagency conference inLos Angeles and commissioning further researchfor 2018 to broaden the body of  research materialavailable to MDIs; andmaintaining a public website, which provides a fullmenu of  banking resources—including regulatoryguidance—relevant to MDIs.
+
+**** Citation:
+**** URL: https://www.federalreserve.gov/publications/files/preserving-minority-depository-institutions-2018.pdf
+*** Minority Depository Institutions and Inclusive Community Development in California’s Post-Crisis Urban Context
+**** Abstract:
+**** Citation:
+**** Author: Melody Chiong
+**** URL:
+*** The Economic Impact and Societal Gain from United Bank of Philadelphia Financing of Philadelphia Technician Training Institute
+**** Abstract:
+**** Citation:
+**** Author: Russ Kashian
+**** URL:
+*** Mission-Oriented Bank Closings and Small Business Credit Availability in Low-Income and Minority Neighborhoods
+**** Abstract:
+     
+     We conduct an investigation examining the relationship between bank closings and change in credit availability to local areas. The results of our research show significant frictions in credit supply to small businesses as a result of *banks closings, including Minority Depository Institutions and Community Development Financial Institutions (mission-oriented banks), which appear potent enough to cause cumulative declines in aggregate small business lending in certain neighborhoods. We also find evidence that such bank lending supply effects have repercussions on the growth of  the number of small businesses. We find this to be true particularly for LMI and minority neighborhoods*. In part some of  the changes in credit in local areas stem from disruptions in lending relationships or changes in bank branch presence. Some of the effects of bank credit supply shocks are mitigated by policy interventions, such as whether FDIC bank-closing interventions involved loss sharing agreements, and the extent of banking concentration or competition in the local area.
+
+**** Citation:
+**** Author: Maude Toussaint-Comeau and Robin Newberger
+**** URL:
+*** Minority-owned banks and their primary local market areas
+**** Abstract:
+     In this article, *we analyze the experience and performance of  MDIs in their primary local service areas in recent periods, including before, during, and after the 2008 financial crisis*. We provide a review of the sector, highlighting key policies and initiatives pertaining to and affecting these institutions, and provide a brief review of previous research. We document trends in the sector, including: 1) *the characteristics of the locations where MDIs tend to do business*; 2) *the changing landscape of  MDIs in terms of openings, closings, and mergers by ethnic ownership*; and 3) *the performance of MDIs as measured by selected financial ratios, including loan quality, operating income, and funding sources*. *We present these trends over time, comparing MDIs with nonminority-owned (non-MDI) community banks*.
+
+The results of our analysis *confirm previous research findings that suggest that MDIs are more likely to focus on communities of  diverse ethnic and immigrant backgrounds*, and *within similar markets MDIs may be lending to different customers that have relatively greater income and credit constraints than those served by non-MDIs* (for example, Kashian et al, 2014). In addition, *we analyze the implications of changes to MDI banking structure (such as institutional closures) in places in which these banks have traditionally operated. We find mixed prospects for access to financial services. On the one hand,the MDI sector as a whole appears to have continued to maintain a presence in some markets to a greater extent than the aggressive closure rates of  these institutions would suggest. That is, even during an active period of mergers, acquisitions, and failures within the sector, new MDIs were being formed; and some MDIs were able to expand their deposits and geographical footprint. However, there is reason for concern in terms of  the overall MDI sector’s prospects for expanding its reach to customers in low-income areas, subsequent to the financial crisis. In some instances where MDIs have closed, they are being replaced by non-MDIs*.
+**** Citation:
+**** Author: Maude Toussaint-Comeau and Robin Newberger
+**** URL:
+*** Low-and Moderate-Income Surveys                  :Federal_Reserve:Survey:
+**** Description: 
+SeveralFRBs, including the Federal Reserve Bank ofKansas City, which retains a large number ofstate-member MDIs, publish quarterly results fromsurveys designed to measure the economic condi-tions of  LMI populations and the condition oforganizations that serve them.
+*** Research on Ethnic Minority Neighborhoods        :Federal_Reserve:Survey:
+**** Description: 
+
+Fed-eral Reserve researchers also are interested inunderstanding the health, challenges, and opportu-nities of  ethnic minorities across the United States.In 2017, the Federal Reserve Bank of  Chicagoreleased a study entitled “Competitiveness of  Eth-nic Minority Neighborhoods in MetropolitanAreas in the Seventh District.” This article exam-ined employment change in ethnic minority neigh-borhoods and the extent to which these places areintegrated in their region’s economy, and exploredthe different factors associated with this integration.
+**** URL: 
+*** 2017 Small Business Credit Survey
+**** Description: 
+
+Timely information on small business financing needs, decisions and outcomes is critical to understanding and fostering the sector’s health and growth. This is especially important for MDI banks, many of whom specialize in small business lending to minority-owned businesses. To provide these insights to policymakers, researchers and service providers, the Small Business Credit Survey is a national collaboration among the 12 Federal Reserve Banks of  the System. In 2017, the Federal Reserve Bank of  New York conducted a survey ofPuerto Rico, home to Banco Popular, the largestFed-regulated MDI. The goals of  the survey wereto fill data gaps and to provide stakeholders,including policymakers, relevant and timely infor-mation on this important economic sector. Thissurvey was completed in May 2017, prior to hurri-canes Irma and Maria, which caused extensivedamage across Puerto Rico. Therefore, the resultsof  this year’s survey do not necessarily accuratelyreflect the current state of  the sector post-storms.Where these and last year’s results may prove use-ful is in establishing benchmarks, both point-in-time and trends, as the island and the small busi-ness sector recover. The Federal Reserve Bank ofNew York will continue to monitor this and othereconomic developments in Puerto Rico, recogniz-ing that the top priority remains meeting theimmediate humanitarian needs of  the people ofPuerto Rico
+
+**** URL: 
+
+*** Capital-raising among minority-owned banks before and after the financial crisis
+**** Description:
+**** Author: Robin Newberger
+*** Some General Useful Notes and their Source:
+**** Well-Capitalized Minimums:  https://www.fedpartnership.gov/bank-life-cycle/topic-index/capital-requirements
+
+In order to operate without regulatory restrictions, an institution must be well-capitalized. To be well-capitalized, a bank must have:
+
+    A tier 1 leverage ratio (tier 1 capital/total asset) of 5 percent
+    A tier 1 risk-based ratio (tier 1 capital/risk-weighted assets) of 6 percent
+    A total risk-based capital ratio (tier 1 + tier 2 capital/risk-weighted asset) of 10 percent
+
+    /Personal Note/: This means that risk-weighted assets should be less than total assets.
+*** The Changing Face of Communities Served by Minority Depository Institutions: 2001-2015
+**** Abstract:
+This research analyzes factors related to the increase ofthe numbers ofMinority Depository Institutions (MDIs) from 2000 to 2015. There were 164and 174 MDIs in 2000 and 2015, respectively, according to a study by the Federal Depository Insurance Corporation. After separating thesebanks into Black-owned, Hispanic-owned, Asian American-owned and Native American-owned, this research found that the 10 bank increasewas not equally distributed across the MDI categories. The number of Black-owned banks decreased, but the number of Asian American-owned banks increased. The objective of this study is to expand the literature by disaggregating the growth and change in the industry by the subset categories of MDIs.  Disaggregationmakes it is possible to identify which typesof bankswitnessed changes in theircomposition.  It is also possible to identify the mechanism (merger, failure, and take-over) through which these changes occurred.
+**** Citation:
+@techreport{kashianchanging,
+  title={The Changing Face of Communities Served by Minority Depository Institutions: 2001-2015},
+  author={Kashian, Russell D and Contreras, Fernanda and Perez-Valdez, Claudia},
+  institution={working paper draft, posted on Partnership for Progress website and available at https://www. communitybanking. org/\~{}/media/files/communitybanking/2016/session1\_paper4\_kashian. pdf}
+}
+**** Useful notes: 
+***** See table 3, BlkBs tend to serve Blk communities and poorer communities.  
+*** Ownership changes and lending at minority banks :Journal_of_Banking_and_Finance:1996:
+**** Abstract:    
+This paper examines the lending patterns of 34 commercial banks during alternate periods of minority and non-minority ownership in the 1980s and early 1990s. The principal finding, obtained using a partial adjustment analysis of bank lending and bank capital, is that *loan growth is slower when banks are owned by minorities compared to when they are owned by non-minorities*.
+**** Citation:
+@article{dahl1996ownership,
+  title={Ownership changes and lending at minority banks: A note},
+  author={Dahl, Drew},
+  journal={Journal of Banking \& Finance},
+  volume={20},
+  number={7},
+  pages={1289--1301},
+  year={1996},
+  publisher={Elsevier}
+}
+*** Whom do black-owned banks serve                         :Federal_Reserve:
+**** Notes:
+Poverty in Areas Served by Black-Owned Banks Deep poverty, for individuals in families reporting income  under  50  percent  of  the  federal  poverty  level,  affected  less  than  10  percent  of  the  nation  as  a  whole  in  2000  and  2011.  But  *deep-poverty  figures  were  substantially  larger  for  communities  served  by  BOBs  and  almost  twice  as  large  where  those banks hold at least 20 percent of a community’s deposits*. For  poverty  as  officially  measured,  the  rate  rose from 14.5 percent in 2000 to 17.3 percent in 2011.  The  pattern  for  individuals  in  families  below double the official poverty line resembles that for the other poverty cut-offs. It is notable that, where BOBs hold at least 20 percent of a community’s deposits, more than half of the residents live below the double-poverty cut-off. This finding suggests that BOBs tend to serve low-income customers with very limited asset holdings. (See “Poverty Rates for U.S. Areas Served by Black-Owned Banks.”) 
+**** Citation:
+@article{kashian2014whom,
+  title={Whom do black-owned banks serve},
+  author={Kashian, R and McGregory, Richard and McCrank, Derrek Grunfelder},
+  journal={Communities banking. Boston Federal Reserve Bank.(Summer)},
+  pages={29--31},
+  year={2014}
+}
+
