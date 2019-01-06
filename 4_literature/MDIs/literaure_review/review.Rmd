@@ -15,9 +15,21 @@ output:
     number_sections: yes
 ---
 
+# History of MDIs
+
+# Characteristics of MDIs
+
+@iqbal1999output find evidence that MDIs are less profitable than non-MDIs.
+
+# The Number of MDIs
+
+@kashianchanging investigated the change in the amount and composition of MDIs between 2000 and 2015.  They further document the change in the characteristics of the communities that the MDIs serve.  They find that while the total numer of MDIs increased over the period, the gains were not spread evenly across all MDIs.  Specifically, African-American MDIs declined from 48 in 2001 to 28 in 2014.  Over the same period Hispanic-owned MDIs increased from 31 to 41, and Asian-owned MDIs increased from 69 to 85.  The authors cite limited expansion, rather than mailures and mergers, as the driver of the decline in African-American-owned MDIs over the period.
 
 # The Communities that MDIs Serve 
 
+Regarding communities that MDIs serve, @kashianchanging found MDIs tend to lend to thier target markets, for exampel African-American MDIs serve the largest proportion of African-Americans, and Hispanic MDIs serve the largest proportion of Hispanics.  Moreover, between 2001 and 2014, African-American MDI lending became more concentrated in African-American and high-poverty communities.
 
 
+# MDIs and Raising Capital
 
+# References

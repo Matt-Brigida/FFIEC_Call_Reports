@@ -1,7 +1,7 @@
 #+TITLE: MDI Literature
 #+OPTIONS: toc:nil
 
-** MDIs and CDFIs
+** MDIs and CDFIs [Make changes in research literature and paste here.]
 *** Minority Depository Institutions at the Dawn of the 21st Century, :Federal_Reserve:Working_Paper:
 **** Abstract: 
      Financial globalization and international migration have altered the socioeconomic demographic makeup as well as the financial dynamics in immigrant-receiving countries. An outcome is the emergence and strengthening of a formal financial sector consisting of financialinstitutions that are owned and/or operated by a variety of  ethnic groups. Known as minority depository institutions (MDIs), they are often small community banks associated with an ethnic minority group. *This paper examines how MDIs are rooted and localized in different ways with different groups*, and are shaped by different regulatory and institutional contexts. *Specifically, it finds that MDIs serve co-ethnics first and foremost, and utilize ethnic assets, bonding social capital in particular, to develop their customer base while branching out to other groups by developing bridging social capital and broadening their product lines*.
@@ -126,5 +126,20 @@ Poverty in Areas Served by Black-Owned Banks Deep poverty, for individuals in fa
   journal={Communities banking. Boston Federal Reserve Bank.(Summer)},
   pages={29--31},
   year={2014}
+}
+
+*** The output efficiency of minority-owned banks in the United States
+**** Abstract: 
+This study extends prior research on minority-owned banks by examining their output performance. Using a deterministic output distance function, both technical and allocative efficiency are measured. The findings indicate that, with a given set of inputs, minority-owned banks produce less outputs than a comparable group of nonminority-owned banks. Also, both minority-owned banks and nonminority-owned banks fail to allocate outputs in revenue-maximing proportions.
+**** Citation: 
+@article{iqbal1999output,
+  title={The output efficiency of minority-owned banks in the United States},
+  author={Iqbal, Zahid and Ramaswamy, Kizhanathan V and Akhigbe, Aigbe},
+  journal={International Review of Economics \& Finance},
+  volume={8},
+  number={1},
+  pages={105--114},
+  year={1999},
+  publisher={Elsevier}
 }
 
