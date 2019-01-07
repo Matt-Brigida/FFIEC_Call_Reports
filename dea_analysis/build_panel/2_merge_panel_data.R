@@ -7,11 +7,11 @@ library(xts)
 
 ## read in data and merge-----
 
-panel_total_interest_income <- readRDS("./panel_total_interest_income.rds")
+panel_total_interest_expense <- readRDS("./panel_total_interest_expense.rds")
 
-panel_total_loans_leases <- readRDS("./panel_tot_loans_leases.rds")
+panel_domestic_deposits <- readRDS("./panel_domestic_deposits.rds")
 
-panel <- merge(panel_total_interest_income, panel_total_loans_leases, by = c("quarter", "IDRSSD"), all = FALSE)
+panel <- merge(panel_total_interest_expense, panel_domestic_deposits, by = c("quarter", "IDRSSD"), all = FALSE)
 
 
 
@@ -164,8 +164,8 @@ panel[] <- lapply(panel, function(x) as.numeric(as.character(x)))
 
 ### creating regression variables------
 
-panel$interest_rate_earned <- panel$panel_total_interest_income / panel$tot_loans_leases
-
+panel$cost_of_funds <- panel$total_interest_expense / panel$domestic_deposits
+panel$cost_of_funds[is.infinite(panel$cost_of_funds)] <- NA
 
 
 panel$tot_SB_loans_lagged_1_year <- panel$amt_CI_less_100_SB_loans_lagged_1_year + panel$amt_CI_100_250_SB_loans_lagged_1_year + panel$amt_CI_250_1000_SB_loans_lagged_1_year

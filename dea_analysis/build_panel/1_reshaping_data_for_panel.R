@@ -15,6 +15,41 @@ panelify <- function(x, value_name){
 
 ## change for whatever data we are reshaping ------
 
+## Domestic Deposits-----
+
+data <- readRDS("domestic_deposits.rds")
+
+### Reshaping data: x is the output from query (xts with IDRSSD in column name) ----
+
+panelify_env <- new.env()
+
+panelify(data, "domestic_deposits")
+
+panelified <- do.call(rbind, as.list(panelify_env))
+
+saveRDS(panelified, "panel_domestic_deposits.rds")
+
+
+## Interest Expense-----
+
+data <- readRDS("./total_interest_expense.rds")
+
+### Reshaping data: x is the output from query (xts with IDRSSD in column name) ----
+
+panelify_env <- new.env()
+
+panelify(data, "total_interest_expense")
+
+panelified <- do.call(rbind, as.list(panelify_env))
+
+saveRDS(panelified, "panel_total_interest_expense.rds")
+
+
+
+
+
+
+
 ## Total Assets----
 
 data <- readRDS("../../1_querying_data_and_analysis/analyses/panel_data_analysis/get_panel_data/pulling_all_firms/data_BS/total_assets.rds")
