@@ -16,6 +16,14 @@ panel_domestic_deposits <- readRDS("./panel_domestic_deposits.rds")
 
 panel <- merge(panel, panel_domestic_deposits, by = c("quarter", "IDRSSD"), all = FALSE)
 
+panel_t1_leverage_ratio <- readRDS("./panel_t1_leverage_ratio.rds")
+
+panel <- merge(panel, panel_t1_leverage_ratio, by = c("quarter", "IDRSSD"), all = FALSE)
+
+panel_t1_RBCR_ratio <- readRDS("./panel_t1_RBCR_ratio.rds")
+
+panel <- merge(panel, panel_t1_RBCR_ratio, by = c("quarter", "IDRSSD"), all = FALSE)
+
 
 ##########################################
 ### Cleaning and arranging ###############

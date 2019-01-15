@@ -15,6 +15,36 @@ panelify <- function(x, value_name){
 
 ## change for whatever data we are reshaping ------
 
+## T1 L Ratio-----
+
+data <- readRDS("../../1_querying_data_and_analysis/analyses/panel_data_analysis/get_panel_data/pulling_all_firms/data_capital_ratios/t1_leverage_ratio.rds")
+
+### Reshaping data: x is the output from query (xts with IDRSSD in column name) ----
+
+panelify_env <- new.env()
+
+panelify(data, "t1_leverage_ratio")
+
+panelified <- do.call(rbind, as.list(panelify_env))
+
+saveRDS(panelified, "panel_t1_leverage_ratio.rds")
+
+## T1 RBCR Ratio-----
+
+data <- readRDS("../../1_querying_data_and_analysis/analyses/panel_data_analysis/get_panel_data/pulling_all_firms/data_capital_ratios/t1_risk_based_capital_ratio.rds")
+
+### Reshaping data: x is the output from query (xts with IDRSSD in column name) ----
+
+panelify_env <- new.env()
+
+panelify(data, "t1_RBCR_ratio")
+
+panelified <- do.call(rbind, as.list(panelify_env))
+
+saveRDS(panelified, "panel_t1_RBCR_ratio.rds")
+
+
+
 ## Domestic Deposits-----
 
 data <- readRDS("domestic_deposits.rds")
