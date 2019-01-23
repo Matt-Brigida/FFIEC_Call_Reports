@@ -1,0 +1,142 @@
+---
+title: "Data Envelopment Analysis: MDIs"
+date: "January 25, 2019"
+output:
+  rmdformats::html_clean:
+    highlight: kate
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=TRUE,
+               cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=75)
+```
+
+# Data Import and Filtering
+
+## Load Libraries
+
+```{r}
+library(xts)
+library(rDEA)
+library(broom)
+library(stargazer)
+library(pander)
+```
+
+## Get Data and Filter
+
+```{r}
+### get data----
+
+panel <- readRDS("../../build_panel/full_panel.rds")
+
+## filter data-----
+
+panel <- panel[panel$cost_of_funds < .3, ]
+
+### panel for model
+
+panel <- panel[c("quarter", "cost_of_funds", "total_assets", "ROA", "t1_leverage_ratio", "t1_RBCR_ratio", "african_am_ind", "hispanic_ind", "asian_ind", "mdi_ind", "de_novo")]
+
+panel$ln_total_assets <- log(panel$total_assets)
+
+panel <- panel[complete.cases(panel), ]
+
+## create panels for particular quarters----
+
+panel_20170630 <- panel[panel$quarter == 20170630, ]
+
+## ROA Output, T1 Leverage Ratio Input
+
+inputs_20170630 <- panel_20170630[c("cost_of_funds", "ln_total_assets", "t1_leverage_ratio", "de_novo")]
+
+outputs_20170630 <- panel_20170630[c("ROA")]
+```
+
+# Estimate Model
+
+Estimate an input focused model over Q2 2017.
+
+```{r cache = TRUE}
+estimate <- dea(XREF = inputs_20170630, YREF = outputs_20170630, X = inputs_20170630, Y = outputs_20170630, model = "input")
+```
+
+## Efficiency for each Subgroup
+
+```{r cache = TRUE}
+data_with_efficiency <- data.frame(cbind(estimate$thetaOpt, panel_20170630$african_am_ind, panel_20170630$hispanic_ind, panel_20170630$asian_ind, panel_20170630$mdi_ind))
+names(data_with_efficiency) <- c("Efficiency", "AA_ind", "H_ind", "Asian_ind", "MDI_ind")
+
+## non-MDI
+efficiency_not_MDI <- data_with_efficiency[data_with_efficiency$MDI_ind == 0, ][,1]
+efficiency_not_MDI[is.infinite(efficiency_not_MDI)] <- NA
+
+## African American
+efficiency_aa <- data_with_efficiency[data_with_efficiency$AA_ind == 1, ][,1]
+efficiency_aa[is.infinite(efficiency_aa)] <- NA
+
+## Hispanic
+efficiency_h <- data_with_efficiency[data_with_efficiency$H_ind == 1, ][,1]
+efficiency_h[is.infinite(efficiency_h)] <- NA
+
+## African American
+efficiency_asian <- data_with_efficiency[data_with_efficiency$Asian_ind == 1, ][,1]
+efficiency_asian[is.infinite(efficiency_asian)] <- NA
+```
+
+
+# Hypothesis Tests
+
+## T-Tests 
+
+T-test for differences in mean efficiency between each group and non-MDIs.
+
+### African American 
+
+```{r cache = TRUE, results = 'asis'}
+pander(t.test(efficiency_aa, efficiency_not_MDI, na.rm = TRUE))
+```
+
+### Hispanic
+
+```{r cache = TRUE}
+pander(t.test(efficiency_h, efficiency_not_MDI, na.rm = TRUE))
+```
+
+### Asian
+
+```{r cache = TRUE, results = 'asis'}
+pander(t.test(efficiency_asian, efficiency_not_MDI, na.rm = TRUE))
+```
+
+## Kolmogorov-Smirnov Tests
+
+### African American 
+
+```{r cache = TRUE, results = 'asis'}
+pander(ks.test(efficiency_aa, efficiency_not_MDI, na.rm = TRUE))
+```
+
+### Hispanic
+
+```{r cache = TRUE, results = 'asis'}
+pander(ks.test(efficiency_h, efficiency_not_MDI, na.rm = TRUE))
+```
+
+### Asian
+
+```{r cache = TRUE, results = 'asis'}
+pander(ks.test(efficiency_asian, efficiency_not_MDI, na.rm = TRUE))
+```
+
