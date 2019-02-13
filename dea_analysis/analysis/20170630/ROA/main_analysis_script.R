@@ -98,4 +98,12 @@ ks_asian_pval <- ks.test(efficiency_asian, efficiency_not_MDI, na.rm = TRUE)$p.v
 
 means <- c(tt_aa_means[1], tt_h_means[1], tt_asian_means[1], tt_asian_means[2])
 names(means) <- c("aa", "h", "asian", "nonmdi")
+saveRDS(means, "means.rds")
+
 pvals <- c(tt_aa_pval, tt_h_pval, tt_asian_pval)
+names(pvals) <- c("aa", "h", "asian")
+saveRDS(pvals, "pvals.rds")
+
+ks <- c(ks_aa_pval, ks_h_pval, ks_asian_pval)
+names(ks) <- c("aa", "h", "asian")
+saveRDS(ks, "ks.rds")
