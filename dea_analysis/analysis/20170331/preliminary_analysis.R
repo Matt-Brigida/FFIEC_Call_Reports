@@ -3,7 +3,8 @@
 
 library(xts)
 library(rDEA)
-## load("20170630_DEA_output_model_robust.RData")
+
+load(".RData")
 
 ## Get Data and Filter
 
@@ -57,7 +58,7 @@ t.test(theta_hat_aa, theta_hat_not_aa, na.rm = TRUE)
 ## 95 percent confidence interval:
 ##  -7.610824 22.338067
 ## sample estimates:
-## mean of x mean of y 
+## mean of x mean of y
 ## 7.6408916 0.2772703
 
 ks.test(theta_hat_aa, theta_hat_not_aa, na.rm = TRUE)
@@ -91,8 +92,8 @@ t.test(theta_hat_hat_aa, theta_hat_hat_not_aa, na.rm = TRUE)
 ## 95 percent confidence interval:
 ##  -34.09919  13.33597
 ## sample estimates:
-##   mean of x   mean of y 
-## -11.2379196  -0.8563117 
+##   mean of x   mean of y
+## -11.2379196  -0.8563117
 
 ks.test(theta_hat_hat_aa, theta_hat_hat_not_aa, na.rm = TRUE)
 ## 	Two-sample Kolmogorov-Smirnov test
@@ -121,8 +122,8 @@ t.test(theta_hat_h, theta_hat_not_h, na.rm = TRUE)
 ## 95 percent confidence interval:
 ##  -0.4595172 -0.1350726
 ## sample estimates:
-##  mean of x  mean of y 
-## 0.01137054 0.30866546 
+##  mean of x  mean of y
+## 0.01137054 0.30866546
 
 ks.test(theta_hat_h, theta_hat_not_h, na.rm = TRUE)
 ## 	Two-sample Kolmogorov-Smirnov test
@@ -152,8 +153,8 @@ t.test(theta_hat_hat_h, theta_hat_hat_not_h, na.rm = TRUE)
 ## 95 percent confidence interval:
 ##  0.5176244 1.2750877
 ## sample estimates:
-##     mean of x     mean of y 
-##  0.0008052725 -0.8955507788 
+##     mean of x     mean of y
+##  0.0008052725 -0.8955507788
 
 ks.test(theta_hat_hat_h, theta_hat_hat_not_h, na.rm = TRUE)
 ## 	Two-sample Kolmogorov-Smirnov test
