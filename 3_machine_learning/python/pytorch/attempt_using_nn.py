@@ -56,8 +56,8 @@ train_size = int(0.8 * len(df2))
 test_size = len(df2) - train_size
 train_dataset, test_dataset = torch.utils.data.random_split(df2, [train_size, test_size])
 
-## removed "IDRSSD", "quarter",
-train_inputs = train_dataset.dataset[["t1_LR_lagged_1_year", "tot_SB_loans_TA_lagged_1", "ROA_lagged_1", "NPA_TA_lagged_1", "total_assets_lagged_1_year", "TD_TA_lagged_1", "african_am_ind", "hispanic_ind", "de_novo", "TETA_lagged_1_year", "post_crisis_ind", "fin_crisis_ind"]]
+## removed "IDRSSD", "quarter",, "total_assets_lagged_1_year"
+train_inputs = train_dataset.dataset[["t1_LR_lagged_1_year", "tot_SB_loans_TA_lagged_1", "ROA_lagged_1", "NPA_TA_lagged_1", "TD_TA_lagged_1", "african_am_ind", "hispanic_ind", "de_novo", "TETA_lagged_1_year", "post_crisis_ind", "fin_crisis_ind"]]
 
 train_output = train_dataset.dataset[["totSBloans_Delt"]]
 
@@ -66,15 +66,15 @@ device = torch.device("cuda:0")
 
 # N is batch size; D_in is input dimension;
 # H is hidden dimension; D_out is output dimension.
-N, D_in, H, D_out = 200, 12, 100, 1
+N, D_in, H, D_out = 200, 11, 100, 1
 
 x = torch.tensor(train_inputs.astype(np.float32).values, device = device)
 y = torch.tensor(train_output.astype(np.float32).values, device = device)
 
 ## to normalize data
 # def normalize(x):
-#     x_normed = x / x.max(0, keepdim=True)[0]
-#     return x_normed
+#      x_normed = x / x.max(0, keepdim=True)[0]
+#      return x_normed
 
 # x = normalize(x)
 # y = normalize(y)
@@ -86,15 +86,19 @@ y = torch.tensor(train_output.astype(np.float32).values, device = device)
 model = torch.nn.Sequential(
     torch.nn.Linear(D_in, H),
     torch.nn.ReLU(),
+    torch.nn.ELU(),
     torch.nn.Linear(H, D_out),
 )
+
+model = model.cuda()
 
 # The nn package also contains definitions of popular loss functions; in this
 # case we will use Mean Squared Error (MSE) as our loss function.
 loss_fn = torch.nn.MSELoss(reduction='sum')
 
-learning_rate = 1e-4
-for t in range(500):
+learning_rate = 1e-7
+
+for t in range(2000):
     # Forward pass: compute predicted y by passing x to the model. Module objects
     # override the __call__ operator so you can call them like functions. When
     # doing so you pass a Tensor of input data to the Module and it produces
@@ -122,4 +126,4 @@ for t in range(500):
         for param in model.parameters():
             param -= learning_rate * param.grad
 
-## getting error: Expected object of backend CPU but got backend CUDA for argument #4 'mat1'
+
