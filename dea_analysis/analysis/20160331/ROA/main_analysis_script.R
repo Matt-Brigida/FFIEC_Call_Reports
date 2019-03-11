@@ -17,6 +17,9 @@ panel <- readRDS("../../../build_panel/full_panel.rds")
 ## filter data-----
 
 panel <- panel[panel$cost_of_funds < .3, ]
+panel <- panel[panel$totSBloans_Delt < 1, ]
+panel <- panel[panel$t1_LR_lagged_1_year < .5, ]
+panel <- panel[panel$t1_RBCR_lagged_1_year < .5, ]
 
 ### panel for model
 
@@ -111,3 +114,7 @@ names(ks) <- c("aa", "h", "asian")
 saveRDS(ks, "ks.rds")
 write.csv(ks, "ks.csv")
 
+numbers <- c(sum(panel$african_am_ind), sum(panel$hispanic_ind), sum(panel$asian_ind))
+names(numbers) <- c("aa", "h", "asian")
+saveRDS(numbers, "numbers.rds")
+write.csv(numbers, "numbers.csv")
