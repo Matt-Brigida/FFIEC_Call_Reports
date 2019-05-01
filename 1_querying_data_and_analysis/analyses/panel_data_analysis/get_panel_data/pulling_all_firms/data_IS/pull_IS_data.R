@@ -5,12 +5,13 @@ library(xts)
 
 idrssds_dead <- readRDS("../idrssds_deaths_through_12312017.rds")
 idrssds_alive <- readRDS("../idrssds_alive_12312017.rds")
+idrssds_born_since_2017 <- readRDS("../idrssds_births_since_12312017.rds")
 
-idrssds <- c(idrssds_alive, idrssds_dead)
+idrssds <- c(idrssds_alive, idrssds_dead, idrssds_born_since_2017)
 
 ### Interest Income -------
 
-source(paste0(here(), "/querying_data_and_analysis/individual_schedule_queries/schedule_RI_query.R"))
+source(paste0(here(), "/1_querying_data_and_analysis/individual_schedule_queries/schedule_RI_query.R"))
 
 total_interest_income <- new.env()
 
