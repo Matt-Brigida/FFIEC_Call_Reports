@@ -5,13 +5,14 @@ library(xts)
 
 idrssds_dead <- readRDS("../idrssds_deaths_through_12312017.rds")
 idrssds_alive <- readRDS("../idrssds_alive_12312017.rds")
+idrssds_births_since_12312017 <- readRDS("../idrssds_births_since_12312017.rds")
 
-idrssds <- c(idrssds_alive, idrssds_dead)
+idrssds <- c(idrssds_alive, idrssds_dead, idrssds_births_since_12312017)
 
 
 ### Retained_earnings -------
 
-source(paste0(here(), "/querying_data_and_analysis/item_queries/retained_earnings.R"))
+source(paste0(here(), "/1_querying_data_and_analysis/item_queries/retained_earnings.R"))
 
 retained_earnings <- new.env()
 
