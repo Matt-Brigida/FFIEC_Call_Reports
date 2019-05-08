@@ -5,8 +5,9 @@ library(xts)
 
 idrssds_dead <- readRDS("../idrssds_deaths_through_12312017.rds")
 idrssds_alive <- readRDS("../idrssds_alive_12312017.rds")
+idrssds_births_since_12312017 <- readRDS("../idrssds_births_since_12312017.rds")
 
-idrssds <- c(idrssds_alive, idrssds_dead)
+idrssds <- c(idrssds_alive, idrssds_dead, idrssds_births_since_12312017)
 
 source(paste0(here(), "/1_querying_data_and_analysis/individual_schedule_queries/schedule_RCCI_query.R"))
 
