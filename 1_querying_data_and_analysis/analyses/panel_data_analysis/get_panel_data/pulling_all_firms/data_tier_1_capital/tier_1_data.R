@@ -5,13 +5,14 @@ library(xts)
 
 idrssds_dead <- readRDS("../idrssds_deaths_through_12312017.rds")
 idrssds_alive <- readRDS("../idrssds_alive_12312017.rds")
+idrssds_births_since_12312017 <- readRDS("../idrssds_births_since_12312017.rds")
 
-idrssds <- c(idrssds_alive, idrssds_dead)
+idrssds <- c(idrssds_alive, idrssds_dead, idrssds_births_since_12312017)
 
 ## pull tier_1_capital for all firms ----
 
 ## source("../item_queries/tier_1_capital.R")
-source(paste0(here(), "/querying_data_and_analysis/item_queries/tier_1_capital_attempt_2.R"))
+source(paste0(here(), "/1_querying_data_and_analysis/item_queries/tier_1_capital_attempt_2.R"))
 
 tier_1 <- new.env()
 
