@@ -69,5 +69,5 @@ write.csv(all_tier_1_lagged_1_year, "tier_1_cap_lagged_1_year.csv")
 saveRDS(all_tier_1_lagged_1_year, "tier_1_cap_lagged_1_year.rds")
 
 ## see how many IDs have any data
-sum(1*(apply(all_tier_1,, 2, function(x){sum(x, na.rm=TRUE)}) > 0))
+sum(1*(apply(all_tier_1, 2, function(x){sum(x, na.rm=TRUE)}) > 0))
 # 10761
