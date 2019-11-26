@@ -35,4 +35,8 @@ apply(de_novos, 2, median)
 
 stargazer(not_de_novos[, -1], type = "html", title="Descriptive Statistics: Not De Novo Banks", digits=3, out="not_de_novos_summary_statistics.htm", covariate.labels = c("% Change Amt. S. Bus. Loans", "% Change Num. S. Bus. Loans", "Tier 1 Leverage Ratio", "Small-Business Loans", "ROA", "NPA", "Total Assets", "Deposits", "De Novo", "Total Equity", "Post Crisis", "Financial Crisis"))
 
-apply(not_de_novos, 2, median)
+
+library(tidyverse)
+apply(head(not_de_novos), 2, median)
+
+write.csv(panel, "../full_panel.csv")
